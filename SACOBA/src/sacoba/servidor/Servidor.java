@@ -24,14 +24,22 @@ public class Servidor {
 
     private ServerSocket serverSocket;
     private Socket socket;
-    private List<Cliente> clients;
     private ExecutorService service;
+
+    /*
+    TODO    Lista enlazada de clientes
+            1.  Se agrega una pila de ClientePuerta
+            2.  Se agrega una pila de ClienteMonitore
+            3.  Se agrega una pila de ClienteCaja
+     */
+    private List<Cliente> clientes;
 
     public Servidor() {
         try {
             service = Executors.newCachedThreadPool();
-            //TODO Definir un array para cada cliente
-            clients = new ArrayList<>();
+            //TODO  Inicializar la lista enlazada clientes
+            clientes = new ArrayList<>();
+            //TODO  Inicilalizar y agregar las pilas 
             serverSocket = new ServerSocket(2356);
             Accept();
         } catch (IOException ex) {
@@ -44,7 +52,7 @@ public class Servidor {
             while (true) {
                 System.out.println("Accept 1");
                 socket = serverSocket.accept();
-                //TODO Segun el tipo del cliente se declara tipo ClientePuerta, ClienteMonitor, ClienteCajero
+                //TODO Segun el tipo del cliente se declara tipo ClientePuerta, ClienteMonitor, ClienteCaja y se agreagan a la pila correspondientes
 //                ClienteServidor client = new ClienteServidor(socket);
 //                service.submit(client);
             }
@@ -52,4 +60,19 @@ public class Servidor {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+    /*
+    public Pila getPuertas(){
+        return clientes.getItem(1);
+    }
+    public Pila getMonitores(){
+        return clientes.getItem(2);
+    }
+    public Pila getCajas(){
+        return clientes.getItem(3);
+    }
+     */
 }
