@@ -1,0 +1,13 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix} Sistema de Asistencia de Control Bancario
+${licensePrefix} SACOBA
+${licensePrefix} 
+${licensePrefix} Marcela Cascante Quiros
+${licensePrefix} Diego Delgado Cerdas
+${licensePrefix} Alejandro Loaiza Arguedas
+${licensePrefix} Jose David Mora Loria
+<#if licenseLast??>
+${licenseLast}
+</#if>
