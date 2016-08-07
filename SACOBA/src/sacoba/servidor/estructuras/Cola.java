@@ -13,9 +13,9 @@ import sacoba.servidor.beans.Secuencia;
  */
 public class Cola {
     Secuencia dato;
-    Cola next;
+    NodoArbol next;
 
-    public Cola(Secuencia dato, Cola next) {
+    public Cola(Secuencia dato, NodoArbol next) {
         this.dato = dato;
         this.next = next;
     }
@@ -28,11 +28,11 @@ public class Cola {
         this.dato = dato;
     }
 
-    public Cola getNext() {
+    public NodoArbol getNext() {
         return next;
     }
 
-    public void setNext(Cola next) {
+    public void setNext(NodoArbol next) {
         this.next = next;
     }
     
