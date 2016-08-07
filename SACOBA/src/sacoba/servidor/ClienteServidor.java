@@ -18,17 +18,16 @@ import java.util.logging.Logger;
  */
 public abstract class ClienteServidor extends Thread {
 
-    private ObjectOutputStream out;
-    private ObjectInputStream in;
-    private Socket socket;
-    
-    public ClienteServidor(final Socket socket)
-    {
+    protected ObjectOutputStream out;
+    protected ObjectInputStream in;
+    protected Socket socket;
+
+    public ClienteServidor(final Socket socket) {
         this.socket = socket;
         createStream();
     }
 
-     private void createStream() {
+    private void createStream() {
         try {
             out = new ObjectOutputStream(socket.getOutputStream());
             in = new ObjectInputStream(socket.getInputStream());
@@ -37,7 +36,7 @@ public abstract class ClienteServidor extends Thread {
         }
 
     }
-     
+
     @Override
     public abstract void run();
 }

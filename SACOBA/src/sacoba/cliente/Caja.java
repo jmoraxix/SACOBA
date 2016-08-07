@@ -12,7 +12,6 @@ package sacoba.cliente;
 public class Caja extends Cliente {
 
     // TODO Definir comportamiento de la clase Caja
-    
     @Override
     public void run() {
     }

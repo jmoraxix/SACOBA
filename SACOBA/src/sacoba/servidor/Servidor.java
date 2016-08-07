@@ -21,7 +21,7 @@ import sacoba.cliente.Cliente;
  * @author Marce
  */
 public class Servidor {
-    
+
     private ServerSocket serverSocket;
     private Socket socket;
     private List<Cliente> clients;
@@ -30,6 +30,7 @@ public class Servidor {
     public Servidor() {
         try {
             service = Executors.newCachedThreadPool();
+            //TODO Definir un array para cada cliente
             clients = new ArrayList<>();
             serverSocket = new ServerSocket(2356);
             Accept();
@@ -43,9 +44,9 @@ public class Servidor {
             while (true) {
                 System.out.println("Accept 1");
                 socket = serverSocket.accept();
-                ClienteServidor client = new ClienteServidor(socket);
-                service.submit(client);
-                System.out.println("Accept 2");
+                //TODO Segun el tipo del cliente se declara tipo ClientePuerta, ClienteMonitor, ClienteCajero
+//                ClienteServidor client = new ClienteServidor(socket);
+//                service.submit(client);
             }
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);

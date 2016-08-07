@@ -8,11 +8,9 @@ package sacoba.cliente;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,13 +18,14 @@ import javax.swing.JOptionPane;
  */
 public abstract class Cliente extends Thread {
 
+    private static String SERVER_IP;
     private ObjectOutputStream out;
     private ObjectInputStream in;
     private Socket socket;
 
     public Cliente() {
         try {
-            socket = new Socket(InetAddress.getLocalHost(), 2356);
+            socket = new Socket(SERVER_IP, 2356);
             createStream();
         } catch (IOException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -45,24 +44,11 @@ public abstract class Cliente extends Thread {
         }
     }
 
-    public void sendData() {
-        try {
-            String info = JOptionPane.showInputDialog("Info");
-            out.writeUTF(info);
-            out.flush();
-
-        } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public static String getSERVER_IP() {
+        return SERVER_IP;
     }
 
-    private void getData() {
-        try {
-            String info = in.readUTF();
-            System.out.println(info);
-        } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public static void setSERVER_IP(String SERVER_IP) {
+        Cliente.SERVER_IP = SERVER_IP;
     }
-
 }
