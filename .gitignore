@@ -13,3 +13,7 @@ hs_err_pid*
 /SACOBA/nbproject/private/
 /SACOBA/build/
 /SACOBA/dist/
+
+#Sublime files
+*.sublime-workspace
+*.sublime-project

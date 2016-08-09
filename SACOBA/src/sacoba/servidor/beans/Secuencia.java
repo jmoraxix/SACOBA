@@ -1,7 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *  Sistema de Asistencia de Control Bancario
+ *  SACOBA
+ *  
+ *  Marcela Cascante Quiros
+ *  Diego Delgado Cerdas
+ *  Alejandro Loaiza Arguedas
+ *  Jose David Mora Loria
  */
 package sacoba.servidor.beans;
 

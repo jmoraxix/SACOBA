@@ -7,16 +7,12 @@
  *  Alejandro Loaiza Arguedas
  *  Jose David Mora Loria
  */
-package sacoba.cliente;
+package sacoba;
 
 /**
  *
- * @author Marce
+ * @author jmora
  */
-public class Caja extends Cliente {
+public class SACOBA {
 
-    // TODO Definir comportamiento de la clase Caja
-    @Override
-    public void run() {
-    }
 }
