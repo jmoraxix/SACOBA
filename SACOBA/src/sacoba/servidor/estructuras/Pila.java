@@ -1,3 +1,12 @@
+/*
+ *  Sistema de Asistencia de Control Bancario
+ *  SACOBA
+ *  
+ *  Marcela Cascante Quiros
+ *  Diego Delgado Cerdas
+ *  Alejandro Loaiza Arguedas
+ *  Jose David Mora Loria
+ */
 package sacoba.servidor.estructuras;
 
 /**
@@ -6,9 +15,11 @@ package sacoba.servidor.estructuras;
  */
 public class Pila {
 
-    private NodoPuertas top;
+    //Variables
+    private NodoPila top;
 
-    public void push(NodoPuertas c) {
+    //Metodos
+    public void push(NodoPila c) {
         if (top == null) {
             top = c;
         } else {
@@ -18,8 +29,8 @@ public class Pila {
 
     }
 
-    public NodoPuertas pop() {
-        NodoPuertas c = top;
+    public NodoPila pop() {
+        NodoPila c = top;
         if (top != null) {
             top = top.getAbajo();
             c.setAbajo(null);
@@ -29,7 +40,7 @@ public class Pila {
 
     public String toString() {
         String cl = "";
-        NodoPuertas aux = top;
+        NodoPila aux = top;
         while (aux != null) {
             cl += aux;
             aux = aux.getAbajo();

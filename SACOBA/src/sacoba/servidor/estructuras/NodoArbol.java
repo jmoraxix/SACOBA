@@ -14,5 +14,8 @@ package sacoba.servidor.estructuras;
  * @author jdmoralo
  */
 public class NodoArbol {
-    
+
+    //Variables
+    //Constructor
+    //Metodos
 }

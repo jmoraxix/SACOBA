@@ -14,9 +14,15 @@ package sacoba.servidor.estructuras;
  * @author jdmoralo
  */
 public class Arbol {
+
+    //Variables
     private NodoArbol banco;
 
+    //Constructor
     public Arbol() {
         this.banco = new NodoArbol();
     }
+
+    //Getters & setters
+    //Metodos
 }

@@ -13,20 +13,29 @@ import sacoba.cliente.Cliente;
 
 /**
  *
- * @author jmora
+ * @author marce
  */
-public class NodoPila {
+public class NodoCola {
 
     //Variables
+    private String secuencia;
     private Cliente cliente;
-    private NodoPila abajo;
+    private NodoCola atras;
 
     //Constructor
-    public NodoPila(Cliente cliente) {
-        this.cliente = cliente;
+    public NodoCola(String secuencia) {
+        this.secuencia = secuencia;
     }
 
     //Getters & setters
+    public String getSecuencia() {
+        return secuencia;
+    }
+
+    public void setSecuencia(String secuencia) {
+        this.secuencia = secuencia;
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -35,18 +44,18 @@ public class NodoPila {
         this.cliente = cliente;
     }
 
-    public NodoPila getAbajo() {
-        return abajo;
+    public NodoCola getAtras() {
+        return atras;
     }
 
-    public void setAbajo(NodoPila abajo) {
-        this.abajo = abajo;
+    public void setAtras(NodoCola atras) {
+        this.atras = atras;
     }
 
     //Metodos
     @Override
     public String toString() {
-        return "" + "" + cliente + "\n";
-    }
+        return "NodoCola {" + "Secuencia = " + secuencia + '}';
+    } // Retorna la informacion en String
 
 }
