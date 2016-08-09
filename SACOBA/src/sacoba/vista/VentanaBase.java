@@ -1,12 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *  Sistema de Asistencia de Control Bancario
+ *  SACOBA
+ *  
+ *  Marcela Cascante Quiros
+ *  Diego Delgado Cerdas
+ *  Alejandro Loaiza Arguedas
+ *  Jose David Mora Loria
  */
 package sacoba.vista;
 
 import javax.swing.JFrame;
-import sacoba.vista.base.PanelConFondo;
 
 /**
  * Define un panel y mantiene la base para los demas paneles
@@ -15,8 +18,8 @@ import sacoba.vista.base.PanelConFondo;
  */
 public class VentanaBase extends JFrame {
 
-    public static final int ANCHO = 900;
-    public static final int ALTO = 450;
+    public static final int ANCHO = 950;
+    public static final int ALTO = 700;
 
     public VentanaBase() {
         // Declaracion b�sica de la venta

@@ -1,42 +1,40 @@
-package sacoba.vista.base;
+package sacoba.vista;
 
 import java.awt.AlphaComposite;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 
 /**
  *
  * @author jmora
  */
-public class TransparentTextField extends JTextField {
+public class TransparentPasswordField extends JPasswordField {
 
     private static final long serialVersionUID = 1959323179223226142L;
 
-    public TransparentTextField() {
+    public TransparentPasswordField() {
         super();
         init();
     }
 
-    public TransparentTextField(String text) {
+    public TransparentPasswordField(String text) {
         super(text);
         init();
     }
 
-    public TransparentTextField(int columns) {
+    public TransparentPasswordField(int columns) {
         super(columns);
         init();
     }
 
-    public TransparentTextField(String text, int columns) {
+    public TransparentPasswordField(String text, int columns) {
         super(text, columns);
         init();
     }
 
     protected void init() {
         setOpaque(false);
-        setForeground(Color.black);
     }
 
     @Override

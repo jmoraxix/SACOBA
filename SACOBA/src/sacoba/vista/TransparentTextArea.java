@@ -1,40 +1,25 @@
-package sacoba.vista.base;
+package sacoba.vista;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import javax.swing.JFormattedTextField;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
+import javax.swing.JTextArea;
 
 /**
  *
  * @author jmora
  */
-public class TransparentFormattedTextField extends JFormattedTextField {
+public class TransparentTextArea extends JTextArea {
 
-    private static final long serialVersionUID = 1959323179223226142L;
-
-    public TransparentFormattedTextField() {
+    public TransparentTextArea() {
         super();
         init();
     }
 
-    public TransparentFormattedTextField(String text) {
+    public TransparentTextArea(String text) {
         super(text);
         init();
-    }
-
-    public TransparentFormattedTextField(int columns) {
-        super(columns);
-        init();
-    }
-
-    public TransparentFormattedTextField(MaskFormatter maskFormatter) {
-        super();
-        maskFormatter.setPlaceholderCharacter('_');
-        setFormatterFactory(new DefaultFormatterFactory(maskFormatter));
     }
 
     protected void init() {

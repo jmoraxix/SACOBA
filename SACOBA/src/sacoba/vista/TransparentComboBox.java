@@ -1,40 +1,31 @@
-package sacoba.vista.base;
+package sacoba.vista;
 
 import java.awt.AlphaComposite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import javax.swing.JPasswordField;
+import java.util.Vector;
+import javax.swing.ComboBoxModel;
+import javax.swing.JComboBox;
 
 /**
  *
  * @author jmora
  */
-public class TransparentPasswordField extends JPasswordField {
+public class TransparentComboBox<Object> extends JComboBox<Object> {
 
-    private static final long serialVersionUID = 1959323179223226142L;
-
-    public TransparentPasswordField() {
-        super();
-        init();
+    public TransparentComboBox(ComboBoxModel<Object> aModel) {
+        super(aModel);
     }
 
-    public TransparentPasswordField(String text) {
-        super(text);
-        init();
+    public TransparentComboBox(Object[] items) {
+        super(items);
     }
 
-    public TransparentPasswordField(int columns) {
-        super(columns);
-        init();
+    public TransparentComboBox(Vector<Object> items) {
+        super(items);
     }
 
-    public TransparentPasswordField(String text, int columns) {
-        super(text, columns);
-        init();
-    }
-
-    protected void init() {
-        setOpaque(false);
+    public TransparentComboBox() {
     }
 
     @Override
@@ -53,5 +44,4 @@ public class TransparentPasswordField extends JPasswordField {
         super.paintComponent(g2d);
         g2d.dispose();
     }
-
 }

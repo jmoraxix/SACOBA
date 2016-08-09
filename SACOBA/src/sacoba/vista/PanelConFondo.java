@@ -1,4 +1,4 @@
-package sacoba.vista.base;
+package sacoba.vista;
 
 import java.awt.Component;
 import java.awt.Graphics;
@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+import sacoba.SACOBA;
 
 /**
  *
@@ -40,7 +41,7 @@ public class PanelConFondo extends JPanel {
 
     private void definirBorde(String url) {
         try {
-            URL imagen = PanelConFondo.class.getResource("../imagenes/" + url);
+            URL imagen = SACOBA.class.getResource("vista/imagenes/" + url);
             BufferedImage img = ImageIO.read(imagen);
             BgBorder borde = new BgBorder(img);
             this.setBorder(borde);
