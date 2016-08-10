@@ -41,6 +41,11 @@ public class TransparentFormattedTextField extends JFormattedTextField {
         setOpaque(false);
         setForeground(Color.black);
     }
+    
+    public void setMask(MaskFormatter maskFormatter){
+        maskFormatter.setPlaceholderCharacter('_');
+        setFormatterFactory(new DefaultFormatterFactory(maskFormatter));
+    }
 
     @Override
     public void paint(Graphics g) {

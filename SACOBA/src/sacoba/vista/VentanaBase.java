@@ -19,7 +19,7 @@ import javax.swing.JFrame;
 public class VentanaBase extends JFrame {
 
     public static final int ANCHO = 950;
-    public static final int ALTO = 700;
+    public static final int ALTO = 650;
 
     public VentanaBase() {
         // Declaracion b�sica de la venta

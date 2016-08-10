@@ -9,6 +9,9 @@
  */
 package sacoba.cliente;
 
+import java.awt.event.ActionListener;
+import javafx.event.ActionEvent;
+import sacoba.cliente.vista.PuertaView;
 import sacoba.vista.VentanaBase;
 
 /**
@@ -22,6 +25,7 @@ public class ClienteTCP extends VentanaBase {
      */
     public ClienteTCP() {
         initComponents();
+        setSize(VentanaBase.ANCHO, VentanaBase.ALTO);
     }
 
     /**
@@ -37,15 +41,15 @@ public class ClienteTCP extends VentanaBase {
         titulo1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         panelContenido = new sacoba.vista.PanelConFondo("fondo_panel.png");
-        btnClientePuerta = new sacoba.vista.TransparentButton("puerta.png");
         btnClienteCaja = new sacoba.vista.TransparentButton("cajero.png");
         btnClienteMonitor = new sacoba.vista.TransparentButton("monitor.png");
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        btnPuerta = new sacoba.vista.PanelConFondo("puerta.png");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(950, 650));
 
         titulo1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         titulo1.setText("Sistema de Asistencia de Control Bancario");
@@ -56,44 +60,41 @@ public class ClienteTCP extends VentanaBase {
         panelTitulo.add(jLabel1);
         jLabel1.setBounds(20, 40, 250, 30);
 
-        btnClientePuerta.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        btnClientePuerta.setMinimumSize(new java.awt.Dimension(200, 200));
-        panelContenido.add(btnClientePuerta);
-        btnClientePuerta.setBounds(120, 40, 150, 190);
-
         btnClienteCaja.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         btnClienteCaja.setMinimumSize(new java.awt.Dimension(200, 200));
         panelContenido.add(btnClienteCaja);
-        btnClienteCaja.setBounds(600, 40, 150, 190);
+        btnClienteCaja.setBounds(590, 50, 170, 190);
 
         btnClienteMonitor.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         btnClienteMonitor.setMinimumSize(new java.awt.Dimension(200, 200));
         panelContenido.add(btnClienteMonitor);
-        btnClienteMonitor.setBounds(360, 40, 150, 190);
+        btnClienteMonitor.setBounds(350, 50, 170, 190);
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Cajero");
         panelContenido.add(jLabel2);
-        jLabel2.setBounds(600, 230, 150, 30);
-
-        jLabel3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Puerta");
-        panelContenido.add(jLabel3);
-        jLabel3.setBounds(120, 230, 150, 30);
+        jLabel2.setBounds(600, 240, 150, 30);
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Puerta");
         panelContenido.add(jLabel4);
-        jLabel4.setBounds(120, 230, 150, 30);
+        jLabel4.setBounds(120, 240, 150, 30);
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Monitor");
         panelContenido.add(jLabel5);
-        jLabel5.setBounds(360, 230, 150, 30);
+        jLabel5.setBounds(360, 240, 150, 30);
+
+        btnPuerta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPuertaMouseClicked(evt);
+            }
+        });
+        panelContenido.add(btnPuerta);
+        btnPuerta.setBounds(120, 50, 150, 190);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,7 +105,7 @@ public class ClienteTCP extends VentanaBase {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,10 +113,15 @@ public class ClienteTCP extends VentanaBase {
                 .addGap(34, 34, 34)
                 .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addComponent(panelContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addComponent(panelContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(185, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPuertaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPuertaMouseClicked
+        new PuertaView().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnPuertaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -155,10 +161,9 @@ public class ClienteTCP extends VentanaBase {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private sacoba.vista.TransparentButton btnClienteCaja;
     private sacoba.vista.TransparentButton btnClienteMonitor;
-    private sacoba.vista.TransparentButton btnClientePuerta;
+    private sacoba.vista.PanelConFondo btnPuerta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private sacoba.vista.PanelConFondo panelContenido;
