@@ -9,8 +9,6 @@
  */
 package sacoba.cliente;
 
-import java.awt.event.ActionListener;
-import javafx.event.ActionEvent;
 import sacoba.cliente.vista.PuertaView;
 import sacoba.vista.VentanaBase;
 
@@ -39,54 +37,47 @@ public class ClienteTCP extends VentanaBase {
 
         panelTitulo = new sacoba.vista.PanelConFondo("fondo_panel.png");
         titulo1 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         panelContenido = new sacoba.vista.PanelConFondo("fondo_panel.png");
-        btnClienteCaja = new sacoba.vista.TransparentButton("cajero.png");
-        btnClienteMonitor = new sacoba.vista.TransparentButton("monitor.png");
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        btnCaja = new sacoba.vista.PanelConFondo("cajero.png");
         btnPuerta = new sacoba.vista.PanelConFondo("puerta.png");
+        btnMonitor = new sacoba.vista.PanelConFondo("monitor.png");
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(950, 650));
 
-        titulo1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        titulo1.setFont(LETRA_TITULO);
         titulo1.setText("Sistema de Asistencia de Control Bancario");
         panelTitulo.add(titulo1);
-        titulo1.setBounds(20, 10, 480, 30);
+        titulo1.setBounds(40, 10, 710, 30);
 
-        jLabel1.setText("Seleccione el tipo de cliente:");
-        panelTitulo.add(jLabel1);
-        jLabel1.setBounds(20, 40, 250, 30);
-
-        btnClienteCaja.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        btnClienteCaja.setMinimumSize(new java.awt.Dimension(200, 200));
-        panelContenido.add(btnClienteCaja);
-        btnClienteCaja.setBounds(590, 50, 170, 190);
-
-        btnClienteMonitor.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        btnClienteMonitor.setMinimumSize(new java.awt.Dimension(200, 200));
-        panelContenido.add(btnClienteMonitor);
-        btnClienteMonitor.setBounds(350, 50, 170, 190);
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel2.setFont(LETRA_TEXTO_2);
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Cajero");
         panelContenido.add(jLabel2);
-        jLabel2.setBounds(600, 240, 150, 30);
+        jLabel2.setBounds(600, 270, 150, 30);
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel4.setFont(LETRA_TEXTO_2);
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Puerta");
         panelContenido.add(jLabel4);
-        jLabel4.setBounds(120, 240, 150, 30);
+        jLabel4.setBounds(120, 270, 150, 30);
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel5.setFont(LETRA_TEXTO_2);
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Monitor");
         panelContenido.add(jLabel5);
-        jLabel5.setBounds(360, 240, 150, 30);
+        jLabel5.setBounds(360, 270, 150, 30);
+
+        btnCaja.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCajaMouseClicked(evt);
+            }
+        });
+        panelContenido.add(btnCaja);
+        btnCaja.setBounds(590, 100, 170, 170);
 
         btnPuerta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -94,7 +85,20 @@ public class ClienteTCP extends VentanaBase {
             }
         });
         panelContenido.add(btnPuerta);
-        btnPuerta.setBounds(120, 50, 150, 190);
+        btnPuerta.setBounds(120, 100, 150, 170);
+
+        btnMonitor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMonitorMouseClicked(evt);
+            }
+        });
+        panelContenido.add(btnMonitor);
+        btnMonitor.setBounds(350, 100, 170, 170);
+
+        jLabel1.setFont(LETRA_TEXTO_1);
+        jLabel1.setText("Seleccione el tipo de cliente:");
+        panelContenido.add(jLabel1);
+        jLabel1.setBounds(40, 40, 480, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,26 +106,34 @@ public class ClienteTCP extends VentanaBase {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelContenido, javax.swing.GroupLayout.DEFAULT_SIZE, 880, Short.MAX_VALUE)
+                    .addComponent(panelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(panelContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(panelContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(185, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCajaMouseClicked
+
+    }//GEN-LAST:event_btnCajaMouseClicked
 
     private void btnPuertaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPuertaMouseClicked
         new PuertaView().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPuertaMouseClicked
+
+    private void btnMonitorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMonitorMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMonitorMouseClicked
 
     /**
      * @param args the command line arguments
@@ -159,8 +171,8 @@ public class ClienteTCP extends VentanaBase {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private sacoba.vista.TransparentButton btnClienteCaja;
-    private sacoba.vista.TransparentButton btnClienteMonitor;
+    private sacoba.vista.PanelConFondo btnCaja;
+    private sacoba.vista.PanelConFondo btnMonitor;
     private sacoba.vista.PanelConFondo btnPuerta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

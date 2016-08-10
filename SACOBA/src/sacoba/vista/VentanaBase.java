@@ -9,17 +9,22 @@
  */
 package sacoba.vista;
 
+import java.awt.Font;
 import javax.swing.JFrame;
 
 /**
- * Define un panel y mantiene la base para los demas paneles
+ * Define un panel y mantiene la base para las demas ventanas
  *
  * @author jmora
  */
 public class VentanaBase extends JFrame {
 
-    public static final int ANCHO = 950;
-    public static final int ALTO = 650;
+    public final static Font LETRA_TITULO = new Font("Andale Mono", Font.BOLD, 24);
+    public final static Font LETRA_TEXTO_1 = new Font("Andale Mono", Font.PLAIN, 16);
+    public final static Font LETRA_TEXTO_2 = new Font("Andale Mono", Font.PLAIN, 14);
+    public final static Font LETRA_TEXTO_3 = new Font("Andale Mono", Font.PLAIN, 12);
+    public final static int ANCHO = 950;
+    public final static int ALTO = 650;
 
     public VentanaBase() {
         // Declaracion b�sica de la venta

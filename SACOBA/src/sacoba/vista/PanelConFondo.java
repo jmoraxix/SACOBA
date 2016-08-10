@@ -27,6 +27,7 @@ public class PanelConFondo extends JPanel {
     public PanelConFondo() {
         setForeground(SystemColor.controlHighlight);
         setLayout(null);
+        setOpaque(false);
     }
 
     /**
@@ -37,7 +38,6 @@ public class PanelConFondo extends JPanel {
     public PanelConFondo(String urlImagen) {
         this();
         definirBorde(urlImagen);
-        setOpaque(false);
     }
 
     private void definirBorde(String url) {
