@@ -19,6 +19,7 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sacoba.cliente.Cliente;
+import sacoba.servidor.estructuras.ListaEnlazada;
 
 /**
  *
@@ -42,7 +43,7 @@ public class Servidor {
         try {
             service = Executors.newCachedThreadPool();
             //TODO  Inicializar la lista enlazada clientes
-            clientes = new ArrayList<>();
+            clientes = new ArrayList<Cliente>();
             //TODO  Inicilalizar y agregar las pilas 
             serverSocket = new ServerSocket(2356);
             Accept();
