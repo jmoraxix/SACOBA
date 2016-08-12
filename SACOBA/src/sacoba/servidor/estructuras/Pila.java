@@ -19,12 +19,12 @@ public class Pila {
     private NodoPila top;
 
     //Metodos
-    public void push(NodoPila c) {
+    public void push(NodoPila nodo) {
         if (top == null) {
-            top = c;
+            top = nodo;
         } else {
-            c.setAbajo(top);
-            top = c;
+            nodo.setAbajo(top);
+            top = nodo;
         }
 
     }
@@ -42,7 +42,7 @@ public class Pila {
         String cl = "";
         NodoPila aux = top;
         while (aux != null) {
-            cl += aux;
+            cl += "->" + aux;
             aux = aux.getAbajo();
         }
         return cl;

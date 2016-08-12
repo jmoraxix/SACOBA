@@ -9,7 +9,7 @@
  */
 package sacoba.servidor.estructuras;
 
-import sacoba.cliente.Cliente;
+import sacoba.servidor.beans.Persona;
 
 /**
  *
@@ -18,13 +18,14 @@ import sacoba.cliente.Cliente;
 public class NodoCola {
 
     //Variables
-    private String secuencia;
-    private Cliente cliente;
+    private final String secuencia;
+    private final Persona usuario;
     private NodoCola atras;
 
     //Constructor
-    public NodoCola(String secuencia) {
+    public NodoCola(String secuencia, Persona cliente) {
         this.secuencia = secuencia;
+        this.usuario = cliente;
     }
 
     //Getters & setters
@@ -32,16 +33,8 @@ public class NodoCola {
         return secuencia;
     }
 
-    public void setSecuencia(String secuencia) {
-        this.secuencia = secuencia;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public Persona getUsuario() {
+        return usuario;
     }
 
     public NodoCola getAtras() {
@@ -55,7 +48,7 @@ public class NodoCola {
     //Metodos
     @Override
     public String toString() {
-        return "NodoCola {" + "Secuencia = " + secuencia + '}';
-    } // Retorna la informacion en String
+        return "NodoCola{" + "secuencia=" + secuencia + ", cliente=" + usuario + '}';
+    }
 
 }

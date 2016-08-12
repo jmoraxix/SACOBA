@@ -13,18 +13,18 @@ package sacoba.servidor.estructuras;
  *
  * @author jmora
  */
-public class Cola {
+public class ColaUsuarios {
 
     //Variables
     private NodoCola frente;
     private NodoCola ultimo;
 
     //Constructor
-    public Cola() {
+    public ColaUsuarios() {
     }
 
-    public Cola(NodoCola frente) {
-        this.enCola(frente);
+    public ColaUsuarios(NodoCola nodo) {
+        enCola(nodo);
     }
 
     //Metodos
@@ -47,13 +47,19 @@ public class Cola {
         return aux;
     }
 
+    public boolean estaVacia() {
+        return frente == null;
+    }
+
+    @Override
     public String toString() {
         String s = "";
         NodoCola aux = frente;
         while (aux != null) {
-            s += aux + "\n";
+            s += "-> " + aux + "\n";
             aux = aux.getAtras();
         }
         return s; // retorno s
     }
+
 }

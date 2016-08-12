@@ -19,7 +19,7 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sacoba.cliente.Cliente;
-import sacoba.servidor.estructuras.ListaEnlazada;
+import sacoba.servidor.estructuras.ListaEnlazadaPilas;
 
 /**
  *
