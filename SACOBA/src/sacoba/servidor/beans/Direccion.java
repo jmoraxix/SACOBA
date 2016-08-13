@@ -14,6 +14,7 @@ package sacoba.servidor.beans;
  * @author Marce
  */
 public class Direccion {
+
     private String provincia, canton, distrito, exacta;
 
     public Direccion(String provincia, String canton, String distrito, String exacta) {
@@ -21,7 +22,7 @@ public class Direccion {
         this.canton = canton;
         this.distrito = distrito;
         this.exacta = exacta;
-    }    
+    }
 
     public String getProvincia() {
         return provincia;
@@ -54,9 +55,9 @@ public class Direccion {
     public void setExacta(String exacta) {
         this.exacta = exacta;
     }
-    
+
     @Override
     public String toString() {
-        return provincia + ", " + canton + ", " + distrito + ". " + exacta;
+        return provincia + ", " + canton + ", " + distrito + ". " + exacta + ".";
     }
 }

@@ -16,10 +16,17 @@ import java.util.Date;
  * @author Marce
  */
 public class Persona {
-    private int cedula, edad, telefono;
+
+    private int cedula, telefono;
     private String nombre, apellido1, apellido2, email;
-    Direccion direccion;
+    private Direccion direccion;
     private Date nacimiento;
+
+    public Persona(int cedula, String nombre, String apellido1) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido1 = apellido1;
+    }
 
     public int getCedula() {
         return cedula;
@@ -27,14 +34,6 @@ public class Persona {
 
     public void setCedula(int cedula) {
         this.cedula = cedula;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
     }
 
     public int getTelefono() {
@@ -92,6 +91,5 @@ public class Persona {
     public void setNacimiento(Date nacimiento) {
         this.nacimiento = nacimiento;
     }
-    
-    
+
 }
