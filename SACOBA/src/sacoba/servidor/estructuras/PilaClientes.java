@@ -13,7 +13,7 @@ package sacoba.servidor.estructuras;
  *
  * @author Alejandro
  */
-public class Pila {
+public class PilaClientes {
 
     //Variables
     private NodoPila top;

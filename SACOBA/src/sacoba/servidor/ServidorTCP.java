@@ -14,7 +14,8 @@ package sacoba.servidor;
  * @author jdmoralo
  */
 public class ServidorTCP {
+
     public static void main(String[] args) {
-        new Servidor();
+        Servidor Servidor = new Servidor();
     }
 }

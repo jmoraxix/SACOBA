@@ -88,6 +88,27 @@ public class ListaEnlazadaPilas {
         }
     }
 
+    public PilaClientes getPila(String nombre) {
+        PilaClientes resultado = null;
+        if (cabeza != null) {
+            if (cabeza.getTitulo().equalsIgnoreCase(nombre)) {
+                resultado = cabeza.getClientes();
+            } else {
+                NodoListaPila anterior = cabeza;
+                NodoListaPila actual = cabeza.getNext();
+                while (actual.getNext() != null) {
+                    if (actual.getTitulo().equalsIgnoreCase(nombre)) {
+                        resultado = actual.getClientes();
+                    } else {
+                        anterior = actual;
+                        actual = actual.getNext();
+                    }
+                }
+            }
+        }
+        return resultado;
+    }
+
     @Override
     public String toString() {
         NodoListaPila aux = cabeza;

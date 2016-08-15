@@ -19,22 +19,22 @@ public class NodoListaPila {
 
     //Variables
     private String titulo;
-    private Pila clientes;
+    private PilaClientes clientes;
     private NodoListaPila next;
 
     //Constructor
     public NodoListaPila(String titulo) {
         this.titulo = titulo;
-        this.clientes = new Pila();
+        this.clientes = new PilaClientes();
         next = null;
     }
 
     //Metodos
-    public Pila getClientes() {
+    public PilaClientes getClientes() {
         return clientes;
     }
 
-    public void setClientes(Pila clientes) {
+    public void setClientes(PilaClientes clientes) {
         this.clientes = clientes;
     }
 
