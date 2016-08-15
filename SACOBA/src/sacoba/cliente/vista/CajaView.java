@@ -46,7 +46,7 @@ public class CajaView extends VentanaBase {
         txtSecuencia = new sacoba.vista.TransparentTextField();
         lblUsuario3 = new javax.swing.JLabel();
         txtTramite = new sacoba.vista.TransparentTextField();
-        btnLiberar = new sacoba.vista.PanelConFondo("avanzar.jpeg");
+        btnLiberar = new sacoba.vista.PanelConFondo("avanzar.png");
         lblLiberar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,17 +71,24 @@ public class CajaView extends VentanaBase {
         panelUsuario.add(lblUsuario1);
         lblUsuario1.setBounds(100, 180, 150, 30);
 
+        txtNombreUsuario.setEditable(false);
         txtNombreUsuario.setToolTipText("Ingrese un usuario");
         txtNombreUsuario.setFont(LETRA_TEXTO_2);
         panelUsuario.add(txtNombreUsuario);
         txtNombreUsuario.setBounds(260, 180, 240, 30);
+
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVolverMouseClicked(evt);
+            }
+        });
         panelUsuario.add(btnVolver);
-        btnVolver.setBounds(50, 30, 50, 50);
+        btnVolver.setBounds(40, 40, 50, 50);
 
         lblVolver.setFont(LETRA_TEXTO_3);
         lblVolver.setText("Volver");
         panelUsuario.add(lblVolver);
-        lblVolver.setBounds(110, 40, 160, 30);
+        lblVolver.setBounds(100, 50, 160, 30);
 
         lblUsuario2.setFont(LETRA_TEXTO_2);
         lblUsuario2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -89,6 +96,7 @@ public class CajaView extends VentanaBase {
         panelUsuario.add(lblUsuario2);
         lblUsuario2.setBounds(100, 140, 150, 30);
 
+        txtSecuencia.setEditable(false);
         txtSecuencia.setToolTipText("Ingrese un usuario");
         txtSecuencia.setFont(LETRA_TEXTO_2);
         panelUsuario.add(txtSecuencia);
@@ -100,18 +108,25 @@ public class CajaView extends VentanaBase {
         panelUsuario.add(lblUsuario3);
         lblUsuario3.setBounds(100, 220, 150, 30);
 
+        txtTramite.setEditable(false);
         txtTramite.setToolTipText("Ingrese un usuario");
         txtTramite.setFont(LETRA_TEXTO_2);
         panelUsuario.add(txtTramite);
         txtTramite.setBounds(260, 220, 240, 30);
+
+        btnLiberar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLiberarMouseClicked(evt);
+            }
+        });
         panelUsuario.add(btnLiberar);
-        btnLiberar.setBounds(670, 220, 130, 80);
+        btnLiberar.setBounds(720, 240, 70, 60);
 
         lblLiberar.setFont(LETRA_TEXTO_3);
         lblLiberar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblLiberar.setText("Liberar caja");
         panelUsuario.add(lblLiberar);
-        lblLiberar.setBounds(660, 310, 160, 30);
+        lblLiberar.setBounds(680, 300, 150, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,6 +151,15 @@ public class CajaView extends VentanaBase {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLiberarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLiberarMouseClicked
+        // TODO Enviar peticion al servidor y refrescar contenido del panel
+    }//GEN-LAST:event_btnLiberarMouseClicked
+
+    private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
+        new CajaLogin().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVolverMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private sacoba.vista.PanelConFondo btnLiberar;

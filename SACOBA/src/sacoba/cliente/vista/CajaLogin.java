@@ -9,6 +9,8 @@
  */
 package sacoba.cliente.vista;
 
+import javax.swing.JOptionPane;
+import sacoba.cliente.ClienteTCP;
 import sacoba.vista.VentanaBase;
 
 /**
@@ -22,7 +24,9 @@ public class CajaLogin extends VentanaBase {
      */
     public CajaLogin() {
         initComponents();
-        setSize(VentanaBase.ANCHO, VentanaBase.ALTO);
+        //setSize(VentanaBase.ANCHO, VentanaBase.ALTO);
+        soloLetras(txtUsuario);
+        soloNumeros(txtCaja);
     }
 
     /**
@@ -45,6 +49,9 @@ public class CajaLogin extends VentanaBase {
         btnEntrar = new javax.swing.JButton();
         lblCaja = new javax.swing.JLabel();
         txtCaja = new sacoba.vista.TransparentTextField();
+        jLabel1 = new javax.swing.JLabel();
+        btnVolver2 = new sacoba.vista.PanelConFondo("flecha-volver.png");
+        lblVolver = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(950, 650));
@@ -60,30 +67,30 @@ public class CajaLogin extends VentanaBase {
         lblTitulo2.setFont(LETRA_TEXTO_1);
         lblTitulo2.setText("Ingreso al sistema");
         panelUsuario.add(lblTitulo2);
-        lblTitulo2.setBounds(40, 60, 250, 40);
+        lblTitulo2.setBounds(90, 100, 250, 40);
 
         lblUsuario.setFont(LETRA_TEXTO_2);
         lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUsuario.setText("Contraseña:");
+        lblUsuario.setText("Contraseña*:");
         panelUsuario.add(lblUsuario);
-        lblUsuario.setBounds(30, 150, 180, 30);
+        lblUsuario.setBounds(150, 210, 180, 30);
 
         lblUsuario1.setFont(LETRA_TEXTO_2);
         lblUsuario1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUsuario1.setText("Usuario:");
+        lblUsuario1.setText("Usuario*:");
         panelUsuario.add(lblUsuario1);
-        lblUsuario1.setBounds(30, 110, 180, 30);
+        lblUsuario1.setBounds(150, 170, 180, 30);
 
         txtUsuario.setToolTipText("Ingrese un usuario");
         txtUsuario.setFont(LETRA_TEXTO_2);
         panelUsuario.add(txtUsuario);
-        txtUsuario.setBounds(220, 110, 200, 30);
+        txtUsuario.setBounds(340, 170, 200, 30);
 
         txtPasswd.setForeground(new java.awt.Color(0, 0, 0));
         txtPasswd.setToolTipText("Ingrese una contraseña");
         txtPasswd.setFont(LETRA_TEXTO_2);
         panelUsuario.add(txtPasswd);
-        txtPasswd.setBounds(220, 150, 200, 30);
+        txtPasswd.setBounds(340, 210, 200, 30);
 
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -92,18 +99,37 @@ public class CajaLogin extends VentanaBase {
             }
         });
         panelUsuario.add(btnEntrar);
-        btnEntrar.setBounds(320, 230, 100, 30);
+        btnEntrar.setBounds(600, 210, 110, 40);
 
         lblCaja.setFont(LETRA_TEXTO_2);
         lblCaja.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCaja.setText("Caja #:");
+        lblCaja.setText("Caja #*:");
         panelUsuario.add(lblCaja);
-        lblCaja.setBounds(30, 190, 180, 30);
+        lblCaja.setBounds(150, 250, 180, 30);
 
         txtCaja.setToolTipText("Ingrese un usuario");
         txtCaja.setFont(LETRA_TEXTO_2);
         panelUsuario.add(txtCaja);
-        txtCaja.setBounds(220, 190, 40, 30);
+        txtCaja.setBounds(340, 250, 40, 30);
+
+        jLabel1.setFont(LETRA_TEXTO_3);
+        jLabel1.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel1.setText("* Campos requeridos");
+        panelUsuario.add(jLabel1);
+        jLabel1.setBounds(100, 130, 170, 20);
+
+        btnVolver2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVolver2MouseClicked(evt);
+            }
+        });
+        panelUsuario.add(btnVolver2);
+        btnVolver2.setBounds(30, 20, 50, 50);
+
+        lblVolver.setFont(LETRA_TEXTO_3);
+        lblVolver.setText("Volver");
+        panelUsuario.add(lblVolver);
+        lblVolver.setBounds(90, 30, 160, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,23 +156,43 @@ public class CajaLogin extends VentanaBase {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        String passwd = new String(txtPasswd.getPassword());
+        //if (this.txtUsuario.getText().equals("") || this.txtCaja.getText().equals("") || passwd.equals("")) {
         if (this.txtUsuario.getText().equals("Admin") && String.copyValueOf(this.txtPasswd.getPassword()).equals("123")) {
             new CajaView().setVisible(true);
             this.dispose();
         } else {
-            // TODO Mensaje de error
-            //JOptionPane
+            JOptionPane.showMessageDialog(this,
+                    "Usuario o contraseña incorrectos. Por favor intente de nuevo",
+                    "Error al iniciar sesión",
+                    JOptionPane.ERROR_MESSAGE);
         }
+//        } else {
+//            JOptionPane.showMessageDialog(this,
+//                    "Hay uno o más campos requeridos en blanco.",
+//                    "Campos requeridos vacíos",
+//                    JOptionPane.ERROR_MESSAGE);
+//        }
 
     }//GEN-LAST:event_btnEntrarActionPerformed
 
+    private void btnVolver2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolver2MouseClicked
+        new ClienteTCP().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVolver2MouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
+    private sacoba.vista.PanelConFondo btnVolver;
+    private sacoba.vista.PanelConFondo btnVolver1;
+    private sacoba.vista.PanelConFondo btnVolver2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCaja;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTitulo2;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblUsuario1;
+    private javax.swing.JLabel lblVolver;
     private sacoba.vista.PanelConFondo panelTitulo;
     private sacoba.vista.PanelConFondo panelUsuario;
     private sacoba.vista.TransparentTextField txtCaja;
