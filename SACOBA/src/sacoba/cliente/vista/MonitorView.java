@@ -34,25 +34,8 @@ public class MonitorView extends VentanaBase {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelConFondo1 = new sacoba.vista.PanelConFondo();
-        panelConFondo101 = new sacoba.vista.PanelConFondo();
-        panelConFondo102 = new sacoba.vista.PanelConFondo();
-        panelConFondo103 = new sacoba.vista.PanelConFondo();
-        panelConFondo104 = new sacoba.vista.PanelConFondo();
-        panelConFondo105 = new sacoba.vista.PanelConFondo();
-        panelConFondo106 = new sacoba.vista.PanelConFondo();
-        panelConFondo107 = new sacoba.vista.PanelConFondo();
-        panelConFondo108 = new sacoba.vista.PanelConFondo();
-        panelConFondo109 = new sacoba.vista.PanelConFondo();
-        panelConFondo110 = new sacoba.vista.PanelConFondo();
-        panelConFondo111 = new sacoba.vista.PanelConFondo();
-        panelConFondo112 = new sacoba.vista.PanelConFondo();
-        panelConFondo113 = new sacoba.vista.PanelConFondo();
-        panelConFondo114 = new sacoba.vista.PanelConFondo();
-        panelConFondo115 = new sacoba.vista.PanelConFondo();
-        panelConFondo116 = new sacoba.vista.PanelConFondo();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtBienvenidos = new sacoba.vista.TransparentTextArea();
+        panelTitulo = new sacoba.vista.PanelConFondo("fondo_panel.png");
+        lblTitulo = new javax.swing.JLabel();
         panelClientes = new sacoba.vista.PanelConFondo("fondo_panel.png");
         lblTituloCuentas = new javax.swing.JLabel();
         lblTituloPlataforma = new javax.swing.JLabel();
@@ -60,10 +43,7 @@ public class MonitorView extends VentanaBase {
         lblPlataforma1 = new javax.swing.JLabel();
         lblPlataforma3 = new javax.swing.JLabel();
         lblPlataforma4 = new javax.swing.JLabel();
-        panelConFondo2 = new sacoba.vista.PanelConFondo();
-        panelConFondo3 = new sacoba.vista.PanelConFondo();
-        panelConFondo4 = new sacoba.vista.PanelConFondo();
-        panelConFondo5 = new sacoba.vista.PanelConFondo("account-balance-blanco.png");
+        img_cuentas = new sacoba.vista.PanelConFondo("account-balance-blanco.png");
         panelConFondo6 = new sacoba.vista.PanelConFondo();
         panelConFondo7 = new sacoba.vista.PanelConFondo();
         panelConFondo8 = new sacoba.vista.PanelConFondo();
@@ -383,7 +363,7 @@ public class MonitorView extends VentanaBase {
         panelConFondo370 = new sacoba.vista.PanelConFondo();
         panelConFondo371 = new sacoba.vista.PanelConFondo();
         panelConFondo372 = new sacoba.vista.PanelConFondo();
-        panelConFondo13 = new sacoba.vista.PanelConFondo("tramite_blanco.png");
+        img_tramites = new sacoba.vista.PanelConFondo("tramite_blanco.png");
         panelConFondo14 = new sacoba.vista.PanelConFondo();
         panelConFondo15 = new sacoba.vista.PanelConFondo();
         panelConFondo16 = new sacoba.vista.PanelConFondo();
@@ -447,131 +427,72 @@ public class MonitorView extends VentanaBase {
         panelConFondo402 = new sacoba.vista.PanelConFondo();
         panelConFondo403 = new sacoba.vista.PanelConFondo();
         panelConFondo404 = new sacoba.vista.PanelConFondo();
-        panelConFondo405 = new sacoba.vista.PanelConFondo("group_blanco.png");
-        jScrollPane3 = new javax.swing.JScrollPane();
+        img_plataforma = new sacoba.vista.PanelConFondo("group_blanco.png");
+        panelContenido = new sacoba.vista.PanelConFondo("fondo_panel.png");
+        lblTitulo2 = new javax.swing.JLabel();
+        panelScrollContenido = new javax.swing.JScrollPane();
         txtSigue = new sacoba.vista.TransparentTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        transparentTextArea1 = new sacoba.vista.TransparentTextArea();
-
-        panelConFondo101.add(panelConFondo102);
-        panelConFondo102.setBounds(90, 300, 110, 100);
-
-        panelConFondo103.add(panelConFondo104);
-        panelConFondo104.setBounds(90, 300, 110, 100);
-
-        panelConFondo101.add(panelConFondo103);
-        panelConFondo103.setBounds(90, 150, 110, 100);
-
-        panelConFondo105.add(panelConFondo106);
-        panelConFondo106.setBounds(90, 300, 110, 100);
-
-        panelConFondo107.add(panelConFondo108);
-        panelConFondo108.setBounds(90, 300, 110, 100);
-
-        panelConFondo105.add(panelConFondo107);
-        panelConFondo107.setBounds(90, 150, 110, 100);
-
-        panelConFondo101.add(panelConFondo105);
-        panelConFondo105.setBounds(90, 150, 110, 100);
-
-        panelConFondo109.add(panelConFondo110);
-        panelConFondo110.setBounds(90, 300, 110, 100);
-
-        panelConFondo111.add(panelConFondo112);
-        panelConFondo112.setBounds(90, 300, 110, 100);
-
-        panelConFondo109.add(panelConFondo111);
-        panelConFondo111.setBounds(90, 150, 110, 100);
-
-        panelConFondo113.add(panelConFondo114);
-        panelConFondo114.setBounds(90, 300, 110, 100);
-
-        panelConFondo115.add(panelConFondo116);
-        panelConFondo116.setBounds(90, 300, 110, 100);
-
-        panelConFondo113.add(panelConFondo115);
-        panelConFondo115.setBounds(90, 150, 110, 100);
-
-        panelConFondo109.add(panelConFondo113);
-        panelConFondo113.setBounds(90, 150, 110, 100);
-
-        panelConFondo101.add(panelConFondo109);
-        panelConFondo109.setBounds(90, 150, 110, 100);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(950, 650));
         setSize(new java.awt.Dimension(950, 650));
 
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
-        txtBienvenidos.setEditable(false);
-        txtBienvenidos.setColumns(20);
-        txtBienvenidos.setRows(5);
-        txtBienvenidos.setText("¡Bienvenido, pronto le atenderemos!");
-        txtBienvenidos.setFont(new java.awt.Font("Monospaced", 1, 36)); // NOI18N
-        jScrollPane1.setViewportView(txtBienvenidos);
-        txtBienvenidos.getAccessibleContext().setAccessibleName("");
-        txtBienvenidos.getAccessibleContext().setAccessibleDescription("");
-        txtBienvenidos.getAccessibleContext().setAccessibleParent(txtBienvenidos);
+        lblTitulo.setFont(LETRA_TITULO);
+        lblTitulo.setText("¡Bienvenido! Pronto le atenderemos");
+        panelTitulo.add(lblTitulo);
+        lblTitulo.setBounds(30, 0, 860, 50);
 
         panelClientes.setEnabled(false);
 
-        lblTituloCuentas.setFont(LETRA_TEXTO_1);
+        lblTituloCuentas.setFont(LETRA_TEXTO_2);
         lblTituloCuentas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTituloCuentas.setText("Cuentas:");
         lblTituloCuentas.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         panelClientes.add(lblTituloCuentas);
-        lblTituloCuentas.setBounds(120, 420, 50, 30);
+        lblTituloCuentas.setBounds(130, 300, 100, 40);
 
-        lblTituloPlataforma.setFont(LETRA_TEXTO_1);
+        lblTituloPlataforma.setFont(LETRA_TEXTO_2);
         lblTituloPlataforma.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTituloPlataforma.setText("Plataforma:");
         lblTituloPlataforma.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         panelClientes.add(lblTituloPlataforma);
-        lblTituloPlataforma.setBounds(110, 120, 70, 30);
+        lblTituloPlataforma.setBounds(130, 70, 100, 40);
 
-        lblTituloTramites.setFont(LETRA_TEXTO_1);
+        lblTituloTramites.setFont(LETRA_TEXTO_2);
         lblTituloTramites.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTituloTramites.setText("Trámites:");
         lblTituloTramites.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         panelClientes.add(lblTituloTramites);
-        lblTituloTramites.setBounds(120, 270, 50, 30);
+        lblTituloTramites.setBounds(130, 180, 100, 40);
 
-        lblPlataforma1.setFont(LETRA_TITULO);
+        lblPlataforma1.setFont(LETRA_TEXTO_1);
         lblPlataforma1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPlataforma1.setText("0");
         lblPlataforma1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panelClientes.add(lblPlataforma1);
-        lblPlataforma1.setBounds(110, 440, 60, 40);
+        lblPlataforma1.setBounds(200, 300, 60, 40);
 
-        lblPlataforma3.setFont(LETRA_TITULO);
+        lblPlataforma3.setFont(LETRA_TEXTO_1);
         lblPlataforma3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPlataforma3.setText("0");
         lblPlataforma3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panelClientes.add(lblPlataforma3);
-        lblPlataforma3.setBounds(110, 130, 60, 40);
+        lblPlataforma3.setBounds(200, 70, 60, 40);
 
-        lblPlataforma4.setFont(LETRA_TITULO);
+        lblPlataforma4.setFont(LETRA_TEXTO_1);
         lblPlataforma4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPlataforma4.setText("0");
         lblPlataforma4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panelClientes.add(lblPlataforma4);
-        lblPlataforma4.setBounds(110, 280, 60, 40);
-        panelClientes.add(panelConFondo2);
-        panelConFondo2.setBounds(90, 300, 100, 100);
-        panelClientes.add(panelConFondo3);
-        panelConFondo3.setBounds(90, 298, 120, 100);
-        panelClientes.add(panelConFondo4);
-        panelConFondo4.setBounds(90, 300, 100, 100);
+        lblPlataforma4.setBounds(200, 180, 60, 40);
 
-        panelConFondo5.add(panelConFondo6);
+        img_cuentas.add(panelConFondo6);
         panelConFondo6.setBounds(90, 300, 110, 100);
 
         panelConFondo7.add(panelConFondo8);
         panelConFondo8.setBounds(90, 300, 110, 100);
 
-        panelConFondo5.add(panelConFondo7);
+        img_cuentas.add(panelConFondo7);
         panelConFondo7.setBounds(90, 150, 110, 100);
 
         panelConFondo9.add(panelConFondo10);
@@ -583,7 +504,7 @@ public class MonitorView extends VentanaBase {
         panelConFondo9.add(panelConFondo11);
         panelConFondo11.setBounds(90, 150, 110, 100);
 
-        panelConFondo5.add(panelConFondo9);
+        img_cuentas.add(panelConFondo9);
         panelConFondo9.setBounds(90, 150, 110, 100);
 
         panelConFondo21.add(panelConFondo22);
@@ -655,7 +576,7 @@ public class MonitorView extends VentanaBase {
         panelConFondo21.add(panelConFondo29);
         panelConFondo29.setBounds(90, 300, 110, 100);
 
-        panelConFondo5.add(panelConFondo21);
+        img_cuentas.add(panelConFondo21);
         panelConFondo21.setBounds(90, 300, 110, 100);
 
         panelConFondo45.add(panelConFondo46);
@@ -751,7 +672,7 @@ public class MonitorView extends VentanaBase {
         panelConFondo45.add(panelConFondo53);
         panelConFondo53.setBounds(90, 300, 110, 100);
 
-        panelConFondo5.add(panelConFondo45);
+        img_cuentas.add(panelConFondo45);
         panelConFondo45.setBounds(90, 300, 110, 100);
 
         panelConFondo85.add(panelConFondo86);
@@ -799,7 +720,7 @@ public class MonitorView extends VentanaBase {
         panelConFondo85.add(panelConFondo93);
         panelConFondo93.setBounds(90, 150, 110, 100);
 
-        panelConFondo5.add(panelConFondo85);
+        img_cuentas.add(panelConFondo85);
         panelConFondo85.setBounds(90, 150, 110, 100);
 
         panelConFondo133.add(panelConFondo134);
@@ -1039,7 +960,7 @@ public class MonitorView extends VentanaBase {
         panelConFondo133.add(panelConFondo197);
         panelConFondo197.setBounds(90, 150, 110, 100);
 
-        panelConFondo5.add(panelConFondo133);
+        img_cuentas.add(panelConFondo133);
         panelConFondo133.setBounds(90, 300, 110, 100);
 
         panelConFondo213.add(panelConFondo214);
@@ -1519,19 +1440,19 @@ public class MonitorView extends VentanaBase {
         panelConFondo213.add(panelConFondo293);
         panelConFondo293.setBounds(90, 300, 110, 100);
 
-        panelConFondo5.add(panelConFondo213);
+        img_cuentas.add(panelConFondo213);
         panelConFondo213.setBounds(90, 300, 110, 100);
 
-        panelClientes.add(panelConFondo5);
-        panelConFondo5.setBounds(90, 320, 110, 100);
+        panelClientes.add(img_cuentas);
+        img_cuentas.setBounds(50, 290, 70, 70);
 
-        panelConFondo13.add(panelConFondo14);
+        img_tramites.add(panelConFondo14);
         panelConFondo14.setBounds(90, 300, 110, 100);
 
         panelConFondo15.add(panelConFondo16);
         panelConFondo16.setBounds(90, 300, 110, 100);
 
-        panelConFondo13.add(panelConFondo15);
+        img_tramites.add(panelConFondo15);
         panelConFondo15.setBounds(90, 150, 110, 100);
 
         panelConFondo17.add(panelConFondo18);
@@ -1543,7 +1464,7 @@ public class MonitorView extends VentanaBase {
         panelConFondo17.add(panelConFondo19);
         panelConFondo19.setBounds(90, 150, 110, 100);
 
-        panelConFondo13.add(panelConFondo17);
+        img_tramites.add(panelConFondo17);
         panelConFondo17.setBounds(90, 150, 110, 100);
 
         panelConFondo77.add(panelConFondo78);
@@ -1567,7 +1488,7 @@ public class MonitorView extends VentanaBase {
         panelConFondo77.add(panelConFondo81);
         panelConFondo81.setBounds(90, 150, 110, 100);
 
-        panelConFondo13.add(panelConFondo77);
+        img_tramites.add(panelConFondo77);
         panelConFondo77.setBounds(90, 150, 110, 100);
 
         panelConFondo117.add(panelConFondo118);
@@ -1615,7 +1536,7 @@ public class MonitorView extends VentanaBase {
         panelConFondo117.add(panelConFondo125);
         panelConFondo125.setBounds(90, 150, 110, 100);
 
-        panelConFondo13.add(panelConFondo117);
+        img_tramites.add(panelConFondo117);
         panelConFondo117.setBounds(90, 150, 110, 100);
 
         panelConFondo373.add(panelConFondo374);
@@ -1711,60 +1632,53 @@ public class MonitorView extends VentanaBase {
         panelConFondo373.add(panelConFondo389);
         panelConFondo389.setBounds(90, 150, 110, 100);
 
-        panelConFondo13.add(panelConFondo373);
+        img_tramites.add(panelConFondo373);
         panelConFondo373.setBounds(90, 150, 110, 100);
 
-        panelClientes.add(panelConFondo13);
-        panelConFondo13.setBounds(90, 170, 110, 100);
-        panelClientes.add(panelConFondo405);
-        panelConFondo405.setBounds(90, 20, 110, 100);
+        panelClientes.add(img_tramites);
+        img_tramites.setBounds(50, 170, 70, 70);
+        panelClientes.add(img_plataforma);
+        img_plataforma.setBounds(50, 60, 70, 70);
+
+        lblTitulo2.setFont(LETRA_TEXTO_1);
+        lblTitulo2.setText("En este momento estamos atendiendo:");
+        panelContenido.add(lblTitulo2);
+        lblTitulo2.setBounds(40, 50, 450, 40);
 
         txtSigue.setEditable(false);
         txtSigue.setColumns(20);
-        txtSigue.setRows(5);
-        jScrollPane3.setViewportView(txtSigue);
+        txtSigue.setRows(10);
+        txtSigue.setFont(LETRA_TEXTO_3);
+        panelScrollContenido.setViewportView(txtSigue);
 
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
-        transparentTextArea1.setEditable(false);
-        transparentTextArea1.setColumns(20);
-        transparentTextArea1.setRows(5);
-        transparentTextArea1.setText("  En este momento estamos \n  atendiendo:");
-        transparentTextArea1.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
-        jScrollPane2.setViewportView(transparentTextArea1);
+        panelContenido.add(panelScrollContenido);
+        panelScrollContenido.setBounds(40, 100, 450, 270);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(90, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 775, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(panelClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(85, 85, 85))
+                        .addGap(12, 12, 12)
+                        .addComponent(panelContenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panelClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 899, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
+                .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelClientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(37, 37, 37))
+                    .addComponent(panelClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+                    .addComponent(panelContenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
         pack();
@@ -1807,36 +1721,21 @@ public class MonitorView extends VentanaBase {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private sacoba.vista.PanelConFondo img_cuentas;
+    private sacoba.vista.PanelConFondo img_plataforma;
+    private sacoba.vista.PanelConFondo img_tramites;
     private javax.swing.JLabel lblPlataforma1;
     private javax.swing.JLabel lblPlataforma3;
     private javax.swing.JLabel lblPlataforma4;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblTitulo2;
     private javax.swing.JLabel lblTituloCuentas;
     private javax.swing.JLabel lblTituloPlataforma;
     private javax.swing.JLabel lblTituloTramites;
     private sacoba.vista.PanelConFondo panelClientes;
-    private sacoba.vista.PanelConFondo panelConFondo1;
     private sacoba.vista.PanelConFondo panelConFondo10;
     private sacoba.vista.PanelConFondo panelConFondo100;
-    private sacoba.vista.PanelConFondo panelConFondo101;
-    private sacoba.vista.PanelConFondo panelConFondo102;
-    private sacoba.vista.PanelConFondo panelConFondo103;
-    private sacoba.vista.PanelConFondo panelConFondo104;
-    private sacoba.vista.PanelConFondo panelConFondo105;
-    private sacoba.vista.PanelConFondo panelConFondo106;
-    private sacoba.vista.PanelConFondo panelConFondo107;
-    private sacoba.vista.PanelConFondo panelConFondo108;
-    private sacoba.vista.PanelConFondo panelConFondo109;
     private sacoba.vista.PanelConFondo panelConFondo11;
-    private sacoba.vista.PanelConFondo panelConFondo110;
-    private sacoba.vista.PanelConFondo panelConFondo111;
-    private sacoba.vista.PanelConFondo panelConFondo112;
-    private sacoba.vista.PanelConFondo panelConFondo113;
-    private sacoba.vista.PanelConFondo panelConFondo114;
-    private sacoba.vista.PanelConFondo panelConFondo115;
-    private sacoba.vista.PanelConFondo panelConFondo116;
     private sacoba.vista.PanelConFondo panelConFondo117;
     private sacoba.vista.PanelConFondo panelConFondo118;
     private sacoba.vista.PanelConFondo panelConFondo119;
@@ -1851,7 +1750,6 @@ public class MonitorView extends VentanaBase {
     private sacoba.vista.PanelConFondo panelConFondo127;
     private sacoba.vista.PanelConFondo panelConFondo128;
     private sacoba.vista.PanelConFondo panelConFondo129;
-    private sacoba.vista.PanelConFondo panelConFondo13;
     private sacoba.vista.PanelConFondo panelConFondo130;
     private sacoba.vista.PanelConFondo panelConFondo131;
     private sacoba.vista.PanelConFondo panelConFondo132;
@@ -1928,7 +1826,6 @@ public class MonitorView extends VentanaBase {
     private sacoba.vista.PanelConFondo panelConFondo197;
     private sacoba.vista.PanelConFondo panelConFondo198;
     private sacoba.vista.PanelConFondo panelConFondo199;
-    private sacoba.vista.PanelConFondo panelConFondo2;
     private sacoba.vista.PanelConFondo panelConFondo20;
     private sacoba.vista.PanelConFondo panelConFondo200;
     private sacoba.vista.PanelConFondo panelConFondo201;
@@ -2039,7 +1936,6 @@ public class MonitorView extends VentanaBase {
     private sacoba.vista.PanelConFondo panelConFondo297;
     private sacoba.vista.PanelConFondo panelConFondo298;
     private sacoba.vista.PanelConFondo panelConFondo299;
-    private sacoba.vista.PanelConFondo panelConFondo3;
     private sacoba.vista.PanelConFondo panelConFondo30;
     private sacoba.vista.PanelConFondo panelConFondo300;
     private sacoba.vista.PanelConFondo panelConFondo301;
@@ -2150,14 +2046,12 @@ public class MonitorView extends VentanaBase {
     private sacoba.vista.PanelConFondo panelConFondo397;
     private sacoba.vista.PanelConFondo panelConFondo398;
     private sacoba.vista.PanelConFondo panelConFondo399;
-    private sacoba.vista.PanelConFondo panelConFondo4;
     private sacoba.vista.PanelConFondo panelConFondo40;
     private sacoba.vista.PanelConFondo panelConFondo400;
     private sacoba.vista.PanelConFondo panelConFondo401;
     private sacoba.vista.PanelConFondo panelConFondo402;
     private sacoba.vista.PanelConFondo panelConFondo403;
     private sacoba.vista.PanelConFondo panelConFondo404;
-    private sacoba.vista.PanelConFondo panelConFondo405;
     private sacoba.vista.PanelConFondo panelConFondo41;
     private sacoba.vista.PanelConFondo panelConFondo42;
     private sacoba.vista.PanelConFondo panelConFondo43;
@@ -2167,7 +2061,6 @@ public class MonitorView extends VentanaBase {
     private sacoba.vista.PanelConFondo panelConFondo47;
     private sacoba.vista.PanelConFondo panelConFondo48;
     private sacoba.vista.PanelConFondo panelConFondo49;
-    private sacoba.vista.PanelConFondo panelConFondo5;
     private sacoba.vista.PanelConFondo panelConFondo50;
     private sacoba.vista.PanelConFondo panelConFondo51;
     private sacoba.vista.PanelConFondo panelConFondo52;
@@ -2222,8 +2115,9 @@ public class MonitorView extends VentanaBase {
     private sacoba.vista.PanelConFondo panelConFondo97;
     private sacoba.vista.PanelConFondo panelConFondo98;
     private sacoba.vista.PanelConFondo panelConFondo99;
-    private sacoba.vista.TransparentTextArea transparentTextArea1;
-    private sacoba.vista.TransparentTextArea txtBienvenidos;
+    private sacoba.vista.PanelConFondo panelContenido;
+    private javax.swing.JScrollPane panelScrollContenido;
+    private sacoba.vista.PanelConFondo panelTitulo;
     private sacoba.vista.TransparentTextArea txtSigue;
     // End of variables declaration//GEN-END:variables
 }

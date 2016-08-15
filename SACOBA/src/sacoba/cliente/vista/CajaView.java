@@ -40,12 +40,14 @@ public class CajaView extends VentanaBase {
         lblTitulo2 = new javax.swing.JLabel();
         lblUsuario1 = new javax.swing.JLabel();
         txtNombreUsuario = new sacoba.vista.TransparentTextField();
-        btnLiberar = new sacoba.vista.PanelConFondo("flecha.png");
-        jLabel1 = new javax.swing.JLabel();
+        btnVolver = new sacoba.vista.PanelConFondo("flecha-volver.png");
+        lblVolver = new javax.swing.JLabel();
         lblUsuario2 = new javax.swing.JLabel();
         txtSecuencia = new sacoba.vista.TransparentTextField();
         lblUsuario3 = new javax.swing.JLabel();
         txtTramite = new sacoba.vista.TransparentTextField();
+        btnLiberar = new sacoba.vista.PanelConFondo("avanzar.jpeg");
+        lblLiberar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(950, 650));
@@ -61,47 +63,55 @@ public class CajaView extends VentanaBase {
         lblTitulo2.setFont(LETRA_TEXTO_1);
         lblTitulo2.setText("Próximo cliente:");
         panelUsuario.add(lblTitulo2);
-        lblTitulo2.setBounds(40, 60, 250, 40);
+        lblTitulo2.setBounds(90, 90, 250, 40);
 
         lblUsuario1.setFont(LETRA_TEXTO_2);
         lblUsuario1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblUsuario1.setText("Nombre:");
         panelUsuario.add(lblUsuario1);
-        lblUsuario1.setBounds(50, 150, 150, 30);
+        lblUsuario1.setBounds(100, 180, 150, 30);
 
         txtNombreUsuario.setToolTipText("Ingrese un usuario");
         txtNombreUsuario.setFont(LETRA_TEXTO_2);
         panelUsuario.add(txtNombreUsuario);
-        txtNombreUsuario.setBounds(210, 150, 240, 30);
-        panelUsuario.add(btnLiberar);
-        btnLiberar.setBounds(670, 220, 130, 80);
+        txtNombreUsuario.setBounds(260, 180, 240, 30);
+        panelUsuario.add(btnVolver);
+        btnVolver.setBounds(50, 30, 50, 50);
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Liberar caja");
-        panelUsuario.add(jLabel1);
-        jLabel1.setBounds(660, 310, 160, 30);
+        lblVolver.setFont(LETRA_TEXTO_3);
+        lblVolver.setText("Volver");
+        panelUsuario.add(lblVolver);
+        lblVolver.setBounds(110, 40, 160, 30);
 
         lblUsuario2.setFont(LETRA_TEXTO_2);
         lblUsuario2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblUsuario2.setText("Secuencia:");
         panelUsuario.add(lblUsuario2);
-        lblUsuario2.setBounds(50, 110, 150, 30);
+        lblUsuario2.setBounds(100, 140, 150, 30);
 
         txtSecuencia.setToolTipText("Ingrese un usuario");
         txtSecuencia.setFont(LETRA_TEXTO_2);
         panelUsuario.add(txtSecuencia);
-        txtSecuencia.setBounds(210, 110, 110, 30);
+        txtSecuencia.setBounds(260, 140, 110, 30);
 
         lblUsuario3.setFont(LETRA_TEXTO_2);
         lblUsuario3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblUsuario3.setText("Trámite:");
         panelUsuario.add(lblUsuario3);
-        lblUsuario3.setBounds(50, 190, 150, 30);
+        lblUsuario3.setBounds(100, 220, 150, 30);
 
         txtTramite.setToolTipText("Ingrese un usuario");
         txtTramite.setFont(LETRA_TEXTO_2);
         panelUsuario.add(txtTramite);
-        txtTramite.setBounds(210, 190, 240, 30);
+        txtTramite.setBounds(260, 220, 240, 30);
+        panelUsuario.add(btnLiberar);
+        btnLiberar.setBounds(670, 220, 130, 80);
+
+        lblLiberar.setFont(LETRA_TEXTO_3);
+        lblLiberar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLiberar.setText("Liberar caja");
+        panelUsuario.add(lblLiberar);
+        lblLiberar.setBounds(660, 310, 160, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,12 +139,14 @@ public class CajaView extends VentanaBase {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private sacoba.vista.PanelConFondo btnLiberar;
-    private javax.swing.JLabel jLabel1;
+    private sacoba.vista.PanelConFondo btnVolver;
+    private javax.swing.JLabel lblLiberar;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTitulo2;
     private javax.swing.JLabel lblUsuario1;
     private javax.swing.JLabel lblUsuario2;
     private javax.swing.JLabel lblUsuario3;
+    private javax.swing.JLabel lblVolver;
     private sacoba.vista.PanelConFondo panelTitulo;
     private sacoba.vista.PanelConFondo panelUsuario;
     private sacoba.vista.TransparentTextField txtNombreUsuario;
