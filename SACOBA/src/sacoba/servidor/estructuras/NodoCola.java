@@ -19,13 +19,13 @@ public class NodoCola {
 
     //Variables
     private final String secuencia;
-    private final Persona usuario;
+    private final Persona persona;
     private NodoCola atras;
 
     //Constructor
-    public NodoCola(String secuencia, Persona cliente) {
+    public NodoCola(String secuencia, Persona usuario) {
         this.secuencia = secuencia;
-        this.usuario = cliente;
+        this.persona = usuario;
     }
 
     //Getters & setters
@@ -33,8 +33,8 @@ public class NodoCola {
         return secuencia;
     }
 
-    public Persona getUsuario() {
-        return usuario;
+    public Persona getPersona() {
+        return persona;
     }
 
     public NodoCola getAtras() {
@@ -48,7 +48,7 @@ public class NodoCola {
     //Metodos
     @Override
     public String toString() {
-        return "NodoCola{" + "secuencia=" + secuencia + ", cliente=" + usuario + '}';
+        return secuencia + ": " + persona;
     }
 
 }

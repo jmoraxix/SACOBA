@@ -18,7 +18,7 @@ public class NodoArbol {
     //Variables
     private NodoArbol siguiente;
     private ListaEnlazadaHojas procesos;
-    private ColaUsuarios colaUsuarios;
+    private ColaSecuencias colaSecuencias;
     private final String id;
     private String titulo;
     private int totalClientes;
@@ -67,7 +67,7 @@ public class NodoArbol {
     }
 
     public void insertarHoja(NodoArbol nodo) {
-        if (this.colaUsuarios.estaVacia()) { //Si la cola de usuarios no esta vacia, no se puede agregar otro hijo
+        if (this.colaSecuencias.estaVacia()) { //Si la cola de usuarios no esta vacia, no se puede agregar otro hijo
             if (procesos == null) {
                 this.procesos = new ListaEnlazadaHojas(nodo);
             } else {
@@ -79,7 +79,7 @@ public class NodoArbol {
 //    public void insertarUsuario(Persona usuario) {
 //        if (this.esHoja()) {
 //            if (this.colaUsuarios == null) {
-//                this.colaUsuarios = new ColaUsuarios(new NodoCola(id.getBytes()[1] + "", usuario));
+//                this.colaUsuarios = new ColaSecuencias(new NodoCola(id.getBytes()[1] + "", usuario));
 //            } else {
 //                procesos.insertaNodo(nodo);
 //            }

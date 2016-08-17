@@ -13,17 +13,17 @@ package sacoba.servidor.estructuras;
  *
  * @author jmora
  */
-public class ColaUsuarios {
+public class ColaSecuencias {
 
     //Variables
     private NodoCola frente;
     private NodoCola ultimo;
 
     //Constructor
-    public ColaUsuarios() {
+    public ColaSecuencias() {
     }
 
-    public ColaUsuarios(NodoCola nodo) {
+    public ColaSecuencias(NodoCola nodo) {
         enCola(nodo);
     }
 
