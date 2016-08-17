@@ -43,7 +43,7 @@ public class ClientePuerta extends ClienteServidor {
     }
 
     private void enviarSecuencia() {
-
+        
     }
 
     public void notificarCambioCola(final int cola, final int cantidad) {
@@ -59,5 +59,4 @@ public class ClientePuerta extends ClienteServidor {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }

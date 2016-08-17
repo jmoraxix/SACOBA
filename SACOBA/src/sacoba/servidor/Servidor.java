@@ -16,8 +16,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import sacoba.servidor.estructuras.ListaEnlazadaPilas;
-import sacoba.servidor.estructuras.PilaClientes;
+import sacoba.servidor.estructuras.ListaEnlazadaClientes;
 import sacoba.vista.VentanaBase;
 
 /**
@@ -27,17 +26,10 @@ import sacoba.vista.VentanaBase;
 public class Servidor extends VentanaBase {
 
     private ServerSocket serverSocket;
-    private Socket socket, socketPuerta, socketMonitor, socketCaja;
+    private Socket socket;
     private ExecutorService service;
     private String txtLog = new String();
-
-    /*
-    TODO    Lista enlazada de clientes
-            1.  Se agrega una pila de ClientePuerta
-            2.  Se agrega una pila de ClienteMonitore
-            3.  Se agrega una pila de ClienteCaja
-     */
-    private ListaEnlazadaPilas clientes;
+    private ListaEnlazadaClientes clientes;
 
     /**
      * Creates new form Servidor
@@ -46,10 +38,7 @@ public class Servidor extends VentanaBase {
         initComponents();
 
         //Inicializa la lista enlazada para almacenar clientes
-        clientes = new ListaEnlazadaPilas();
-        clientes.inserta("Puertas");
-        clientes.inserta("Monitores");
-        clientes.inserta("Cajas");
+        clientes = new ListaEnlazadaClientes();
 
         try {
             service = Executors.newCachedThreadPool();
@@ -65,29 +54,16 @@ public class Servidor extends VentanaBase {
             while (true) {
                 System.out.println("Accept 1");
                 socket = serverSocket.accept();
-                //TODO Segun el tipo del cliente se declara tipo ClientePuerta, ClienteMonitor, ClienteCaja y se agreagan a la pila correspondientes
-//                ClienteServidor client = new ClienteServidor(socket);
-//                service.submit(client);
+                ClienteServidor client = new ClienteServidor(socket);
+                service.submit(client);
             }
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public ListaEnlazadaPilas getClientes() {
+    public ListaEnlazadaClientes getClientes() {
         return clientes;
-    }
-
-    public PilaClientes getPuertas() {
-        return this.clientes.getPila("Puertas");
-    }
-
-    public PilaClientes getMonitores() {
-        return this.clientes.getPila("Monitores");
-    }
-
-    public PilaClientes getCajas() {
-        return this.clientes.getPila("Cajas");
     }
 
     /**

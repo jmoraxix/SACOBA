@@ -15,18 +15,19 @@ import sacoba.cliente.Cliente;
  *
  * @author jmora
  */
-public class NodoPila {
+public class NodoListaClientes {
 
     //Variables
     private Cliente cliente;
-    private NodoPila abajo;
+    private NodoListaClientes next;
 
     //Constructor
-    public NodoPila(Cliente cliente) {
+    public NodoListaClientes(Cliente cliente) {
         this.cliente = cliente;
+        next = null;
     }
 
-    //Getters & setters
+    //Metodos
     public Cliente getCliente() {
         return cliente;
     }
@@ -35,18 +36,18 @@ public class NodoPila {
         this.cliente = cliente;
     }
 
-    public NodoPila getAbajo() {
-        return abajo;
+
+    public NodoListaClientes getNext() {
+        return next;
     }
 
-    public void setAbajo(NodoPila abajo) {
-        this.abajo = abajo;
+    public void setNext(NodoListaClientes next) {
+        this.next = next;
     }
 
-    //Metodos
     @Override
     public String toString() {
-        return "" + "" + cliente + "\n";
+        return cliente.toString();
     }
 
 }
