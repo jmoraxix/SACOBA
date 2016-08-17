@@ -9,9 +9,7 @@
  */
 package sacoba.cliente;
 
-import sacoba.cliente.vista.CajaLogin;
-import sacoba.cliente.vista.MonitorView;
-import sacoba.cliente.vista.PuertaView;
+import javax.swing.JOptionPane;
 import sacoba.vista.VentanaBase;
 
 /**
@@ -25,7 +23,9 @@ public class ClienteTCP extends VentanaBase {
      */
     public ClienteTCP() {
         initComponents();
-        setSize(VentanaBase.ANCHO, VentanaBase.ALTO);
+
+        //Pide la IP del servidor y no se cierra el dialog a menos que ingrese un valor válido
+        Cliente.setSERVER_IP(JOptionPane.showInputDialog(this, "Digita la IP del servidor", "IP requerida", JOptionPane.WARNING_MESSAGE));
     }
 
     /**

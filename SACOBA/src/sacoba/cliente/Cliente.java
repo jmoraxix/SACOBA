@@ -15,21 +15,23 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sacoba.vista.VentanaBase;
 
 /**
  *
  * @author jmora
  */
-public abstract class Cliente extends Thread {
+public abstract class Cliente extends VentanaBase implements Runnable {
 
     private static String SERVER_IP;
+    private static int SERVER_PORT = 2356;
     private ObjectOutputStream out;
     private ObjectInputStream in;
     private Socket socket;
 
     public Cliente() {
         try {
-            socket = new Socket(SERVER_IP, 2356);
+            socket = new Socket(SERVER_IP, SERVER_PORT);
             createStream();
         } catch (IOException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);

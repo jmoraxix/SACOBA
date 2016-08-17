@@ -7,27 +7,25 @@
  *  Alejandro Loaiza Arguedas
  *  Jose David Mora Loria
  */
-package sacoba.cliente.vista;
+package sacoba.cliente;
 
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.text.MaskFormatter;
-import sacoba.vista.VentanaBase;
 
 /**
  *
  * @author ulacit
  */
-public class PuertaView extends VentanaBase {
+public class PuertaView extends Cliente {
 
     /**
      * Creates new form PuertaView
      */
     public PuertaView() {
         initComponents();
-        //setSize(VentanaBase.ANCHO, VentanaBase.ALTO);
 
         try {
             MaskFormatter mascara_cedula = new MaskFormatter("#-####-####");
@@ -45,6 +43,10 @@ public class PuertaView extends VentanaBase {
         options.add(jbop6);
         options.add(jbop7);
         options.add(jbop8);
+    }
+
+    @Override
+    public void run() {
 
     }
 
@@ -88,7 +90,6 @@ public class PuertaView extends VentanaBase {
         img_plataforma = new sacoba.vista.PanelConFondo("group_blanco.png");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(950, 650));
         setMinimumSize(new java.awt.Dimension(950, 650));
         setSize(new java.awt.Dimension(950, 650));
 

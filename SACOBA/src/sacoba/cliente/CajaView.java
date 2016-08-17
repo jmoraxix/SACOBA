@@ -7,22 +7,24 @@
  *  Alejandro Loaiza Arguedas
  *  Jose David Mora Loria
  */
-package sacoba.cliente.vista;
-
-import sacoba.vista.VentanaBase;
+package sacoba.cliente;
 
 /**
  *
  * @author ulacit
  */
-public class CajaView extends VentanaBase {
+public class CajaView extends Cliente {
 
     /**
      * Creates new form PuertaView
      */
     public CajaView() {
         initComponents();
-        setSize(VentanaBase.ANCHO, VentanaBase.ALTO);
+    }
+
+    @Override
+    public void run() {
+
     }
 
     /**

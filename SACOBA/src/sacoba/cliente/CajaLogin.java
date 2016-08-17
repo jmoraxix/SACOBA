@@ -7,7 +7,7 @@
  *  Alejandro Loaiza Arguedas
  *  Jose David Mora Loria
  */
-package sacoba.cliente.vista;
+package sacoba.cliente;
 
 import javax.swing.JOptionPane;
 import sacoba.cliente.ClienteTCP;
@@ -15,7 +15,7 @@ import sacoba.vista.VentanaBase;
 
 /**
  *
- * @author ulacit
+ * @author Marce
  */
 public class CajaLogin extends VentanaBase {
 
@@ -24,7 +24,6 @@ public class CajaLogin extends VentanaBase {
      */
     public CajaLogin() {
         initComponents();
-        //setSize(VentanaBase.ANCHO, VentanaBase.ALTO);
         soloLetras(txtUsuario);
         soloNumeros(txtCaja);
     }
@@ -183,8 +182,6 @@ public class CajaLogin extends VentanaBase {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
-    private sacoba.vista.PanelConFondo btnVolver;
-    private sacoba.vista.PanelConFondo btnVolver1;
     private sacoba.vista.PanelConFondo btnVolver2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCaja;
