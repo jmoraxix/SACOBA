@@ -15,18 +15,24 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sacoba.servidor.beans.Notificacion;
+import sacoba.servidor.beans.Persona;
 
 /**
  *
  * @author jmora
  */
-public abstract class ClienteServidor extends Thread {
+public class ClienteServidor extends Thread {
 
-    protected ObjectOutputStream out;
-    protected ObjectInputStream in;
-    protected Socket socket;
+    private ObjectOutputStream out;
+    private ObjectInputStream in;
+    private final Socket socket;
+    private final Servidor servidor;
 
-    public ClienteServidor(final Socket socket) {
+    public final static int RECIBIR_USUARIO = 1;
+
+    public ClienteServidor(final Servidor servidor, final Socket socket) {
+        this.servidor = servidor;
         this.socket = socket;
         createStream();
     }
@@ -42,5 +48,66 @@ public abstract class ClienteServidor extends Thread {
     }
 
     @Override
-    public abstract void run();
+    public void run() {
+        while (true) {
+            try {
+                // Recibe un dato de entrada
+                String entrada = in.readUTF();
+                System.out.println(entrada);
+                String[] datos = entrada.split(";"); // Divide los datos de la entrada en cada ';'
+
+                switch (Notificacion.convertirValor(Integer.parseInt(datos[0]))) {
+                    case ENTRA_USUARIO:
+                        recibirUsuario(datos);
+                        break;
+                    case LIBERAR_CAJA:
+                        //liberarCaja();
+                        break;
+                    default:
+                        throw new AssertionError(Notificacion.convertirValor(Integer.parseInt(datos[0])).name());
+                }
+
+            } catch (IOException ex) {
+                Logger.getLogger(ClienteServidor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    public void recibirUsuario(String[] datos) {
+        /*
+            TODO    
+        1.  Toma ambos strings. Busca la persona por la cedula en servidor.getPersonas() y añade la persona a la cola debida
+        2.  Llama servidor.notificarCambioCola(Notificacion.<tipo de notificacion>, <nueva cantidad de personas en la cola>) y le notifica 
+        cuantas personas hay ahora en esa cola
+        3. Envia secuencia de vuelta al mismo cliente con el codigo comentado abajo
+        
+        datos[1] -> Cedula
+        datos[2] -> ID del proceso a hacer
+         */
+
+//        try {
+//            out.writeUTF(Notificacion.NOTIFICA_SECUENCIA.getValor() + ";" + secuencia);
+//            out.flush();
+//        } catch (IOException ex) {
+//            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+    }
+
+    public void notificarCambioCola(Notificacion notificacion, final int cantidad) {
+//        try {
+//            out.writeUTF(Notificacion.AVANZA_CLIENTE.getValor() + ";" + secuencia + ": " + persona + " pasar a caja  #" + caja);
+//            out.flush();
+//        } catch (IOException ex) {
+//            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+    }
+
+    private void notificarUsuarioMonitor(final String usuario, String secuencia, Persona persona, final String caja) {
+        try {
+            out.writeUTF(Notificacion.AVANZA_CLIENTE.getValor() + ";" + secuencia + ": " + persona + " pasar a caja #" + caja);
+            out.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
