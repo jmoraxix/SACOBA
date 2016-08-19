@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
@@ -34,6 +35,7 @@ public class Servidor extends VentanaBase {
     private static ArrayList<Empleado> empleados = new ArrayList<Empleado>();
 
     //Variables de TCP
+    private static int SERVER_PORT = 2356;
     private ServerSocket serverSocket;
     private Socket socket;
     private ExecutorService service;
@@ -50,29 +52,37 @@ public class Servidor extends VentanaBase {
 
         //Inicializa la lista enlazada para almacenar clientes
         clientes = new ListaEnlazadaClientes();
+        txtCajaLog.setText(txtLog);
 
         try {
+
+            agregarLog("Inicia servidor");
+            System.out.println("Inicia servidor");
             service = Executors.newCachedThreadPool();
-            serverSocket = new ServerSocket(2356);
+            serverSocket = new ServerSocket(SERVER_PORT);
             aceptarClientes();
         } catch (IOException ex) {
+            agregarError(ex.toString());
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        txtCajaLog.setText(txtLog);
     }
 
     //Metodos de TCP
     private void aceptarClientes() {
         try {
             while (true) {
-                System.out.println("Entra cliente");
                 socket = serverSocket.accept();
+                agregarLog("Cliente entrante");
+                System.out.println("1");
                 ClienteServidor client = new ClienteServidor(this, socket);
                 service.submit(client);
+                agregarLog("Cliente agregado");
+                System.out.println("2");
             }
         } catch (IOException ex) {
-            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+            agregarError(ex.toString());
+            //Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -90,9 +100,45 @@ public class Servidor extends VentanaBase {
     }
 
     //Metodos para manejo de la interfaz
-    public void refrescarVentana(String msj) {
-        this.txtLog = msj + "\n" + txtLog;
+    public void agregarLog(String msj) {
+        Date fecha = new Date(System.currentTimeMillis());
+        this.txtLog = fecha.toString() + " - " + msj + "\n" + txtLog;
         this.txtCajaLog.setText(txtLog);
+    }
+
+    public void agregarError(String msj) {
+        Date fecha = new Date(System.currentTimeMillis());
+        this.txtLog = fecha.toString() + " - " + "ERROR: " + msj + "\n" + txtLog;
+        this.txtCajaLog.setText(txtLog);
+    }
+
+    //Getters & setters
+    public static ArrayList<Persona> getPersonas() {
+        return personas;
+    }
+
+    public static void setPersonas(ArrayList<Persona> personas) {
+        Servidor.personas = personas;
+    }
+
+    public static void addPersona(Persona persona) {
+        Servidor.personas.add(persona);
+    }
+
+    public static ArrayList<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    public static void setEmpleados(ArrayList<Empleado> empleados) {
+        Servidor.empleados = empleados;
+    }
+
+    public static void addEmpleado(Empleado empleado) {
+        Servidor.empleados.add(empleado);
+    }
+
+    public String getTxtLog() {
+        return txtLog;
     }
 
     /**
@@ -104,29 +150,17 @@ public class Servidor extends VentanaBase {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelContenido = new sacoba.vista.PanelConFondo("fondo_panel.png");
-        lblTitulo2 = new javax.swing.JLabel();
-        panelScrollContenido = new javax.swing.JScrollPane();
-        txtCajaLog = new sacoba.vista.TransparentTextArea();
         panelTitulo = new sacoba.vista.PanelConFondo("fondo_panel.png");
         lblTitulo1 = new javax.swing.JLabel();
-        lblTitulo3 = new javax.swing.JLabel();
+        panelContenido = new sacoba.vista.PanelConFondo("fondo_panel.png");
+        panelScrollContenido = new javax.swing.JScrollPane();
+        txtCajaLog = new sacoba.vista.TransparentTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        lblTitulo2.setFont(LETRA_TEXTO_1);
-        lblTitulo2.setText("En este momento estamos atendiendo:");
-        panelContenido.add(lblTitulo2);
-        lblTitulo2.setBounds(40, 40, 820, 50);
-
-        txtCajaLog.setEditable(false);
-        txtCajaLog.setColumns(20);
-        txtCajaLog.setRows(10);
-        txtCajaLog.setFont(LETRA_TEXTO_3);
-        panelScrollContenido.setViewportView(txtCajaLog);
-
-        panelContenido.add(panelScrollContenido);
-        panelScrollContenido.setBounds(40, 100, 820, 290);
+        setAlwaysOnTop(true);
+        setMaximumSize(new java.awt.Dimension(950, 650));
+        setMinimumSize(new java.awt.Dimension(950, 650));
+        setSize(new java.awt.Dimension(950, 650));
 
         lblTitulo1.setFont(LETRA_TITULO);
         lblTitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -135,12 +169,14 @@ public class Servidor extends VentanaBase {
         panelTitulo.add(lblTitulo1);
         lblTitulo1.setBounds(10, 0, 880, 50);
 
-        lblTitulo3.setFont(LETRA_TITULO);
-        lblTitulo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo3.setText("Sistema de Asistencia de Control Bancario");
-        lblTitulo3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        panelTitulo.add(lblTitulo3);
-        lblTitulo3.setBounds(10, 0, 880, 50);
+        txtCajaLog.setEditable(false);
+        txtCajaLog.setColumns(20);
+        txtCajaLog.setRows(10);
+        txtCajaLog.setFont(LETRA_TEXTO_3);
+        panelScrollContenido.setViewportView(txtCajaLog);
+
+        panelContenido.add(panelScrollContenido);
+        panelScrollContenido.setBounds(20, 30, 850, 380);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,8 +198,8 @@ public class Servidor extends VentanaBase {
                 .addGap(28, 28, 28)
                 .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelContenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(179, 179, 179))
+                .addComponent(panelContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(122, Short.MAX_VALUE))
         );
 
         pack();
@@ -206,8 +242,6 @@ public class Servidor extends VentanaBase {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblTitulo1;
-    private javax.swing.JLabel lblTitulo2;
-    private javax.swing.JLabel lblTitulo3;
     private sacoba.vista.PanelConFondo panelContenido;
     private javax.swing.JScrollPane panelScrollContenido;
     private sacoba.vista.PanelConFondo panelTitulo;

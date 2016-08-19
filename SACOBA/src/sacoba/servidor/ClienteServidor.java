@@ -28,6 +28,7 @@ public class ClienteServidor extends Thread {
     private ObjectInputStream in;
     private final Socket socket;
     private final Servidor servidor;
+    private boolean isRunning = true;
 
     public final static int RECIBIR_USUARIO = 1;
 
@@ -49,7 +50,7 @@ public class ClienteServidor extends Thread {
 
     @Override
     public void run() {
-        while (true) {
+        while (isRunning) {
             try {
                 // Recibe un dato de entrada
                 String entrada = in.readUTF();
@@ -68,7 +69,9 @@ public class ClienteServidor extends Thread {
                 }
 
             } catch (IOException ex) {
-                Logger.getLogger(ClienteServidor.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(ClienteServidor.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Cliente desconectado");
+                isRunning = false;
             }
         }
     }
