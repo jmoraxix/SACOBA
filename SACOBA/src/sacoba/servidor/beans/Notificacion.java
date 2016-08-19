@@ -16,7 +16,7 @@ package sacoba.servidor.beans;
 public enum Notificacion {
 
     ENTRA_USUARIO(1), NOTIFICA_SECUENCIA(2), ACTUALIZA_PLATAFORMA(3), ACTUALIZA_TRAMITES(4),
-    ACTUALIZA_CUENTAS(5), AVANZA_CLIENTE(6), LIBERAR_CAJA(7), NOTIFICAR_CAJERO(8);
+    ACTUALIZA_CUENTAS(5), AVANZA_CLIENTE(6), LIBERAR_CAJA(7), CLIENTE_A_CAJA(8);
 
     private final int valor;
 
@@ -54,7 +54,7 @@ public enum Notificacion {
                 resultado = Notificacion.LIBERAR_CAJA;
                 break;
             case 8:
-                resultado = Notificacion.NOTIFICAR_CAJERO;
+                resultado = Notificacion.CLIENTE_A_CAJA;
                 break;
             default:
                 break;
@@ -82,7 +82,7 @@ public enum Notificacion {
 //            break;
 //        case LIBERAR_CAJA:
 //            break;
-//        case NOTIFICAR_CAJERO:
+//        case CLIENTE_A_CAJA:
 //            break;
 //        default:
 //            throw new AssertionError(Notificacion.convertirValor(Integer.parseInt(datos[0])).name());
