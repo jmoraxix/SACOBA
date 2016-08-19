@@ -9,11 +9,14 @@
  */
 package sacoba.cliente;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.text.MaskFormatter;
+import sacoba.servidor.ClienteServidor;
+import sacoba.servidor.beans.Notificacion;
 
 /**
  *
@@ -25,6 +28,7 @@ public class PuertaView extends Cliente {
      * Creates new form PuertaView
      */
     public PuertaView() {
+        super();
         initComponents();
 
         try {
@@ -47,7 +51,33 @@ public class PuertaView extends Cliente {
 
     @Override
     public void run() {
+        while (true) {
+            try {
+                // Recibe un dato de entrada
+                String entrada = in.readUTF();
+                System.out.println(entrada);
+                String[] datos = entrada.split(";"); // Divide los datos de la entrada en cada ';'
 
+                switch (Notificacion.convertirValor(Integer.parseInt(datos[0]))) {
+                    case NOTIFICA_SECUENCIA:
+                        //liberarCaja();
+                        break;
+                    case ACTUALIZA_PLATAFORMA:
+                        //recibirUsuario(datos);
+                        break;
+                    case ACTUALIZA_TRAMITES:
+                        //recibirUsuario(datos);
+                        break;
+                    case ACTUALIZA_CUENTAS:
+                        //recibirUsuario(datos);
+                        break;
+                    default:
+                        break;
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(ClienteServidor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     /**

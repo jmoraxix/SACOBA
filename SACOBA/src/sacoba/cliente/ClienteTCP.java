@@ -140,6 +140,7 @@ public class ClienteTCP extends VentanaBase {
 
     private void btnCajeroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCajeroMouseClicked
         new CajaLogin().setVisible(true);
+        //new Servidor().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCajeroMouseClicked
 

@@ -9,6 +9,12 @@
  */
 package sacoba.cliente;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import sacoba.servidor.ClienteServidor;
+import sacoba.servidor.beans.Notificacion;
+
 /**
  *
  * @author ulacit
@@ -19,12 +25,39 @@ public class MonitorView extends Cliente {
      * Creates new form PuertaView
      */
     public MonitorView() {
+        super();
         initComponents();
     }
 
     @Override
     public void run() {
+        while (true) {
+            try {
+                // Recibe un dato de entrada
+                String entrada = in.readUTF();
+                System.out.println(entrada);
+                String[] datos = entrada.split(";"); // Divide los datos de la entrada en cada ';'
 
+                switch (Notificacion.convertirValor(Integer.parseInt(datos[0]))) {
+                    case ACTUALIZA_PLATAFORMA:
+                        //recibirUsuario(datos);
+                        break;
+                    case ACTUALIZA_TRAMITES:
+                        //recibirUsuario(datos);
+                        break;
+                    case ACTUALIZA_CUENTAS:
+                        //recibirUsuario(datos);
+                        break;
+                    case CLIENTE_A_CAJA:
+                        //liberarCaja();
+                        break;
+                    default:
+                        break;
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(ClienteServidor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     /**

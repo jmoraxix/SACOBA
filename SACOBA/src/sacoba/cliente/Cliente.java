@@ -12,6 +12,7 @@ package sacoba.cliente;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,15 +24,20 @@ import sacoba.vista.VentanaBase;
  */
 public abstract class Cliente extends VentanaBase implements Runnable {
 
-    private static String SERVER_IP;
-    private static int SERVER_PORT = 2356;
-    private ObjectOutputStream out;
-    private ObjectInputStream in;
-    private Socket socket;
+    protected static String SERVER_IP;
+    protected static int SERVER_PORT = 2356;
+    protected ObjectOutputStream out;
+    protected ObjectInputStream in;
+    protected Socket socket;
 
     public Cliente() {
         try {
-            socket = new Socket(SERVER_IP, SERVER_PORT);
+            System.out.println(SERVER_IP);
+            if (SERVER_IP.equals("localhost")) {
+                socket = new Socket(InetAddress.getLocalHost(), SERVER_PORT);
+            } else {
+                socket = new Socket(SERVER_IP, SERVER_PORT);
+            }
             createStream();
         } catch (IOException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
