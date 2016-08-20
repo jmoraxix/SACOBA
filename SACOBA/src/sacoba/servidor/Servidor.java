@@ -31,8 +31,8 @@ import sacoba.vista.VentanaBase;
 public class Servidor extends VentanaBase {
 
     //Variables Globales
-    private static ArrayList<Persona> personas = new ArrayList<Persona>();
-    private static ArrayList<Empleado> empleados = new ArrayList<Empleado>();
+    private ArrayList<Persona> personas = new ArrayList<Persona>();
+    private ArrayList<Empleado> empleados = new ArrayList<Empleado>();
 
     //Variables de TCP
     private static int SERVER_PORT = 2356;
@@ -48,6 +48,7 @@ public class Servidor extends VentanaBase {
      * Creates new form Servidor
      */
     public Servidor() {
+        new GenerarValores(this);
         initComponents();
 
         //Inicializa la lista enlazada para almacenar clientes
@@ -60,7 +61,6 @@ public class Servidor extends VentanaBase {
             System.out.println("Inicia servidor");
             service = Executors.newCachedThreadPool();
             serverSocket = new ServerSocket(SERVER_PORT);
-            aceptarClientes();
         } catch (IOException ex) {
             agregarError(ex.toString());
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
@@ -113,28 +113,28 @@ public class Servidor extends VentanaBase {
     }
 
     //Getters & setters
-    public static ArrayList<Persona> getPersonas() {
+    public ArrayList<Persona> getPersonas() {
         return personas;
     }
 
-    public static void setPersonas(ArrayList<Persona> personas) {
-        Servidor.personas = personas;
+    public void setPersonas(ArrayList<Persona> personas) {
+        this.personas = personas;
     }
 
-    public static void addPersona(Persona persona) {
-        Servidor.personas.add(persona);
+    public void addPersona(Persona persona) {
+        this.personas.add(persona);
     }
 
-    public static ArrayList<Empleado> getEmpleados() {
+    public ArrayList<Empleado> getEmpleados() {
         return empleados;
     }
 
-    public static void setEmpleados(ArrayList<Empleado> empleados) {
-        Servidor.empleados = empleados;
+    public void setEmpleados(ArrayList<Empleado> empleados) {
+        this.empleados = empleados;
     }
 
-    public static void addEmpleado(Empleado empleado) {
-        Servidor.empleados.add(empleado);
+    public void addEmpleado(Empleado empleado) {
+        this.empleados.add(empleado);
     }
 
     public String getTxtLog() {
@@ -235,7 +235,9 @@ public class Servidor extends VentanaBase {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Servidor().setVisible(true);
+                Servidor server = new Servidor();
+                server.setVisible(true);
+                server.aceptarClientes();
             }
         });
     }
