@@ -17,30 +17,29 @@ import java.util.Date;
  */
 public class Persona {
 
-    private int cedula, telefono;
-    private String nombre, apellido1, apellido2, email;
+    private String nombre, apellido1, apellido2, email, cedula, telefono;
     private Direccion direccion;
     private Date nacimiento;
 
-    public Persona(int cedula, String nombre, String apellido1) {
+    public Persona(String cedula, String nombre, String apellido1) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido1 = apellido1;
     }
 
-    public int getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

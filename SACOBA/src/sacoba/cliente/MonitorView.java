@@ -40,16 +40,16 @@ public class MonitorView extends Cliente {
 
                 switch (Notificacion.convertirValor(Integer.parseInt(datos[0]))) {
                     case ACTUALIZA_PLATAFORMA:
-                        //recibirUsuario(datos);
+                        actualizaPlataforma(datos);
                         break;
                     case ACTUALIZA_TRAMITES:
-                        //recibirUsuario(datos);
+                        actualizaTramites(datos);
                         break;
                     case ACTUALIZA_CUENTAS:
-                        //recibirUsuario(datos);
+                        actualizaCuentas(datos);
                         break;
-                    case CLIENTE_A_CAJA:
-                        //liberarCaja();
+                    case AVANZA_CLIENTE:
+                        avanzaCliente(datos);
                         break;
                     default:
                         break;
@@ -58,6 +58,23 @@ public class MonitorView extends Cliente {
                 Logger.getLogger(ClienteServidor.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    //Metodos de TCP
+    private void actualizaPlataforma(String[] datos) {
+        //TODO Recibe la secuenca del usuario y la muestra en pantalla
+    }
+
+    private void actualizaTramites(String[] datos) {
+        //TODO Recibe la secuenca del usuario y la muestra en pantalla
+    }
+
+    private void actualizaCuentas(String[] datos) {
+        //TODO Recibe la secuenca del usuario y la muestra en pantalla
+    }
+
+    private void avanzaCliente(String[] datos) {
+        //TODO Recibe la secuenca del usuario y la muestra en pantalla
     }
 
     /**

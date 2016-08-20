@@ -14,6 +14,7 @@ import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 import sacoba.servidor.ClienteServidor;
 import sacoba.servidor.beans.Notificacion;
@@ -23,6 +24,8 @@ import sacoba.servidor.beans.Notificacion;
  * @author ulacit
  */
 public class PuertaView extends Cliente {
+
+    ButtonGroup options;
 
     /**
      * Creates new form PuertaView
@@ -38,7 +41,7 @@ public class PuertaView extends Cliente {
             Logger.getLogger(PuertaView.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        ButtonGroup options = new ButtonGroup();
+        options = new ButtonGroup();
         options.add(jbop1);
         options.add(jbop2);
         options.add(jbop3);
@@ -60,16 +63,16 @@ public class PuertaView extends Cliente {
 
                 switch (Notificacion.convertirValor(Integer.parseInt(datos[0]))) {
                     case NOTIFICA_SECUENCIA:
-                        //liberarCaja();
+                        notificaSecuencia(datos);
                         break;
                     case ACTUALIZA_PLATAFORMA:
-                        //recibirUsuario(datos);
+                        actualizaPlataforma(datos);
                         break;
                     case ACTUALIZA_TRAMITES:
-                        //recibirUsuario(datos);
+                        actualizaTramites(datos);
                         break;
                     case ACTUALIZA_CUENTAS:
-                        //recibirUsuario(datos);
+                        actualizaCuentas(datos);
                         break;
                     default:
                         break;
@@ -78,6 +81,65 @@ public class PuertaView extends Cliente {
                 Logger.getLogger(ClienteServidor.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    //Metodos de TCP
+    private void entraUsuario() {
+        String codigo = getCodeFromButton();
+        if (codigo != null) {
+            try {
+                out.writeUTF(Notificacion.ENTRA_USUARIO.getValor() + ";" + codigo);
+                out.flush();
+            } catch (IOException ex) {
+                Logger.getLogger(CajaView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Por favor seleccione una opción antes de continuar.",
+                    "No se puede continuar",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void notificaSecuencia(String[] datos) {
+        //TODO Recibe la secuenca del usuario y la muestra en pantalla
+    }
+
+    private void actualizaPlataforma(String[] datos) {
+        this.lblPlataforma.setText(datos[1]);
+    }
+
+    private void actualizaTramites(String[] datos) {
+        this.lblTramites.setText(datos[1]);
+    }
+
+    private void actualizaCuentas(String[] datos) {
+        this.lblCuentas.setText(datos[1]);
+    }
+
+    //Otros metodos
+    private String getCodeFromButton() {
+        String codigo = null;
+
+        if (jbop1.isSelected()) {
+            codigo = "P1";
+        } else if (jbop2.isSelected()) {
+            codigo = "P2";
+        } else if (jbop3.isSelected()) {
+            codigo = "P3";
+        } else if (jbop4.isSelected()) {
+            codigo = "P4";
+        } else if (jbop5.isSelected()) {
+            codigo = "T1";
+        } else if (jbop6.isSelected()) {
+            codigo = "T2";
+        } else if (jbop7.isSelected()) {
+            codigo = "C1";
+        } else if (jbop8.isSelected()) {
+            codigo = "C2";
+        }
+
+        return codigo;
     }
 
     /**
@@ -112,9 +174,9 @@ public class PuertaView extends Cliente {
         lblTituloCuentas = new javax.swing.JLabel();
         lblTituloPlataforma = new javax.swing.JLabel();
         lblTituloTramites = new javax.swing.JLabel();
-        lblPlataforma1 = new javax.swing.JLabel();
-        lblPlataforma3 = new javax.swing.JLabel();
-        lblPlataforma4 = new javax.swing.JLabel();
+        lblCuentas = new javax.swing.JLabel();
+        lblPlataforma = new javax.swing.JLabel();
+        lblTramites = new javax.swing.JLabel();
         img_cuentas = new sacoba.vista.PanelConFondo("account-balance-blanco.png");
         img_tramites = new sacoba.vista.PanelConFondo("tramite_blanco.png");
         img_plataforma = new sacoba.vista.PanelConFondo("group_blanco.png");
@@ -212,6 +274,12 @@ public class PuertaView extends Cliente {
         lblContinuar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         panelUsuario.add(lblContinuar);
         lblContinuar.setBounds(260, 290, 150, 50);
+
+        btnContinuar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnContinuarMouseClicked(evt);
+            }
+        });
         panelUsuario.add(btnContinuar);
         btnContinuar.setBounds(420, 290, 80, 50);
 
@@ -238,26 +306,26 @@ public class PuertaView extends Cliente {
         panelClientes.add(lblTituloTramites);
         lblTituloTramites.setBounds(130, 180, 100, 40);
 
-        lblPlataforma1.setFont(LETRA_TEXTO_1);
-        lblPlataforma1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPlataforma1.setText("0");
-        lblPlataforma1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        panelClientes.add(lblPlataforma1);
-        lblPlataforma1.setBounds(200, 300, 60, 40);
+        lblCuentas.setFont(LETRA_TEXTO_1);
+        lblCuentas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCuentas.setText("0");
+        lblCuentas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        panelClientes.add(lblCuentas);
+        lblCuentas.setBounds(200, 300, 60, 40);
 
-        lblPlataforma3.setFont(LETRA_TEXTO_1);
-        lblPlataforma3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPlataforma3.setText("0");
-        lblPlataforma3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        panelClientes.add(lblPlataforma3);
-        lblPlataforma3.setBounds(200, 70, 60, 40);
+        lblPlataforma.setFont(LETRA_TEXTO_1);
+        lblPlataforma.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPlataforma.setText("0");
+        lblPlataforma.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        panelClientes.add(lblPlataforma);
+        lblPlataforma.setBounds(200, 70, 60, 40);
 
-        lblPlataforma4.setFont(LETRA_TEXTO_1);
-        lblPlataforma4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPlataforma4.setText("0");
-        lblPlataforma4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        panelClientes.add(lblPlataforma4);
-        lblPlataforma4.setBounds(200, 180, 60, 40);
+        lblTramites.setFont(LETRA_TEXTO_1);
+        lblTramites.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTramites.setText("0");
+        lblTramites.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        panelClientes.add(lblTramites);
+        lblTramites.setBounds(200, 180, 60, 40);
         panelClientes.add(img_cuentas);
         img_cuentas.setBounds(50, 290, 70, 70);
         panelClientes.add(img_tramites);
@@ -294,6 +362,10 @@ public class PuertaView extends Cliente {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnContinuarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnContinuarMouseClicked
+        entraUsuario();
+    }//GEN-LAST:event_btnContinuarMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private sacoba.vista.PanelConFondo btnContinuar;
     private sacoba.vista.PanelConFondo img_cuentas;
@@ -309,14 +381,14 @@ public class PuertaView extends Cliente {
     private javax.swing.JRadioButton jbop8;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblContinuar;
+    private javax.swing.JLabel lblCuentas;
     private javax.swing.JLabel lblOpcion;
-    private javax.swing.JLabel lblPlataforma1;
-    private javax.swing.JLabel lblPlataforma3;
-    private javax.swing.JLabel lblPlataforma4;
+    private javax.swing.JLabel lblPlataforma;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTituloCuentas;
     private javax.swing.JLabel lblTituloPlataforma;
     private javax.swing.JLabel lblTituloTramites;
+    private javax.swing.JLabel lblTramites;
     private sacoba.vista.PanelConFondo panelClientes;
     private sacoba.vista.PanelConFondo panelTitulo;
     private sacoba.vista.PanelConFondo panelUsuario;

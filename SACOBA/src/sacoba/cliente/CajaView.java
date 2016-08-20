@@ -21,11 +21,14 @@ import sacoba.servidor.beans.Notificacion;
  */
 public class CajaView extends Cliente {
 
+    private String numCaja;
+
     /**
      * Creates new form PuertaView
      */
-    public CajaView() {
+    public CajaView(String numCaja) {
         super();
+        this.numCaja = numCaja;
         initComponents();
     }
 
@@ -40,7 +43,7 @@ public class CajaView extends Cliente {
 
                 switch (Notificacion.convertirValor(Integer.parseInt(datos[0]))) {
                     case CLIENTE_A_CAJA:
-                        //liberarCaja();
+                        clienteACaja(datos);
                         break;
                     default:
                         break;
@@ -49,6 +52,25 @@ public class CajaView extends Cliente {
                 Logger.getLogger(ClienteServidor.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    //Metodos de TCP
+    private void liberarCaja() {
+        try {
+            out.writeUTF(Notificacion.LIBERAR_CAJA.getValor() + ";" + numCaja);
+            out.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(CajaView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /*
+        Recibe la secuenca generada para el usuario por el servidor y la muestra en pantalla
+     */
+    private void clienteACaja(String[] datos) {
+        this.txtSecuencia.setText(datos[1]);
+        this.txtNombreUsuario.setText(datos[2]);
+        this.txtTramite.setText(datos[3]);
     }
 
     /**
@@ -179,7 +201,7 @@ public class CajaView extends Cliente {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLiberarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLiberarMouseClicked
-        // TODO Enviar peticion al servidor y refrescar contenido del panel
+        liberarCaja();
     }//GEN-LAST:event_btnLiberarMouseClicked
 
     private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked

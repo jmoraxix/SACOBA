@@ -10,7 +10,6 @@
 package sacoba.cliente;
 
 import javax.swing.JOptionPane;
-import sacoba.cliente.ClienteTCP;
 import sacoba.vista.VentanaBase;
 
 /**
@@ -158,7 +157,7 @@ public class CajaLogin extends VentanaBase {
         String passwd = new String(txtPasswd.getPassword());
         //if (this.txtUsuario.getText().equals("") || this.txtCaja.getText().equals("") || passwd.equals("")) {
         if (this.txtUsuario.getText().equals("Admin") && String.copyValueOf(this.txtPasswd.getPassword()).equals("123")) {
-            new CajaView().setVisible(true);
+            new CajaView(txtCaja.getText()).setVisible(true);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this,
