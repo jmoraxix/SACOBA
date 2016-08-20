@@ -24,7 +24,10 @@ public class CajaView extends Cliente {
     private String numCaja;
 
     /**
-     * Creates new form PuertaView
+     * Crea un nuevo cliente Puerta
+     *
+     * @param numCaja Numero de caja en la que el empleado esta iniciando el
+     * cliente
      */
     public CajaView(String numCaja) {
         super();
@@ -55,6 +58,9 @@ public class CajaView extends Cliente {
     }
 
     //Metodos de TCP
+    /*
+        Envia una notificacion al servidor de que la caja esta vacia
+     */
     private void liberarCaja() {
         try {
             out.writeUTF(Notificacion.LIBERAR_CAJA.getValor() + ";" + numCaja);

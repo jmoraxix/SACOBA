@@ -6,13 +6,13 @@ import java.awt.Graphics2D;
 import javax.swing.JPasswordField;
 
 /**
+ * Crea un PasswordField con transparencia
  *
  * @author jmora
  */
 public class TransparentPasswordField extends JPasswordField {
 
-    private static final long serialVersionUID = 1959323179223226142L;
-
+    // Constructores
     public TransparentPasswordField() {
         super();
         init();
@@ -37,6 +37,7 @@ public class TransparentPasswordField extends JPasswordField {
         setOpaque(false);
     }
 
+    //Metodos graficos para crear una transparencia en el objeto
     @Override
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();

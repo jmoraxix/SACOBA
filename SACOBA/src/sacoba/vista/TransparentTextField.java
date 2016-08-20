@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import javax.swing.JTextField;
 
 /**
+ * Crea un TextField con transparencia
  *
  * @author jmora
  */
@@ -14,6 +15,7 @@ public class TransparentTextField extends JTextField {
 
     private static final long serialVersionUID = 1959323179223226142L;
 
+    // Constructor
     public TransparentTextField() {
         super();
         init();
@@ -39,6 +41,7 @@ public class TransparentTextField extends JTextField {
         setForeground(Color.black);
     }
 
+    //Metodos graficos para crear una transparencia en el objeto
     @Override
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();

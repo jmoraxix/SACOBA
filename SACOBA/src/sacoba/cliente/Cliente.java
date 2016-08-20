@@ -30,6 +30,10 @@ public abstract class Cliente extends VentanaBase implements Runnable {
     protected ObjectInputStream in;
     protected Socket socket;
 
+    /**
+     * Declara un nuevo cliente. Crea la conexion con el servidor y define los
+     * streams
+     */
     public Cliente() {
         try {
             System.out.println(SERVER_IP);
@@ -56,10 +60,18 @@ public abstract class Cliente extends VentanaBase implements Runnable {
         }
     }
 
+    /**
+     *
+     * @return SERVER_IP
+     */
     public static String getSERVER_IP() {
         return SERVER_IP;
     }
 
+    /**
+     *
+     * @param SERVER_IP
+     */
     public static void setSERVER_IP(String SERVER_IP) {
         Cliente.SERVER_IP = SERVER_IP;
     }

@@ -7,11 +7,13 @@ import java.awt.Graphics2D;
 import javax.swing.JTextArea;
 
 /**
+ * Crea un TextArea con transparencia
  *
  * @author jmora
  */
 public class TransparentTextArea extends JTextArea {
 
+    // Constructores
     public TransparentTextArea() {
         super();
         init();
@@ -27,6 +29,7 @@ public class TransparentTextArea extends JTextArea {
         setForeground(Color.black);
     }
 
+    //Metodos graficos para crear una transparencia en el objeto
     @Override
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();

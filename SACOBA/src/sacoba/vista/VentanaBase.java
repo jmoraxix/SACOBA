@@ -99,6 +99,12 @@ public class VentanaBase extends JFrame {
         setJMenuBar(jMenuBar1);
     }
 
+    /**
+     * Recibe un TextField y le asigna un eveno que evita que se le agreguen
+     * caracteres numericos
+     *
+     * @param TextField Caja de texto a modificar
+     */
     public static void soloLetras(JTextField txt) {
         txt.addKeyListener(new KeyAdapter() {
             @Override
@@ -111,6 +117,12 @@ public class VentanaBase extends JFrame {
         });
     }
 
+    /**
+     * Recibe un TextField y le asigna un eveno que evita que se le agreguen
+     * caracteres que no sean numericos
+     *
+     * @param TextField Caja de texto a modificar
+     */
     public static void soloNumeros(JTextField txt) {
         txt.addKeyListener(new KeyAdapter() {
             @Override

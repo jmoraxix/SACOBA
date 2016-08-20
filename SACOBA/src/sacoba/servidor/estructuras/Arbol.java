@@ -15,9 +15,19 @@ package sacoba.servidor.estructuras;
  */
 public class Arbol {
 
+    /**
+     *
+     */
     public NodoArbol raiz;
+
+    /**
+     *
+     */
     public NodoArbol nodoActual;
 
+    /**
+     *
+     */
     public Arbol() {
         raiz = null;
     }

@@ -19,14 +19,27 @@ public class ListaEnlazadaHojas {
     NodoArbol cabeza;
 
     //Constructor
+
+    /**
+     *
+     */
     public ListaEnlazadaHojas() {
     }
 
+    /**
+     *
+     * @param cabeza
+     */
     public ListaEnlazadaHojas(NodoArbol cabeza) {
         this.cabeza = cabeza;
     }
 
     //Metodos
+
+    /**
+     *
+     * @param nodo
+     */
     public void insertaNodo(NodoArbol nodo) {
         if (cabeza == null) {
             cabeza = nodo;
@@ -40,6 +53,11 @@ public class ListaEnlazadaHojas {
         }
     }
 
+    /**
+     *
+     * @param nombreAnt
+     * @param nombreNuevo
+     */
     public void modificaNombre(String nombreAnt, String nombreNuevo) {
         if (cabeza != null) {
             if (cabeza.getTitulo().equalsIgnoreCase(nombreAnt)) {
@@ -57,6 +75,10 @@ public class ListaEnlazadaHojas {
         }
     }
 
+    /**
+     *
+     * @param nombre
+     */
     public void elimina(String nombre) {
         if (cabeza != null) {
             if (cabeza.getTitulo().equalsIgnoreCase(nombre)) {
@@ -77,6 +99,11 @@ public class ListaEnlazadaHojas {
         }
     }
 
+    /**
+     *
+     * @param ID
+     * @return
+     */
     public NodoArbol getHoja(String ID) {
         NodoArbol buscado = null;
         if (cabeza != null) {
@@ -96,6 +123,10 @@ public class ListaEnlazadaHojas {
         return buscado;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean estaVacia() {
         return cabeza == null;
     }

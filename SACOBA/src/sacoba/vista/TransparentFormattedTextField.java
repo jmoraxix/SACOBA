@@ -9,13 +9,13 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
 /**
+ * Crea un FormattedTextField con transparencia
  *
  * @author jmora
  */
 public class TransparentFormattedTextField extends JFormattedTextField {
 
-    private static final long serialVersionUID = 1959323179223226142L;
-
+    // Constructores
     public TransparentFormattedTextField() {
         super();
         init();
@@ -41,12 +41,18 @@ public class TransparentFormattedTextField extends JFormattedTextField {
         setOpaque(false);
         setForeground(Color.black);
     }
-    
-    public void setMask(MaskFormatter maskFormatter){
+
+    /**
+     * Recibe una mascara y la asigna como formato de la caja de texto
+     *
+     * @param maskFormatter Formato a asignar
+     */
+    public void setMask(MaskFormatter maskFormatter) {
         maskFormatter.setPlaceholderCharacter('_');
         setFormatterFactory(new DefaultFormatterFactory(maskFormatter));
     }
 
+    //Metodos graficos para crear una transparencia en el objeto
     @Override
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();

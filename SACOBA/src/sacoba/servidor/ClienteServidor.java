@@ -30,8 +30,16 @@ public class ClienteServidor extends Thread {
     private final Servidor servidor;
     private boolean isRunning = true;
 
+    /**
+     *
+     */
     public final static int RECIBIR_USUARIO = 1;
 
+    /**
+     *
+     * @param servidor
+     * @param socket
+     */
     public ClienteServidor(final Servidor servidor, final Socket socket) {
         this.servidor = servidor;
         this.socket = socket;
@@ -76,6 +84,10 @@ public class ClienteServidor extends Thread {
         }
     }
 
+    /**
+     *
+     * @param datos
+     */
     public void recibirUsuario(String[] datos) {
         /*
             TODO    
@@ -96,6 +108,11 @@ public class ClienteServidor extends Thread {
 //        }
     }
 
+    /**
+     *
+     * @param notificacion
+     * @param cantidad
+     */
     public void notificarCambioCola(Notificacion notificacion, final int cantidad) {
 //        try {
 //            out.writeUTF(Notificacion.AVANZA_CLIENTE.getValor() + ";" + secuencia + ": " + persona + " pasar a caja  #" + caja);

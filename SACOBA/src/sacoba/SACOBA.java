@@ -10,6 +10,7 @@
 package sacoba;
 
 /**
+ * Clase vacia para referenciar al paquete imagenes
  *
  * @author jmora
  */

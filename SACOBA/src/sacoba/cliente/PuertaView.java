@@ -101,18 +101,31 @@ public class PuertaView extends Cliente {
         }
     }
 
+    /*
+        Recibe la secuenca del usuario y la muestra en pantalla
+     */
     private void notificaSecuencia(String[] datos) {
-        //TODO Recibe la secuenca del usuario y la muestra en pantalla
+        JOptionPane.showMessageDialog(this,
+                "Su número de secuencia es: " + datos[1]);
     }
 
+    /*
+        Recibe el nuevo numero de usuarios en la cola de Plataforma
+     */
     private void actualizaPlataforma(String[] datos) {
         this.lblPlataforma.setText(datos[1]);
     }
 
+    /*
+        Recibe el nuevo numero de usuarios en la cola de Tramites
+     */
     private void actualizaTramites(String[] datos) {
         this.lblTramites.setText(datos[1]);
     }
 
+    /*
+        Recibe el nuevo numero de usuarios en la cola de Cuentas
+     */
     private void actualizaCuentas(String[] datos) {
         this.lblCuentas.setText(datos[1]);
     }

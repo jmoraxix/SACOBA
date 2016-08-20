@@ -86,6 +86,11 @@ public class Servidor extends VentanaBase {
         }
     }
 
+    /**
+     *
+     * @param notificacion
+     * @param cantidad
+     */
     public void notificarCambioCola(Notificacion notificacion, final int cantidad) {
         //TODO iterar para llamar notificarCambioCola(notificacion, cantidad) en cada cliente
     }
@@ -95,17 +100,29 @@ public class Servidor extends VentanaBase {
     }
 
     //Metodos del manejor de variables
+    /**
+     *
+     * @return
+     */
     public ListaEnlazadaClientes getClientes() {
         return clientes;
     }
 
     //Metodos para manejo de la interfaz
+    /**
+     *
+     * @param msj
+     */
     public void agregarLog(String msj) {
         Date fecha = new Date(System.currentTimeMillis());
         this.txtLog = fecha.toString() + " - " + msj + "\n" + txtLog;
         this.txtCajaLog.setText(txtLog);
     }
 
+    /**
+     *
+     * @param msj
+     */
     public void agregarError(String msj) {
         Date fecha = new Date(System.currentTimeMillis());
         this.txtLog = fecha.toString() + " - " + "ERROR: " + msj + "\n" + txtLog;
@@ -113,30 +130,58 @@ public class Servidor extends VentanaBase {
     }
 
     //Getters & setters
+    /**
+     *
+     * @return
+     */
     public ArrayList<Persona> getPersonas() {
         return personas;
     }
 
+    /**
+     *
+     * @param personas
+     */
     public void setPersonas(ArrayList<Persona> personas) {
         this.personas = personas;
     }
 
+    /**
+     *
+     * @param persona
+     */
     public void addPersona(Persona persona) {
         this.personas.add(persona);
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Empleado> getEmpleados() {
         return empleados;
     }
 
+    /**
+     *
+     * @param empleados
+     */
     public void setEmpleados(ArrayList<Empleado> empleados) {
         this.empleados = empleados;
     }
 
+    /**
+     *
+     * @param empleado
+     */
     public void addEmpleado(Empleado empleado) {
         this.empleados.add(empleado);
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTxtLog() {
         return txtLog;
     }

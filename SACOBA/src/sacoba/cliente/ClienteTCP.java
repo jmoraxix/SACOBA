@@ -19,11 +19,12 @@ import sacoba.vista.VentanaBase;
 public class ClienteTCP extends VentanaBase {
 
     /**
-     * Creates new form ClienteTCP
+     * Crea el menu principal para seleccionar un nuevo cliente
      */
     public ClienteTCP() {
         initComponents();
 
+        //TODO Evitar que se cierre sin ningun valor 
         //Pide la IP del servidor y no se cierra el dialog a menos que ingrese un valor válido
         Cliente.setSERVER_IP(JOptionPane.showInputDialog(this, "Digita la IP del servidor", "IP requerida", JOptionPane.WARNING_MESSAGE));
     }
@@ -127,9 +128,6 @@ public class ClienteTCP extends VentanaBase {
     private void btnPuertaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPuertaMouseClicked
         this.dispose();
         PuertaView puerta = new PuertaView();
-//        puerta.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//        puerta.setUndecorated(true);
-//        puerta.pack();
         puerta.setVisible(true);
     }//GEN-LAST:event_btnPuertaMouseClicked
 

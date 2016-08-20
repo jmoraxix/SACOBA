@@ -22,25 +22,46 @@ public class NodoListaClientes {
     private NodoListaClientes next;
 
     //Constructor
+
+    /**
+     *
+     * @param cliente
+     */
     public NodoListaClientes(Cliente cliente) {
         this.cliente = cliente;
         next = null;
     }
 
     //Metodos
+
+    /**
+     *
+     * @return
+     */
     public Cliente getCliente() {
         return cliente;
     }
 
+    /**
+     *
+     * @param cliente
+     */
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
-
+    /**
+     *
+     * @return
+     */
     public NodoListaClientes getNext() {
         return next;
     }
 
+    /**
+     *
+     * @param next
+     */
     public void setNext(NodoListaClientes next) {
         this.next = next;
     }

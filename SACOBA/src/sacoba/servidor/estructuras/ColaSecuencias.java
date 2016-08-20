@@ -20,14 +20,27 @@ public class ColaSecuencias {
     private NodoCola ultimo;
 
     //Constructor
+
+    /**
+     *
+     */
     public ColaSecuencias() {
     }
 
+    /**
+     *
+     * @param nodo
+     */
     public ColaSecuencias(NodoCola nodo) {
         enCola(nodo);
     }
 
     //Metodos
+
+    /**
+     *
+     * @param d
+     */
     public void enCola(NodoCola d) {
         if (frente == null) {
             frente = d;
@@ -38,6 +51,10 @@ public class ColaSecuencias {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public NodoCola desencola() {
         NodoCola aux = frente;
         if (frente != null) {
@@ -47,6 +64,10 @@ public class ColaSecuencias {
         return aux;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean estaVacia() {
         return frente == null;
     }

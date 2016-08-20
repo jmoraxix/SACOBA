@@ -19,7 +19,7 @@ import sacoba.vista.VentanaBase;
 public class CajaLogin extends VentanaBase {
 
     /**
-     * Creates new form PuertaView
+     * Crea una ventana de login para el cliente Caja
      */
     public CajaLogin() {
         initComponents();
@@ -154,6 +154,7 @@ public class CajaLogin extends VentanaBase {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        //TODO Arreglar error que se muestra si hay algun campo requerido vacio
         String passwd = new String(txtPasswd.getPassword());
         //if (this.txtUsuario.getText().equals("") || this.txtCaja.getText().equals("") || passwd.equals("")) {
         if (this.txtUsuario.getText().equals("Admin") && String.copyValueOf(this.txtPasswd.getPassword()).equals("123")) {

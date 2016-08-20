@@ -21,6 +21,11 @@ public class ListaEnlazadaClientes {
     NodoListaClientes cabeza;
 
     //Metodos
+
+    /**
+     *
+     * @param cliente
+     */
     public void inserta(Cliente cliente) {
         if (cabeza == null) {
             cabeza = new NodoListaClientes(cliente);
@@ -34,6 +39,10 @@ public class ListaEnlazadaClientes {
         }
     }
 
+    /**
+     *
+     * @param cliente
+     */
     public void elimina(Cliente cliente) {
         if (cabeza != null) {
             if (cabeza.getCliente() == cliente) {

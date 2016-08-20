@@ -21,6 +21,10 @@ public class GenerarValores {
 
     Servidor servidor;
 
+    /**
+     *
+     * @param servidor
+     */
     public GenerarValores(Servidor servidor) {
         this.servidor = servidor;
         generarPersonas();

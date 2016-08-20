@@ -25,6 +25,12 @@ public class NodoArbol {
     private int indice;
 
     //Constructor
+
+    /**
+     *
+     * @param id
+     * @param titulo
+     */
     public NodoArbol(String id, String titulo) {
         this.id = id;
         this.titulo = titulo;
@@ -33,39 +39,78 @@ public class NodoArbol {
     }
 
     //Getters & setters
+
+    /**
+     *
+     * @return
+     */
     public int getTotalClientes() {
         return totalClientes;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTitulo() {
         return titulo;
     }
 
+    /**
+     *
+     * @param titulo
+     */
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
 
+    /**
+     *
+     * @return
+     */
     public NodoArbol getSiguiente() {
         return siguiente;
     }
 
+    /**
+     *
+     * @param siguiente
+     */
     public void setSiguiente(NodoArbol siguiente) {
         this.siguiente = siguiente;
     }
 
     //Metodos
+
+    /**
+     *
+     * @param id
+     * @return
+     */
     public NodoArbol getHoja(String id) {
         return procesos.getHoja(id);
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean esHoja() {
         return procesos.estaVacia();
     }
 
+    /**
+     *
+     * @param nodo
+     */
     public void insertarHoja(NodoArbol nodo) {
         if (this.colaSecuencias.estaVacia()) { //Si la cola de usuarios no esta vacia, no se puede agregar otro hijo
             if (procesos == null) {

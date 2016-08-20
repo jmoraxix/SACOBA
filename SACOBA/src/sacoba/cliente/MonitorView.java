@@ -22,7 +22,7 @@ import sacoba.servidor.beans.Notificacion;
 public class MonitorView extends Cliente {
 
     /**
-     * Creates new form PuertaView
+     * Crea un nuevo cliente Monitor
      */
     public MonitorView() {
         super();
@@ -61,20 +61,34 @@ public class MonitorView extends Cliente {
     }
 
     //Metodos de TCP
+    /*
+        Recibe el nuevo numero de usuarios en la cola de Plataforma
+     */
     private void actualizaPlataforma(String[] datos) {
-        //TODO Recibe la secuenca del usuario y la muestra en pantalla
+        this.lblPlataforma.setText(datos[1]);
     }
 
+    /*
+        Recibe el nuevo numero de usuarios en la cola de Tramites
+     */
     private void actualizaTramites(String[] datos) {
-        //TODO Recibe la secuenca del usuario y la muestra en pantalla
+        this.lblTramites.setText(datos[1]);
     }
 
+    /*
+        Recibe el nuevo numero de usuarios en la cola de Cuentas
+     */
     private void actualizaCuentas(String[] datos) {
-        //TODO Recibe la secuenca del usuario y la muestra en pantalla
+        this.lblCuentas.setText(datos[1]);
     }
 
+    /*
+        Recibe el string con la informacion del siguiente cliente
+     */
     private void avanzaCliente(String[] datos) {
-        //TODO Recibe la secuenca del usuario y la muestra en pantalla
+        this.txtSigue.setText(datos[1]
+                + "\n"
+                + this.txtSigue.getText());
     }
 
     /**
@@ -92,9 +106,9 @@ public class MonitorView extends Cliente {
         lblTituloCuentas = new javax.swing.JLabel();
         lblTituloPlataforma = new javax.swing.JLabel();
         lblTituloTramites = new javax.swing.JLabel();
-        lblPlataforma1 = new javax.swing.JLabel();
-        lblPlataforma3 = new javax.swing.JLabel();
-        lblPlataforma4 = new javax.swing.JLabel();
+        lblCuentas = new javax.swing.JLabel();
+        lblPlataforma = new javax.swing.JLabel();
+        lblTramites = new javax.swing.JLabel();
         img_cuentas = new sacoba.vista.PanelConFondo("account-balance-blanco.png");
         img_tramites = new sacoba.vista.PanelConFondo("tramite_blanco.png");
         img_plataforma = new sacoba.vista.PanelConFondo("group_blanco.png");
@@ -135,26 +149,26 @@ public class MonitorView extends Cliente {
         panelClientes.add(lblTituloTramites);
         lblTituloTramites.setBounds(130, 180, 100, 40);
 
-        lblPlataforma1.setFont(LETRA_TEXTO_1);
-        lblPlataforma1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPlataforma1.setText("0");
-        lblPlataforma1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        panelClientes.add(lblPlataforma1);
-        lblPlataforma1.setBounds(200, 300, 60, 40);
+        lblCuentas.setFont(LETRA_TEXTO_1);
+        lblCuentas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCuentas.setText("0");
+        lblCuentas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        panelClientes.add(lblCuentas);
+        lblCuentas.setBounds(200, 300, 60, 40);
 
-        lblPlataforma3.setFont(LETRA_TEXTO_1);
-        lblPlataforma3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPlataforma3.setText("0");
-        lblPlataforma3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        panelClientes.add(lblPlataforma3);
-        lblPlataforma3.setBounds(200, 70, 60, 40);
+        lblPlataforma.setFont(LETRA_TEXTO_1);
+        lblPlataforma.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPlataforma.setText("0");
+        lblPlataforma.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        panelClientes.add(lblPlataforma);
+        lblPlataforma.setBounds(200, 70, 60, 40);
 
-        lblPlataforma4.setFont(LETRA_TEXTO_1);
-        lblPlataforma4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPlataforma4.setText("0");
-        lblPlataforma4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        panelClientes.add(lblPlataforma4);
-        lblPlataforma4.setBounds(200, 180, 60, 40);
+        lblTramites.setFont(LETRA_TEXTO_1);
+        lblTramites.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTramites.setText("0");
+        lblTramites.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        panelClientes.add(lblTramites);
+        lblTramites.setBounds(200, 180, 60, 40);
         panelClientes.add(img_cuentas);
         img_cuentas.setBounds(50, 290, 70, 70);
         panelClientes.add(img_tramites);
@@ -210,14 +224,14 @@ public class MonitorView extends Cliente {
     private sacoba.vista.PanelConFondo img_cuentas;
     private sacoba.vista.PanelConFondo img_plataforma;
     private sacoba.vista.PanelConFondo img_tramites;
-    private javax.swing.JLabel lblPlataforma1;
-    private javax.swing.JLabel lblPlataforma3;
-    private javax.swing.JLabel lblPlataforma4;
+    private javax.swing.JLabel lblCuentas;
+    private javax.swing.JLabel lblPlataforma;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTitulo2;
     private javax.swing.JLabel lblTituloCuentas;
     private javax.swing.JLabel lblTituloPlataforma;
     private javax.swing.JLabel lblTituloTramites;
+    private javax.swing.JLabel lblTramites;
     private sacoba.vista.PanelConFondo panelClientes;
     private sacoba.vista.PanelConFondo panelContenido;
     private javax.swing.JScrollPane panelScrollContenido;

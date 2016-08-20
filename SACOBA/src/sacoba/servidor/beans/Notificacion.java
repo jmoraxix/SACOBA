@@ -15,8 +15,45 @@ package sacoba.servidor.beans;
  */
 public enum Notificacion {
 
-    ENTRA_USUARIO(1), NOTIFICA_SECUENCIA(2), ACTUALIZA_PLATAFORMA(3), ACTUALIZA_TRAMITES(4),
-    ACTUALIZA_CUENTAS(5), AVANZA_CLIENTE(6), LIBERAR_CAJA(7), CLIENTE_A_CAJA(8);
+    /**
+     *
+     */
+    ENTRA_USUARIO(1),
+
+    /**
+     *
+     */
+    NOTIFICA_SECUENCIA(2),
+
+    /**
+     *
+     */
+    ACTUALIZA_PLATAFORMA(3),
+
+    /**
+     *
+     */
+    ACTUALIZA_TRAMITES(4),
+
+    /**
+     *
+     */
+    ACTUALIZA_CUENTAS(5),
+
+    /**
+     *
+     */
+    AVANZA_CLIENTE(6),
+
+    /**
+     *
+     */
+    LIBERAR_CAJA(7),
+
+    /**
+     *
+     */
+    CLIENTE_A_CAJA(8);
 
     private final int valor;
 
@@ -24,10 +61,19 @@ public enum Notificacion {
         this.valor = valor;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getValor() {
         return valor;
     }
 
+    /**
+     *
+     * @param valor
+     * @return
+     */
     public static Notificacion convertirValor(int valor) {
         Notificacion resultado = null;
 
