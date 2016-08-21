@@ -14,6 +14,10 @@ hs_err_pid*
 /SACOBA/build/
 /SACOBA/dist/
 
+/JavaChatProject/build/
+/JavaChatProject/dist/
+/JavaChatProject/nbproject/private/
+
 #Sublime files
 *.sublime-workspace
 *.sublime-project
