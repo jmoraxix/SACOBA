@@ -96,12 +96,14 @@ public class CajaView extends Cliente {
         txtNombreUsuario = new sacoba.vista.TransparentTextField();
         btnVolver = new sacoba.vista.PanelConFondo("flecha-volver.png");
         lblVolver = new javax.swing.JLabel();
-        lblUsuario2 = new javax.swing.JLabel();
+        lblAbrirChat = new javax.swing.JLabel();
         txtSecuencia = new sacoba.vista.TransparentTextField();
         lblUsuario3 = new javax.swing.JLabel();
         txtTramite = new sacoba.vista.TransparentTextField();
         btnLiberar = new sacoba.vista.PanelConFondo("avanzar.png");
         lblLiberar = new javax.swing.JLabel();
+        btnAbrirChat = new sacoba.vista.PanelConFondo("avanzar.png");
+        lblUsuario4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(950, 650));
@@ -144,11 +146,11 @@ public class CajaView extends Cliente {
         panelUsuario.add(lblVolver);
         lblVolver.setBounds(100, 50, 160, 30);
 
-        lblUsuario2.setFont(LETRA_TEXTO_2);
-        lblUsuario2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUsuario2.setText("Secuencia:");
-        panelUsuario.add(lblUsuario2);
-        lblUsuario2.setBounds(100, 140, 150, 30);
+        lblAbrirChat.setFont(LETRA_TEXTO_2);
+        lblAbrirChat.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblAbrirChat.setText("Abrir chat corporativo");
+        panelUsuario.add(lblAbrirChat);
+        lblAbrirChat.setBounds(560, 50, 220, 30);
 
         txtSecuencia.setEditable(false);
         txtSecuencia.setToolTipText("Ingrese un usuario");
@@ -181,6 +183,20 @@ public class CajaView extends Cliente {
         lblLiberar.setText("Liberar caja");
         panelUsuario.add(lblLiberar);
         lblLiberar.setBounds(680, 300, 150, 30);
+
+        btnAbrirChat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAbrirChatMouseClicked(evt);
+            }
+        });
+        panelUsuario.add(btnAbrirChat);
+        btnAbrirChat.setBounds(780, 30, 70, 60);
+
+        lblUsuario4.setFont(LETRA_TEXTO_2);
+        lblUsuario4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUsuario4.setText("Secuencia:");
+        panelUsuario.add(lblUsuario4);
+        lblUsuario4.setBounds(100, 140, 150, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -215,15 +231,25 @@ public class CajaView extends Cliente {
         this.dispose();
     }//GEN-LAST:event_btnVolverMouseClicked
 
+    private void btnAbrirChatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirChatMouseClicked
+        try {
+            Runtime.getRuntime().exec("java -jar lib/JavaChatProject_Cliente.jar " + Cliente.getSERVER_IP());
+        } catch (IOException ex) {
+            Logger.getLogger(CajaView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAbrirChatMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private sacoba.vista.PanelConFondo btnAbrirChat;
     private sacoba.vista.PanelConFondo btnLiberar;
     private sacoba.vista.PanelConFondo btnVolver;
+    private javax.swing.JLabel lblAbrirChat;
     private javax.swing.JLabel lblLiberar;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTitulo2;
     private javax.swing.JLabel lblUsuario1;
-    private javax.swing.JLabel lblUsuario2;
     private javax.swing.JLabel lblUsuario3;
+    private javax.swing.JLabel lblUsuario4;
     private javax.swing.JLabel lblVolver;
     private sacoba.vista.PanelConFondo panelTitulo;
     private sacoba.vista.PanelConFondo panelUsuario;

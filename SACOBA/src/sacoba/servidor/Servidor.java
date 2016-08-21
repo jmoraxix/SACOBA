@@ -259,6 +259,13 @@ public class Servidor extends VentanaBase {
                 Servidor server = new Servidor();
                 server.setVisible(true);
                 server.aceptarClientes();
+
+                try {
+                    Runtime.getRuntime().exec("java -jar lib/JavaChatProject_Server.jar");
+                } catch (IOException ex) {
+                    Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
             }
         });
     }
