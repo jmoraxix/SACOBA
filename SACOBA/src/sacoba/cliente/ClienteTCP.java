@@ -24,9 +24,10 @@ public class ClienteTCP extends VentanaBase {
     public ClienteTCP() {
         initComponents();
 
-        //TODO Evitar que se cierre sin ningun valor 
         //Pide la IP del servidor y no se cierra el dialog a menos que ingrese un valor válido
-        Cliente.setSERVER_IP(JOptionPane.showInputDialog(this, "Digita la IP del servidor", "IP requerida", JOptionPane.WARNING_MESSAGE));
+        if (Cliente.getSERVER_IP() == null) {
+            Cliente.setSERVER_IP(JOptionPane.showInputDialog(this, "Digita la IP del servidor", "IP requerida", JOptionPane.WARNING_MESSAGE));
+        }
     }
 
     /**

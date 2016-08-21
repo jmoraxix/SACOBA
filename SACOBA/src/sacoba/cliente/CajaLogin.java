@@ -42,14 +42,14 @@ public class CajaLogin extends VentanaBase {
         lblTitulo2 = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
         lblUsuario1 = new javax.swing.JLabel();
+        lblCaja = new javax.swing.JLabel();
+        lblCampoRequerido = new javax.swing.JLabel();
         txtUsuario = new sacoba.vista.TransparentTextField();
         txtPasswd = new sacoba.vista.TransparentPasswordField();
-        btnEntrar = new javax.swing.JButton();
-        lblCaja = new javax.swing.JLabel();
         txtCaja = new sacoba.vista.TransparentTextField();
-        jLabel1 = new javax.swing.JLabel();
-        btnVolver2 = new sacoba.vista.PanelConFondo("flecha-volver.png");
+        btnEntrar = new javax.swing.JButton();
         lblVolver = new javax.swing.JLabel();
+        btnVolver2 = new sacoba.vista.PanelConFondo("flecha-volver.png");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(950, 650));
@@ -79,8 +79,21 @@ public class CajaLogin extends VentanaBase {
         panelUsuario.add(lblUsuario1);
         lblUsuario1.setBounds(150, 170, 180, 30);
 
+        lblCaja.setFont(LETRA_TEXTO_2);
+        lblCaja.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCaja.setText("Caja #*:");
+        panelUsuario.add(lblCaja);
+        lblCaja.setBounds(150, 250, 180, 30);
+
+        lblCampoRequerido.setFont(LETRA_TEXTO_3);
+        lblCampoRequerido.setForeground(new java.awt.Color(204, 0, 0));
+        lblCampoRequerido.setText("* Campos requeridos");
+        panelUsuario.add(lblCampoRequerido);
+        lblCampoRequerido.setBounds(100, 130, 170, 20);
+
         txtUsuario.setToolTipText("Ingrese un usuario");
         txtUsuario.setFont(LETRA_TEXTO_2);
+        txtUsuario.requestFocus();
         panelUsuario.add(txtUsuario);
         txtUsuario.setBounds(340, 170, 200, 30);
 
@@ -90,6 +103,11 @@ public class CajaLogin extends VentanaBase {
         panelUsuario.add(txtPasswd);
         txtPasswd.setBounds(340, 210, 200, 30);
 
+        txtCaja.setToolTipText("Ingrese un usuario");
+        txtCaja.setFont(LETRA_TEXTO_2);
+        panelUsuario.add(txtCaja);
+        txtCaja.setBounds(340, 250, 40, 30);
+
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,24 +115,12 @@ public class CajaLogin extends VentanaBase {
             }
         });
         panelUsuario.add(btnEntrar);
-        btnEntrar.setBounds(600, 210, 110, 40);
+        btnEntrar.setBounds(590, 280, 110, 40);
 
-        lblCaja.setFont(LETRA_TEXTO_2);
-        lblCaja.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCaja.setText("Caja #*:");
-        panelUsuario.add(lblCaja);
-        lblCaja.setBounds(150, 250, 180, 30);
-
-        txtCaja.setToolTipText("Ingrese un usuario");
-        txtCaja.setFont(LETRA_TEXTO_2);
-        panelUsuario.add(txtCaja);
-        txtCaja.setBounds(340, 250, 40, 30);
-
-        jLabel1.setFont(LETRA_TEXTO_3);
-        jLabel1.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel1.setText("* Campos requeridos");
-        panelUsuario.add(jLabel1);
-        jLabel1.setBounds(100, 130, 170, 20);
+        lblVolver.setFont(LETRA_TEXTO_3);
+        lblVolver.setText("Volver");
+        panelUsuario.add(lblVolver);
+        lblVolver.setBounds(90, 40, 160, 30);
 
         btnVolver2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -122,12 +128,7 @@ public class CajaLogin extends VentanaBase {
             }
         });
         panelUsuario.add(btnVolver2);
-        btnVolver2.setBounds(30, 20, 50, 50);
-
-        lblVolver.setFont(LETRA_TEXTO_3);
-        lblVolver.setText("Volver");
-        panelUsuario.add(lblVolver);
-        lblVolver.setBounds(90, 30, 160, 30);
+        btnVolver2.setBounds(30, 30, 50, 50);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -183,8 +184,8 @@ public class CajaLogin extends VentanaBase {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
     private sacoba.vista.PanelConFondo btnVolver2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCaja;
+    private javax.swing.JLabel lblCampoRequerido;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTitulo2;
     private javax.swing.JLabel lblUsuario;

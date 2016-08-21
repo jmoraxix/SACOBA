@@ -16,6 +16,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import sacoba.vista.VentanaBase;
 
 /**
@@ -35,6 +36,9 @@ public abstract class Cliente extends VentanaBase implements Runnable {
      * streams
      */
     public Cliente() {
+        while (Cliente.getSERVER_IP().equals("")) {
+            Cliente.setSERVER_IP(JOptionPane.showInputDialog(this, "Digita la IP del servidor", "IP requerida", JOptionPane.WARNING_MESSAGE));
+        }
         try {
             System.out.println(SERVER_IP);
             if (SERVER_IP.equals("localhost")) {
@@ -45,6 +49,7 @@ public abstract class Cliente extends VentanaBase implements Runnable {
             createStream();
         } catch (IOException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showInputDialog(this, "No se ha podido conectarse con el servidor", "Error al conectarse con el servidor", JOptionPane.ERROR_MESSAGE);
         }
     }
 

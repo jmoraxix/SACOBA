@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 import sacoba.servidor.beans.Empleado;
 import sacoba.servidor.beans.Notificacion;
 import sacoba.servidor.beans.Persona;
+import sacoba.servidor.estructuras.Arbol;
 import sacoba.servidor.estructuras.ListaEnlazadaClientes;
 import sacoba.vista.VentanaBase;
 
@@ -33,6 +34,7 @@ public class Servidor extends VentanaBase {
     //Variables Globales
     private ArrayList<Persona> personas = new ArrayList<Persona>();
     private ArrayList<Empleado> empleados = new ArrayList<Empleado>();
+    private Arbol arbol = new Arbol();
 
     //Variables de TCP
     private static int SERVER_PORT = 2356;
@@ -74,11 +76,11 @@ public class Servidor extends VentanaBase {
             while (true) {
                 socket = serverSocket.accept();
                 agregarLog("Cliente entrante");
-                System.out.println("1");
+                System.out.println("Cliente entrante");
                 ClienteServidor client = new ClienteServidor(this, socket);
                 service.submit(client);
                 agregarLog("Cliente agregado");
-                System.out.println("2");
+                System.out.println("Cliente agregado");
             }
         } catch (IOException ex) {
             agregarError(ex.toString());
@@ -87,32 +89,25 @@ public class Servidor extends VentanaBase {
     }
 
     /**
+     * Envia una notificacion de actualizacion de cola a todos los clientes
      *
-     * @param notificacion
-     * @param cantidad
+     * @param notificacion Tipo de notificacion
+     * @param cantidad Nueva cantidad de personasa en la cola
      */
     public void notificarCambioCola(Notificacion notificacion, final int cantidad) {
         //TODO iterar para llamar notificarCambioCola(notificacion, cantidad) en cada cliente
     }
 
-    private void notificarUsuarioMonitor(final String usuario, String secuencia, Persona persona, final String caja) {
+    private void notificarUsuarioAMonitores(final String usuario, String secuencia, Persona persona, final String caja) {
         //TODO iterar para llamar notificarUsuarioMonitor(usuario, secuencia, persona, caja) en cada cliente
     }
 
     //Metodos del manejor de variables
-    /**
-     *
-     * @return
-     */
-    public ListaEnlazadaClientes getClientes() {
-        return clientes;
+    public void addCliente(ClienteServidor cliente) {
+        //this.arbol = arbol;
     }
 
     //Metodos para manejo de la interfaz
-    /**
-     *
-     * @param msj
-     */
     public void agregarLog(String msj) {
         Date fecha = new Date(System.currentTimeMillis());
         this.txtLog = fecha.toString() + " - " + msj + "\n" + txtLog;
@@ -130,60 +125,40 @@ public class Servidor extends VentanaBase {
     }
 
     //Getters & setters
-    /**
-     *
-     * @return
-     */
     public ArrayList<Persona> getPersonas() {
         return personas;
     }
 
-    /**
-     *
-     * @param personas
-     */
     public void setPersonas(ArrayList<Persona> personas) {
         this.personas = personas;
     }
 
-    /**
-     *
-     * @param persona
-     */
     public void addPersona(Persona persona) {
         this.personas.add(persona);
     }
 
-    /**
-     *
-     * @return
-     */
     public ArrayList<Empleado> getEmpleados() {
         return empleados;
     }
 
-    /**
-     *
-     * @param empleados
-     */
     public void setEmpleados(ArrayList<Empleado> empleados) {
         this.empleados = empleados;
     }
 
-    /**
-     *
-     * @param empleado
-     */
     public void addEmpleado(Empleado empleado) {
         this.empleados.add(empleado);
     }
 
-    /**
-     *
-     * @return
-     */
     public String getTxtLog() {
         return txtLog;
+    }
+
+    public Arbol getArbol() {
+        return arbol;
+    }
+
+    public ListaEnlazadaClientes getClientes() {
+        return clientes;
     }
 
     /**
