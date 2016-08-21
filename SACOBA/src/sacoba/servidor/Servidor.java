@@ -256,16 +256,16 @@ public class Servidor extends VentanaBase {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Servidor server = new Servidor();
-                server.setVisible(true);
-                server.aceptarClientes();
-
+                //Inicia el servidor del chat
                 try {
                     Runtime.getRuntime().exec("java -jar lib/JavaChatProject_Server.jar");
                 } catch (IOException ex) {
                     Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
+                Servidor server = new Servidor();
+                server.setVisible(true);
+                server.aceptarClientes();
             }
         });
     }
