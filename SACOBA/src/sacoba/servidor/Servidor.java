@@ -112,6 +112,7 @@ public class Servidor extends VentanaBase {
         Date fecha = new Date(System.currentTimeMillis());
         this.txtLog = fecha.toString() + " - " + msj + "\n" + txtLog;
         this.txtCajaLog.setText(txtLog);
+        System.out.println(msj);
     }
 
     /**
