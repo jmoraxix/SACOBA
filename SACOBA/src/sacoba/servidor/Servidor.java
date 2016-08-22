@@ -76,11 +76,11 @@ public class Servidor extends VentanaBase {
             while (true) {
                 socket = serverSocket.accept();
                 agregarLog("Cliente entrante");
-                System.out.println("Cliente entrante");
+                //System.out.println("Cliente entrante");
                 ClienteServidor client = new ClienteServidor(this, socket);
                 service.submit(client);
                 agregarLog("Cliente agregado");
-                System.out.println("Cliente agregado");
+                //System.out.println("Cliente agregado");
             }
         } catch (IOException ex) {
             agregarError(ex.toString());
