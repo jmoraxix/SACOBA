@@ -1,7 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *  Sistema de Asistencia de Control Bancario
+ *  SACOBA
+ *  
+ *  Marcela Cascante Quiros
+ *  Diego Delgado Cerdas
+ *  Alejandro Loaiza Arguedas
+ *  Jose David Mora Loria
  */
 package Client;
 
@@ -32,11 +36,6 @@ public class VentanaCliente extends JFrame implements ActionListener {
     JButton butPrivado;
     Client cliente;
 
-    JMenuBar barraMenu;
-    JMenu JMAyuda;
-    JMenuItem help;
-    JMenu JMAcerca;
-    JMenuItem acercaD;
     VentanaAyuda va;
 
     JOptionPane AcercaDe;
@@ -65,22 +64,6 @@ public class VentanaCliente extends JFrame implements ActionListener {
         butPrivado = new JButton("Privado");
         butPrivado.addActionListener(this);
 
-        barraMenu = new JMenuBar();
-        JMAyuda = new JMenu("Ayuda");
-        help = new JMenuItem("Ayuda");
-        help.setActionCommand("help");
-        help.addActionListener(this);
-
-        JMAcerca = new JMenu("Acerca de");
-        acercaD = new JMenuItem("Creditos");
-        acercaD.setActionCommand("Acerca");
-        acercaD.addActionListener(this);
-
-        JMAyuda.add(help);
-        JMAcerca.add(acercaD);
-        barraMenu.add(JMAcerca);
-        barraMenu.add(JMAyuda);
-
         panMostrar.setEditable(false);
         panMostrar.setForeground(Color.BLUE);
         panMostrar.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(25, 10, 80)));
@@ -108,7 +91,6 @@ public class VentanaCliente extends JFrame implements ActionListener {
 
         setLayout(new BorderLayout());
         add(sldCentral, BorderLayout.CENTER);
-        add(barraMenu, BorderLayout.NORTH);
 
         txtMensage.requestFocus();//pedir el focus	
 
@@ -171,8 +153,7 @@ public class VentanaCliente extends JFrame implements ActionListener {
             va.setVisible(true);
         }
         if (comand.compareTo("Acerca") == 0) {
-            JOptionPane.showMessageDialog
-        (this, "Chat Sistema de Asistencia de Control Bancario\n "
+            JOptionPane.showMessageDialog(this, "Chat Sistema de Asistencia de Control Bancario\n "
                     + "SACOBA CHAT\n\n"
                     + "    Marcela Cascante Quiros\n"
                     + "    Diego Delgado Cerdas\n"
