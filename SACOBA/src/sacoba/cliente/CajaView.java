@@ -102,7 +102,7 @@ public class CajaView extends Cliente {
         txtTramite = new sacoba.vista.TransparentTextField();
         btnLiberar = new sacoba.vista.PanelConFondo("avanzar.png");
         lblLiberar = new javax.swing.JLabel();
-        btnAbrirChat = new sacoba.vista.PanelConFondo("avanzar.png");
+        btnAbrirChat = new sacoba.vista.PanelConFondo("chat.png");
         lblUsuario4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -190,7 +190,7 @@ public class CajaView extends Cliente {
             }
         });
         panelUsuario.add(btnAbrirChat);
-        btnAbrirChat.setBounds(780, 30, 70, 60);
+        btnAbrirChat.setBounds(790, 30, 70, 60);
 
         lblUsuario4.setFont(LETRA_TEXTO_2);
         lblUsuario4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
