@@ -23,26 +23,25 @@ public class Arbol {
         raiz = null;
     }
 
-    public void insertarHijo(String padre, String info) {
-        NodoArbol aux = new NodoArbol();
+    public void insertarHijo(String padre, String id, String titulo) {
+        NodoArbol aux = new NodoArbol(id, titulo);
 
         if (raiz == null) {
             raiz = aux;
-        } else if (padre.equals("")) {
-            System.out.println("Padre vacio");
         } else {
-            this.insertarHijo_rec(raiz, padre, info);
+
+            this.insertarHijo_rec(raiz, padre, aux);
         }
     }
 
-    private void insertarHijo_rec(NodoArbol nodoActual, String padre, String theInfo) {
-        if (nodoActual.getInfo().equals(padre)) {
-            nodoActual.HijosList.add(new NodoArbol(theInfo));
-            System.out.println("Nodo insertado= " + theInfo);
+    private void insertarHijo_rec(NodoArbol nodoActual, String padre, NodoArbol hijo) {
+        if (nodoActual.getTitulo().equals(padre)) {
+            nodoActual.insertarHoja(hijo);
+            System.out.println("Nodo insertado: " + hijo.getTitulo());
         } else {
-            for (int i = 0; i < nodoActual.HijosList.size(); i++) {
-                this.insertarHijo((NodoArbol) nodoActual.HijosList.get(i), padre, theInfo);
-            }
+//            for (int i = 0; i < nodoActual.getHoja(padre).size(); i++) {
+//                this.insertarHijo((NodoArbol) nodoActual.HijosList.get(i), padre, titulo);
+//            }
         }
     }
 

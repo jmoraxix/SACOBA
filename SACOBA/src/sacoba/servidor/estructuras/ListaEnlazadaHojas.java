@@ -19,27 +19,14 @@ public class ListaEnlazadaHojas {
     NodoArbol cabeza;
 
     //Constructor
-
-    /**
-     *
-     */
     public ListaEnlazadaHojas() {
     }
 
-    /**
-     *
-     * @param cabeza
-     */
     public ListaEnlazadaHojas(NodoArbol cabeza) {
         this.cabeza = cabeza;
     }
 
     //Metodos
-
-    /**
-     *
-     * @param nodo
-     */
     public void insertaNodo(NodoArbol nodo) {
         if (cabeza == null) {
             cabeza = nodo;
@@ -123,10 +110,6 @@ public class ListaEnlazadaHojas {
         return buscado;
     }
 
-    /**
-     *
-     * @return
-     */
     public boolean estaVacia() {
         return cabeza == null;
     }

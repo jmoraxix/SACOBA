@@ -23,6 +23,7 @@ public class GenerarValores {
     Servidor servidor;
 
     /**
+     * Genera los valores para modificar los datos actuales en el servidor
      *
      * @param servidor
      */
@@ -44,7 +45,6 @@ public class GenerarValores {
         personas.add(new Persona("162544565", "María", "Sánchez"));
         personas.add(new Persona("117827737", "Víctor", "Jiménez"));
         personas.add(new Persona("654373537", "Manuel", "Hernández "));
-
     }
 
     private void generarEmpleados() {
