@@ -258,7 +258,7 @@ public class Servidor extends VentanaBase {
             public void run() {
                 //Inicia el servidor del chat
                 try {
-                    Runtime.getRuntime().exec("java -jar lib/JavaChatProject_Server.jar");
+                    Runtime.getRuntime().exec("java -jar lib/SACOBA_Chat_Server.jar");
                 } catch (IOException ex) {
                     Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
                 }

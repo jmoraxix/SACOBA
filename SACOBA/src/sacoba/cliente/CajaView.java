@@ -234,7 +234,7 @@ public class CajaView extends Cliente {
     private void btnAbrirChatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirChatMouseClicked
         try {
             System.out.println("hola");
-            Runtime.getRuntime().exec("java -jar lib/JavaChatProject_Client.jar " + Cliente.getSERVER_IP());
+            Runtime.getRuntime().exec("java -jar lib/SACOBA_Chat_Client.jar " + Cliente.getSERVER_IP());
         } catch (IOException ex) {
             Logger.getLogger(CajaView.class.getName()).log(Level.SEVERE, null, ex);
         }
