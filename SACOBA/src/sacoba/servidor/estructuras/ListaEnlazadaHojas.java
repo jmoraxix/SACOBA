@@ -41,6 +41,7 @@ public class ListaEnlazadaHojas {
     }
 
     /**
+     * Modifica el nombre del nodo
      *
      * @param nombreAnt
      * @param nombreNuevo
@@ -63,8 +64,9 @@ public class ListaEnlazadaHojas {
     }
 
     /**
+     * Elimina el nodo con el nombre recibido
      *
-     * @param nombre
+     * @param nombre Nombre del nodo a eliminar
      */
     public void elimina(String nombre) {
         if (cabeza != null) {
