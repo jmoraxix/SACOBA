@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sacoba.servidor.beans.Notificacion;
@@ -109,12 +110,48 @@ public class ClienteServidor extends Thread {
          datos[2] -> ID del proceso a hacer
          */
 
-//        try {
-//            out.writeUTF(Notificacion.NOTIFICA_SECUENCIA.getValor() + ";" + secuencia);
-//            out.flush();
-//        } catch (IOException ex) {
-//            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        System.out.println("1");
+        //Consigue la persona registrada en la lista de personas
+        ArrayList<Persona> personas = servidor.getPersonas();
+        System.out.println("2");
+        Persona cliente = null;
+        for (Persona persona : personas) {
+            if (datos[1].equals(persona.getCedula())) {
+                cliente = persona;
+            }
+        }
+        System.out.println("3");
+        if (cliente == null) {
+            cliente = new Persona(datos[1], "Invitado", "");
+        }
+        System.out.println("4");
+
+        //Lo inserta a la cola respectiva
+        String[] valores = servidor.insertarUsuarioEnCola(datos[2], cliente).split(";");
+        System.out.println(valores);
+        String secuencia = valores[0];
+        String cantidadEnCola = valores[1];
+
+        //Enviamos la secuencia al cliente
+        try {
+            System.out.println("Envia secuencia");
+            out.writeUTF(Notificacion.NOTIFICA_SECUENCIA.getValor() + ";" + secuencia);
+            out.flush();
+            System.out.println("Envia secuencia");
+        } catch (IOException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //Notificamos a los clientes un cambio de cola
+        Notificacion notificacion = null;
+        if (secuencia.charAt(1) == 'P') {
+            notificacion = Notificacion.ACTUALIZA_PLATAFORMA;
+        } else if (secuencia.charAt(1) == 'T') {
+            notificacion = Notificacion.ACTUALIZA_TRAMITES;
+        } else if (secuencia.charAt(1) == 'C') {
+            notificacion = Notificacion.ACTUALIZA_CUENTAS;
+        }
+        servidor.notificarCambioCola(notificacion, cantidadEnCola);
     }
 
     /**
@@ -123,10 +160,12 @@ public class ClienteServidor extends Thread {
      * @param notificacion
      * @param cantidad
      */
-    public void notificarCambioColaACliente(Notificacion notificacion, final int cantidad) {
+    public void notificarCambioColaACliente(Notificacion notificacion, final String cantidad) {
         try {
+            System.out.println("notificarCambioColaACliente");
             out.writeUTF(notificacion.getValor() + ";" + cantidad);
             out.flush();
+            System.out.println("notificarCambioColaACliente");
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }

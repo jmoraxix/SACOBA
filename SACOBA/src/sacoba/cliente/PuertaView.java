@@ -42,8 +42,8 @@ public class PuertaView extends Cliente {
         }
 
         options = new ButtonGroup();
-        options.add(jbop1);
         options.add(jbop2);
+        options.add(jbop1);
         options.add(jbop3);
         options.add(jbop4);
         options.add(jbop5);
@@ -89,6 +89,7 @@ public class PuertaView extends Cliente {
         if (codigo != null) {
             if (!this.txtCedula.getText().equals("")) {
                 try {
+                    System.out.println("Envia datos");
                     out.writeUTF(Notificacion.ENTRA_USUARIO.getValor() + ";" + codigo + ";" + this.txtCedula.getText());
                     out.flush();
                 } catch (IOException ex) {
@@ -112,6 +113,7 @@ public class PuertaView extends Cliente {
         Recibe la secuenca del usuario y la muestra en pantalla
      */
     private void notificaSecuencia(String[] datos) {
+        System.out.println("Secuencia recibida: " + datos[1]);
         JOptionPane.showMessageDialog(this,
                 "Su número de secuencia es: " + datos[1]);
     }
@@ -232,13 +234,13 @@ public class PuertaView extends Cliente {
         lblCedula.setBounds(80, 50, 150, 30);
 
         jbop1.setFont(LETRA_TEXTO_3);
-        jbop1.setText("Cambio de moneda");
+        jbop1.setText("Depositar a cuenta");
         jbop1.setToolTipText("Seleccione el proceso deseado");
         panelUsuarioIzq.add(jbop1);
         jbop1.setBounds(20, 20, 190, 30);
 
         jbop2.setFont(LETRA_TEXTO_3);
-        jbop2.setText("Depositar a cuenta");
+        jbop2.setText("Cambio de moneda");
         jbop2.setToolTipText("Seleccione el proceso deseado");
         panelUsuarioIzq.add(jbop2);
         jbop2.setBounds(20, 50, 190, 30);

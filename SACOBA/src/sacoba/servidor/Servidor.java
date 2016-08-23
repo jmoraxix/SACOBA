@@ -64,7 +64,7 @@ public class Servidor extends VentanaBase {
             serverSocket = new ServerSocket(SERVER_PORT);
         } catch (IOException ex) {
             agregarError(ex.toString());
-            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -94,16 +94,16 @@ public class Servidor extends VentanaBase {
      * @param notificacion Tipo de notificacion
      * @param cantidad Nueva cantidad de personas en la cola
      */
-    public void notificarCambioCola(Notificacion notificacion, final int cantidad) {
-        //TODO iterar para llamar notificarCambioColaACliente(notificacion, cantidad) en cada cliente
+    public void notificarCambioCola(Notificacion notificacion, final String cantidad) {
+        clientes.notificarCambioCola(notificacion, cantidad);
     }
 
-    private void notificarUsuarioAMonitores(String secuencia, Persona persona, final String caja) {
-        //TODO iterar para llamar notificarUsuarioAMonitor(secuencia, persona, caja) en cada cliente
+    public void notificarUsuarioAMonitores(String secuencia, Persona persona, final String caja) {
+        clientes.notificarUsuarioAMonitores(secuencia, persona, caja);
     }
 
-    private String insertarUsuarioEnCola(String idCola, Persona persona) {
-        return arbol.insertarCliente(idCola, persona);
+    public synchronized String insertarUsuarioEnCola(String idCola, Persona persona) {
+        return arbol.insertarUsuario(idCola, persona);
     }
 
     //Metodos para manejo de la interfaz
@@ -112,7 +112,7 @@ public class Servidor extends VentanaBase {
      *
      * @param msj Mensaje a mostrar
      */
-    public void agregarLog(String msj) {
+    public synchronized void agregarLog(String msj) {
         Date fecha = new Date(System.currentTimeMillis());
         this.txtLog = fecha.toString() + " - " + msj + "\n" + txtLog;
         this.txtCajaLog.setText(txtLog);
@@ -123,7 +123,7 @@ public class Servidor extends VentanaBase {
      *
      * @param msj
      */
-    public void agregarError(String msj) {
+    public synchronized void agregarError(String msj) {
         Date fecha = new Date(System.currentTimeMillis());
         this.txtLog = fecha.toString() + " - " + "ERROR: " + msj + "\n" + txtLog;
         this.txtCajaLog.setText(txtLog);
@@ -138,7 +138,7 @@ public class Servidor extends VentanaBase {
         this.personas = personas;
     }
 
-    public void addPersona(Persona persona) {
+    public synchronized void addPersona(Persona persona) {
         this.personas.add(persona);
     }
 
@@ -150,7 +150,7 @@ public class Servidor extends VentanaBase {
         this.empleados = empleados;
     }
 
-    public void addEmpleado(Empleado empleado) {
+    public synchronized void addEmpleado(Empleado empleado) {
         this.empleados.add(empleado);
     }
 
