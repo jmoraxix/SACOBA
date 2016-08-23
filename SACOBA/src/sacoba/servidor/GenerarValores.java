@@ -37,21 +37,21 @@ public class GenerarValores {
     private void generarPersonas() {
         ArrayList<Persona> personas = servidor.getPersonas();
 
-        personas.add(new Persona("123456789", "Usuario", "Uno"));
-        personas.add(new Persona("987654321", "Karla", "Vargas"));
-        personas.add(new Persona("123412341", "Jose", "Hernández "));
-        personas.add(new Persona("234523452", "Gerardo", "Castro"));
-        personas.add(new Persona("345634563", "Jose", "Castro"));
-        personas.add(new Persona("456745674", "María", "Sánchez"));
-        personas.add(new Persona("567856785", "Víctor", "Jiménez"));
-        personas.add(new Persona("678967896", "Manuel", "Hernández "));
+        personas.add(new Persona("1-2345-6789", "Usuario", "Uno"));
+        personas.add(new Persona("9-8765-4321", "Karla", "Vargas"));
+        personas.add(new Persona("1-2341-2341", "Jose", "Hernández "));
+        personas.add(new Persona("2-3452-3452", "Gerardo", "Castro"));
+        personas.add(new Persona("3-4563-4563", "Jose", "Castro"));
+        personas.add(new Persona("4-5674-5674", "María", "Sánchez"));
+        personas.add(new Persona("5-6785-6785", "Víctor", "Jiménez"));
+        personas.add(new Persona("6-7896-7896", "Manuel", "Hernández "));
     }
 
     private void generarEmpleados() {
         ArrayList<Empleado> empleados = servidor.getEmpleados();
 
-        empleados.add(new Empleado("jmora", "625245656", "Jose", "Mora"));
-        empleados.add(new Empleado("user", "626326234", "Karla", "Vargas"));
+        empleados.add(new Empleado("jmora", "6-2524-5656", "Jose", "Mora"));
+        empleados.add(new Empleado("user", "6-2632-6234", "Karla", "Vargas"));
     }
 
     private void generarArbol() {

@@ -14,14 +14,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import sacoba.servidor.ClienteServidor;
 import sacoba.servidor.beans.Notificacion;
+import sacoba.vista.TransparentTextField;
+import sacoba.vista.VentanaBase;
 
 /**
  *
  * @author ulacit
  */
-public class CajaView extends Cliente {
+public class CajaView extends VentanaBase {
 
     private String numCaja;
+    private Caja caja;
 
     /**
      * Crea un nuevo cliente Puerta
@@ -30,67 +33,34 @@ public class CajaView extends Cliente {
      * cliente
      */
     public CajaView(String numCaja) {
-        super();
         this.numCaja = numCaja;
         initComponents();
+        
+        caja = new Caja(this);
+        caja.start();
+    }
+    
+    public boolean enviarUsuarioNuevo(String cedula, String nombre, String apellido, boolean isEmpleado) {
+        return caja.enviarUsuarioNuevo(cedula, nombre, apellido, isEmpleado);
+    }
+    
+    //Getters and setters
+    public void setTxtNombreUsuario(String txtNombreUsuario) {
+        this.txtNombreUsuario.setText(numCaja);
     }
 
-    @Override
-    public void run() {
-        while (true) {
-            try {
-                // Recibe un dato de entrada
-                String entrada = in.readUTF();
-                System.out.println(entrada);
-                String[] datos = entrada.split(";"); // Divide los datos de la entrada en cada ';'
-
-                switch (Notificacion.convertirValor(Integer.parseInt(datos[0]))) {
-                    case CLIENTE_A_CAJA:
-                        clienteACaja(datos);
-                        break;
-                    default:
-                        break;
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(ClienteServidor.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+    public void setTxtSecuencia(String txtSecuencia) {
+        this.txtSecuencia.setText(numCaja);
     }
 
-    //Metodos de TCP
-    /*
-     Envia una notificacion al servidor de que la caja esta vacia
-     */
-    private void liberarCaja() {
-        try {
-            out.writeUTF(Notificacion.LIBERAR_CAJA.getValor() + ";" + numCaja);
-            out.flush();
-        } catch (IOException ex) {
-            Logger.getLogger(CajaView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void setTxtTramite(String txtTramite) {
+        this.txtTramite.setText(txtTramite);
     }
 
-    protected boolean enviarUsuarioNuevo(String cedula, String nombre, String apellido, boolean isEmpleado) {
-        try {
-            out.writeUTF(Notificacion.CREAR_USUARIO.getValor() + ";" + cedula + ";" + nombre + ";" + apellido + ";" + (isEmpleado ? 1 : 0));
-            out.flush();
-        } catch (IOException ex) {
-            Logger.getLogger(CajaView.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-
-        return true;
+    public String getNumCaja() {
+        return numCaja;
     }
-
-    /*
-     Recibe la secuenca generada para el usuario por el servidor y la muestra en pantalla
-     */
-    private void clienteACaja(String[] datos) {
-        this.txtSecuencia.setText(datos[1]);
-        this.txtNombreUsuario.setText(datos[2]);
-        this.txtTramite.setText(datos[3]);
-    }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -252,7 +222,7 @@ public class CajaView extends Cliente {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLiberarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLiberarMouseClicked
-        liberarCaja();
+        caja.liberarCaja();
     }//GEN-LAST:event_btnLiberarMouseClicked
 
     private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
@@ -262,7 +232,7 @@ public class CajaView extends Cliente {
 
     private void btnAbrirChatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirChatMouseClicked
         try {
-            System.out.println("hola");
+            System.out.println("Abriendo chat");
             Runtime.getRuntime().exec("java -jar lib/SACOBA_Chat_Client.jar " + Cliente.getSERVER_IP());
         } catch (IOException ex) {
             Logger.getLogger(CajaView.class.getName()).log(Level.SEVERE, null, ex);

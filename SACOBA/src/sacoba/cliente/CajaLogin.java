@@ -159,8 +159,8 @@ public class CajaLogin extends VentanaBase {
         String passwd = new String(txtPasswd.getPassword());
         //if (this.txtUsuario.getText().equals("") || this.txtCaja.getText().equals("") || passwd.equals("")) {
         if (this.txtUsuario.getText().equals("Admin") && String.copyValueOf(this.txtPasswd.getPassword()).equals("123")) {
-            new CajaView(txtCaja.getText()).setVisible(true);
             this.dispose();
+            new CajaView(txtCaja.getText()).setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this,
                     "Usuario o contraseña incorrectos. Por favor intente de nuevo",

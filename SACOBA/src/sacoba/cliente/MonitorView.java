@@ -14,81 +14,43 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import sacoba.servidor.ClienteServidor;
 import sacoba.servidor.beans.Notificacion;
+import sacoba.vista.TransparentTextArea;
+import sacoba.vista.VentanaBase;
 
 /**
  *
  * @author ulacit
  */
-public class MonitorView extends Cliente {
+public class MonitorView extends VentanaBase {
 
+    Monitor monitor;
+    
     /**
      * Crea un nuevo cliente Monitor
      */
     public MonitorView() {
         super();
         initComponents();
+        
+        monitor = new Monitor(this);
+        monitor.start();
+    }
+    
+    //Getters and setters
+    public void addSiguiente(String siguiente) {
+        this.txtSigue.setText(siguiente + "\n" + txtSigue.getText());
+    }
+    
+    public void setTxtCuentas(String lblCuentas) {
+        this.lblCuentas.setText(lblCuentas);
     }
 
-    @Override
-    public void run() {
-        while (true) {
-            try {
-                // Recibe un dato de entrada
-                String entrada = in.readUTF();
-                System.out.println(entrada);
-                String[] datos = entrada.split(";"); // Divide los datos de la entrada en cada ';'
-
-                switch (Notificacion.convertirValor(Integer.parseInt(datos[0]))) {
-                    case ACTUALIZA_PLATAFORMA:
-                        actualizaPlataforma(datos);
-                        break;
-                    case ACTUALIZA_TRAMITES:
-                        actualizaTramites(datos);
-                        break;
-                    case ACTUALIZA_CUENTAS:
-                        actualizaCuentas(datos);
-                        break;
-                    case AVANZA_CLIENTE:
-                        avanzaCliente(datos);
-                        break;
-                    default:
-                        break;
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(ClienteServidor.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+    public void setTxtPlataforma(String lblPlataforma) {
+        this.lblPlataforma.setText(lblPlataforma);
     }
 
-    //Metodos de TCP
-    /*
-        Recibe el nuevo numero de usuarios en la cola de Plataforma
-     */
-    private void actualizaPlataforma(String[] datos) {
-        this.lblPlataforma.setText(datos[1]);
-    }
-
-    /*
-        Recibe el nuevo numero de usuarios en la cola de Tramites
-     */
-    private void actualizaTramites(String[] datos) {
-        this.lblTramites.setText(datos[1]);
-    }
-
-    /*
-        Recibe el nuevo numero de usuarios en la cola de Cuentas
-     */
-    private void actualizaCuentas(String[] datos) {
-        this.lblCuentas.setText(datos[1]);
-    }
-
-    /*
-        Recibe el string con la informacion del siguiente cliente
-     */
-    private void avanzaCliente(String[] datos) {
-        this.txtSigue.setText(datos[1]
-                + "\n"
-                + this.txtSigue.getText());
+    public void setTxtTramites(String lblTramites) {
+        this.lblTramites.setText(lblTramites);
     }
 
     /**

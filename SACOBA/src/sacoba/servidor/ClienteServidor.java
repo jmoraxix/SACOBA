@@ -30,12 +30,7 @@ public class ClienteServidor extends Thread {
     private final Socket socket;
     private final Servidor servidor;
     private boolean isRunning = true;
-
-    /**
-     *
-     */
-    public final static int RECIBIR_USUARIO = 1;
-
+    
     /**
      *
      * @param servidor
@@ -71,12 +66,11 @@ public class ClienteServidor extends Thread {
                         recibirUsuario(datos);
                         break;
                     case LIBERAR_CAJA:
-                        //liberarCaja();
+                        liberarCaja(datos);
                         break;
                     case CREAR_USUARIO:
                         crearUsuario(datos);
                         break;
-
                     default:
                         throw new AssertionError(Notificacion.convertirValor(Integer.parseInt(datos[0])).name());
                 }
@@ -110,45 +104,46 @@ public class ClienteServidor extends Thread {
          datos[2] -> ID del proceso a hacer
          */
 
-        System.out.println("1");
         //Consigue la persona registrada en la lista de personas
         ArrayList<Persona> personas = servidor.getPersonas();
-        System.out.println("2");
         Persona cliente = null;
         for (Persona persona : personas) {
-            if (datos[1].equals(persona.getCedula())) {
+            System.out.println("Itera personas");
+            if (datos[2].equals(persona.getCedula())) {
+                System.out.println("asigna persona");
                 cliente = persona;
             }
         }
-        System.out.println("3");
         if (cliente == null) {
-            cliente = new Persona(datos[1], "Invitado", "");
+            cliente = new Persona(datos[2], "Invitado", "");
         }
-        System.out.println("4");
 
         //Lo inserta a la cola respectiva
-        String[] valores = servidor.insertarUsuarioEnCola(datos[2], cliente).split(";");
-        System.out.println(valores);
-        String secuencia = valores[0];
-        String cantidadEnCola = valores[1];
+        String valores = servidor.insertarUsuarioEnCola(datos[1], cliente);
+        String[] valores_div = valores.split(";");
+        String secuencia = valores_div[0];
+        String cantidadEnCola = valores_div[1];
 
         //Enviamos la secuencia al cliente
         try {
-            System.out.println("Envia secuencia");
+            servidor.agregarLog("Envia secuencia");
             out.writeUTF(Notificacion.NOTIFICA_SECUENCIA.getValor() + ";" + secuencia);
             out.flush();
-            System.out.println("Envia secuencia");
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         //Notificamos a los clientes un cambio de cola
         Notificacion notificacion = null;
-        if (secuencia.charAt(1) == 'P') {
+        char tipo = secuencia.charAt(0);
+        if (tipo == 'P') {
+            System.out.println("ACTUALIZA_PLATAFORMA");
             notificacion = Notificacion.ACTUALIZA_PLATAFORMA;
-        } else if (secuencia.charAt(1) == 'T') {
+        } else if (tipo == 't') {
+            System.out.println("ACTUALIZA_TRAMITES");
             notificacion = Notificacion.ACTUALIZA_TRAMITES;
-        } else if (secuencia.charAt(1) == 'C') {
+        } else if (tipo == 'c') {
+            System.out.println("ACTUALIZA_CUENTAS");
             notificacion = Notificacion.ACTUALIZA_CUENTAS;
         }
         servidor.notificarCambioCola(notificacion, cantidadEnCola);
@@ -162,8 +157,8 @@ public class ClienteServidor extends Thread {
      */
     public void notificarCambioColaACliente(Notificacion notificacion, final String cantidad) {
         try {
-            System.out.println("notificarCambioColaACliente");
-            out.writeUTF(notificacion.getValor() + ";" + cantidad);
+            System.out.println("notificarCambioColaACliente, " + notificacion.getValor());
+            out.writeUTF(notificacion.getValor() + ";" + cantidad + "\n");
             out.flush();
             System.out.println("notificarCambioColaACliente");
         } catch (IOException ex) {
@@ -187,7 +182,11 @@ public class ClienteServidor extends Thread {
         }
     }
 
+    private void liberarCaja(String[] datos) {
+        //cedula + ";" + nombre + ";" + apellido + ";" + (isEmpleado ? 1 : 0)
+    }
+    
     private void crearUsuario(String[] datos) {
-
+        //cedula + ";" + nombre + ";" + apellido + ";" + (isEmpleado ? 1 : 0)
     }
 }

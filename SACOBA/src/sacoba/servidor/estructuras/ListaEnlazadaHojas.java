@@ -102,7 +102,7 @@ public class ListaEnlazadaHojas {
                 buscado = cabeza;
             } else {
                 NodoArbol aux = cabeza;
-                while (aux.getSiguiente() != null) {
+                while (aux != null) {
                     if (aux.getId().equals(ID)) {
                         buscado = aux;
                     }
@@ -110,8 +110,8 @@ public class ListaEnlazadaHojas {
                 }
                 if (buscado == null) {
                     aux = cabeza;
-                    while (aux.getSiguiente() != null) {
-                        if (aux.getId().substring(0, 1) == ID.substring(0, 1)) {
+                    while (aux != null) {
+                        if (aux.getId().charAt(0) == ID.charAt(0)) {
                             buscado = aux;
                         }
                         aux = aux.getSiguiente();

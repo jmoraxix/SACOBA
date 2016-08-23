@@ -29,7 +29,7 @@ import sacoba.vista.VentanaBase;
  *
  * @author jmora
  */
-public class Servidor extends VentanaBase {
+public class Servidor extends VentanaBase implements Runnable {
 
     //Variables Globales
     private ArrayList<Persona> personas = new ArrayList<Persona>();
@@ -66,11 +66,16 @@ public class Servidor extends VentanaBase {
             agregarError(ex.toString());
             //Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+        new Thread(this);
     }
 
-    //Metodos de TCP
-    private void aceptarClientes() {
+    @Override
+    public void run() {
+        agregarClientes();
+    }
+    
+    private void agregarClientes(){
         try {
             while (true) {
                 socket = serverSocket.accept();
@@ -87,7 +92,8 @@ public class Servidor extends VentanaBase {
             //Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    //Metodos de TCP
     /**
      * Envia una notificacion de actualizacion de cola a todos los clientes
      *
@@ -116,7 +122,7 @@ public class Servidor extends VentanaBase {
         Date fecha = new Date(System.currentTimeMillis());
         this.txtLog = fecha.toString() + " - " + msj + "\n" + txtLog;
         this.txtCajaLog.setText(txtLog);
-        System.out.println(txtLog);
+        //System.out.println(fecha.toString() + " - " + msj + "\n");
     }
 
     /**
@@ -127,6 +133,7 @@ public class Servidor extends VentanaBase {
         Date fecha = new Date(System.currentTimeMillis());
         this.txtLog = fecha.toString() + " - " + "ERROR: " + msj + "\n" + txtLog;
         this.txtCajaLog.setText(txtLog);
+        //System.out.println(fecha.toString() + " - " + "ERROR: " + msj + "\n");
     }
 
     //Getters & setters
@@ -261,15 +268,14 @@ public class Servidor extends VentanaBase {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 //Inicia el servidor del chat
-                try {
-                    Runtime.getRuntime().exec("java -jar lib/SACOBA_Chat_Server.jar");
-                } catch (IOException ex) {
-                    Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-                }
+//                try {
+//                    Runtime.getRuntime().exec("java -jar lib/SACOBA_Chat_Server.jar");
+//                } catch (IOException ex) {
+//                    Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+//                }
 
                 Servidor server = new Servidor();
                 server.setVisible(true);
-                server.aceptarClientes();
             }
         });
     }

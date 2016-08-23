@@ -114,6 +114,7 @@ public class NodoArbol {
         if (this.colaSecuencias == null) { //Si la cola de usuarios no esta vacia, no se puede agregar otro hijo
             if (this.id.equals(idPadre)) {// Si este nodo es el padre lo inserta
                 procesos.insertaNodo(nodo);
+                nodo.setPadre(this);
             } else { //Si no es el padre, lo inserto al hijo con ese ID
                 NodoArbol aux = this.procesos.getHoja(idPadre);
                 if (aux != null) {
@@ -125,16 +126,17 @@ public class NodoArbol {
 
     public String insertarUsuario(String idCola, Persona usuario) {
         if (this.esHoja()) {
-            String secuencia = this.id.substring(0, 1) + padre.getTotalClientes();
+            padre.aumentarClientes();
+            String secuencia =  String.valueOf(this.id.charAt(0)) + String.valueOf(padre.getTotalClientes());
             if (this.colaSecuencias == null) {
                 this.colaSecuencias = new ColaSecuencias(new NodoColaSecuencias(secuencia, usuario));
             } else {
                 colaSecuencias.enCola(new NodoColaSecuencias(secuencia, usuario));
             }
-            padre.aumentarClientes();
             return secuencia + ";" + padre.getTotalClientes();
         } else {
-            return this.procesos.getHoja(idCola).insertarUsuario(idCola, usuario);
+            NodoArbol nodo = this.procesos.getHoja(idCola);
+            return nodo.insertarUsuario(idCola, usuario);
         }
     }
 
