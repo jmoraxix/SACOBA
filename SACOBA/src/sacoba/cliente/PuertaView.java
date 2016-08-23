@@ -87,15 +87,22 @@ public class PuertaView extends Cliente {
     private void entraUsuario() {
         String codigo = getCodeFromButton();
         if (codigo != null) {
-            try {
-                out.writeUTF(Notificacion.ENTRA_USUARIO.getValor() + ";" + codigo);
-                out.flush();
-            } catch (IOException ex) {
-                Logger.getLogger(CajaView.class.getName()).log(Level.SEVERE, null, ex);
+            if (!this.txtCedula.getText().equals("")) {
+                try {
+                    out.writeUTF(Notificacion.ENTRA_USUARIO.getValor() + ";" + codigo + ";" + this.txtCedula.getText());
+                    out.flush();
+                } catch (IOException ex) {
+                    Logger.getLogger(CajaView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Por favor seleccione una opción antes de continuar.",
+                        "No se puede continuar",
+                        JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(this,
-                    "Por favor seleccione una opción antes de continuar.",
+                    "Por favor seleccione una opción antes de continuar. Si no conoce la opción deseada selecione la opción \"Otro\".",
                     "No se puede continuar",
                     JOptionPane.ERROR_MESSAGE);
         }

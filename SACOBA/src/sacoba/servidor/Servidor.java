@@ -58,9 +58,8 @@ public class Servidor extends VentanaBase {
         txtCajaLog.setText(txtLog);
 
         try {
-
             agregarLog("Inicia servidor");
-            System.out.println("Inicia servidor");
+            //System.out.println("Inicia servidor");
             service = Executors.newCachedThreadPool();
             serverSocket = new ServerSocket(SERVER_PORT);
         } catch (IOException ex) {
@@ -79,6 +78,7 @@ public class Servidor extends VentanaBase {
                 //System.out.println("Cliente entrante");
                 ClienteServidor client = new ClienteServidor(this, socket);
                 service.submit(client);
+                this.clientes.insertarCliente(client);
                 agregarLog("Cliente agregado");
                 //System.out.println("Cliente agregado");
             }
@@ -92,27 +92,31 @@ public class Servidor extends VentanaBase {
      * Envia una notificacion de actualizacion de cola a todos los clientes
      *
      * @param notificacion Tipo de notificacion
-     * @param cantidad Nueva cantidad de personasa en la cola
+     * @param cantidad Nueva cantidad de personas en la cola
      */
     public void notificarCambioCola(Notificacion notificacion, final int cantidad) {
-        //TODO iterar para llamar notificarCambioCola(notificacion, cantidad) en cada cliente
+        //TODO iterar para llamar notificarCambioColaACliente(notificacion, cantidad) en cada cliente
     }
 
-    private void notificarUsuarioAMonitores(final String usuario, String secuencia, Persona persona, final String caja) {
-        //TODO iterar para llamar notificarUsuarioMonitor(usuario, secuencia, persona, caja) en cada cliente
+    private void notificarUsuarioAMonitores(String secuencia, Persona persona, final String caja) {
+        //TODO iterar para llamar notificarUsuarioAMonitor(secuencia, persona, caja) en cada cliente
     }
 
-    //Metodos del manejor de variables
-    public void addCliente(ClienteServidor cliente) {
-        //this.arbol = arbol;
+    private String insertarUsuarioEnCola(String idCola, Persona persona) {
+        return arbol.insertarCliente(idCola, persona);
     }
 
     //Metodos para manejo de la interfaz
+    /**
+     * Agrega un log a la consola y/o interfaz
+     *
+     * @param msj Mensaje a mostrar
+     */
     public void agregarLog(String msj) {
         Date fecha = new Date(System.currentTimeMillis());
         this.txtLog = fecha.toString() + " - " + msj + "\n" + txtLog;
         this.txtCajaLog.setText(txtLog);
-        System.out.println(msj);
+        System.out.println(txtLog);
     }
 
     /**

@@ -86,14 +86,18 @@ public class ClienteServidor extends Thread {
     }
 
     /**
+     * Recibe los datos de un usuario que entra por el cliente puerta
      *
      * @param datos
      */
     public void recibirUsuario(String[] datos) {
         /*
-            TODO    
-        1.  Toma ambos strings. Busca la persona por la cedula en servidor.getPersonas() y añade la persona a la cola debida
-        2.  Llama servidor.notificarCambioCola(Notificacion.<tipo de notificacion>, <nueva cantidad de personas en la cola>) y le notifica 
+            TODO Recibir usuarios desde los cliente
+        1.  Toma ambos strings. Busca la persona por la cedula en servidor.getPersonas(). Si la encuentra la guarda en una
+        variable auxiliar.  Si no crea una persona "Invitada".
+        2. Inserta la persona a la cola debida en servidor.insertarUsuarioEnCola(String idCola, Persona persona) y recibe 
+        la secuencia correspondiente
+        3. Llama servidor.notificarCambioColaACliente(Notificacion.<tipo de notificacion>, <nueva cantidad de personas en la cola>) y le notifica 
         cuantas personas hay ahora en esa cola
         3. Envia secuencia de vuelta al mismo cliente con el codigo comentado abajo
         
@@ -110,20 +114,28 @@ public class ClienteServidor extends Thread {
     }
 
     /**
+     * Envia una notificacion del cambio de una cola a todos los clientes
      *
      * @param notificacion
      * @param cantidad
      */
-    public void notificarCambioCola(Notificacion notificacion, final int cantidad) {
-//        try {
-//            out.writeUTF(Notificacion.AVANZA_CLIENTE.getValor() + ";" + secuencia + ": " + persona + " pasar a caja  #" + caja);
-//            out.flush();
-//        } catch (IOException ex) {
-//            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+    public void notificarCambioColaACliente(Notificacion notificacion, final int cantidad) {
+        try {
+            out.writeUTF(notificacion.getValor() + ";" + cantidad);
+            out.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    private void notificarUsuarioMonitor(final String usuario, String secuencia, Persona persona, final String caja) {
+    /**
+     * Notifica a todos los clientes de un usuario que avanzo en la cola
+     *
+     * @param secuencia
+     * @param persona
+     * @param caja
+     */
+    public void notificarUsuarioAMonitor(String secuencia, Persona persona, final String caja) {
         try {
             out.writeUTF(Notificacion.AVANZA_CLIENTE.getValor() + ";" + secuencia + ": " + persona + " pasar a caja #" + caja);
             out.flush();
