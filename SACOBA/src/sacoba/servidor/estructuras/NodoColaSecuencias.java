@@ -15,12 +15,12 @@ import sacoba.servidor.beans.Persona;
  *
  * @author marce
  */
-public class NodoCola {
+public class NodoColaSecuencias {
 
     //Variables
     private final String secuencia;
     private final Persona persona;
-    private NodoCola atras;
+    private NodoColaSecuencias atras;
 
     //Constructor
 
@@ -29,7 +29,7 @@ public class NodoCola {
      * @param secuencia
      * @param usuario
      */
-    public NodoCola(String secuencia, Persona usuario) {
+    public NodoColaSecuencias(String secuencia, Persona usuario) {
         this.secuencia = secuencia;
         this.persona = usuario;
     }
@@ -56,7 +56,7 @@ public class NodoCola {
      *
      * @return
      */
-    public NodoCola getAtras() {
+    public NodoColaSecuencias getAtras() {
         return atras;
     }
 
@@ -64,7 +64,7 @@ public class NodoCola {
      *
      * @param atras
      */
-    public void setAtras(NodoCola atras) {
+    public void setAtras(NodoColaSecuencias atras) {
         this.atras = atras;
     }
 

@@ -9,6 +9,8 @@
  */
 package sacoba.servidor.estructuras;
 
+import sacoba.servidor.beans.Persona;
+
 /**
  *
  * @author Marce
@@ -17,39 +19,32 @@ public class Arbol {
 
     public NodoArbol raiz;
 
-    public NodoArbol nodoActual;
-
     public Arbol() {
         raiz = null;
     }
 
-    public void insertarHijo(String padre, String id, String titulo) {
-        NodoArbol aux = new NodoArbol(id, titulo);
-
+    public void insertarHoja(String idPadre, String id, String titulo) {
+        NodoArbol aux = new NodoArbol(null, id, titulo);
         if (raiz == null) {
             raiz = aux;
         } else {
-
-            this.insertarHijo_rec(raiz, padre, aux);
+            raiz.insertarHoja(idPadre, aux);
         }
     }
 
-    private void insertarHijo_rec(NodoArbol nodoActual, String padre, NodoArbol hijo) {
-        if (nodoActual.getTitulo().equals(padre)) {
-            nodoActual.insertarHoja(hijo);
-            System.out.println("Nodo insertado: " + hijo.getTitulo());
+    public String insertarUsuario(String idCola, Persona persona) {
+        if (raiz == null) {
+            return null;
         } else {
-//            for (int i = 0; i < nodoActual.getHoja(padre).size(); i++) {
-//                this.insertarHijo((NodoArbol) nodoActual.HijosList.get(i), padre, titulo);
-//            }
+            return raiz.insertarUsuario(idCola, persona);
         }
     }
 
-    private void creaEstructura() {
-//        insertarHijo(" ", "Banco");
-//        insertarHijo("Banco", "Tramites");
-//        insertarHijo("Banco", "Plataforma");
-//        insertarHijo("Banco", "Cuentas");
+    public NodoColaSecuencias siguienteUsuario() {
+        if (raiz == null) {
+            return null;
+        } else {
+            return raiz.siguienteUsuario();
+        }
     }
-
 }

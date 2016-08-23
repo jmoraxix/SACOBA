@@ -33,7 +33,7 @@ public class ListaEnlazadaHojas {
         } else {
             NodoArbol aux = cabeza;
 
-            while (aux != null) {
+            while (aux.getSiguiente() != null) {
                 aux = aux.getSiguiente();
             }
             aux.setSiguiente(nodo);
@@ -89,21 +89,31 @@ public class ListaEnlazadaHojas {
     }
 
     /**
+     * Encuentra una hoja en la lista.
      *
      * @param ID
-     * @return
+     * @return Retorna una hoja con el ID recibido. Si no la encuentra retorna
+     * nulo
      */
     public NodoArbol getHoja(String ID) {
         NodoArbol buscado = null;
         if (cabeza != null) {
-            if (cabeza.getId().equalsIgnoreCase(ID)) {
+            if (cabeza.getId().equals(ID)) {
                 buscado = cabeza;
             } else {
                 NodoArbol aux = cabeza;
                 while (aux.getSiguiente() != null) {
-                    if (aux.getId().equalsIgnoreCase(ID)) {
+                    if (aux.getId().equals(ID)) {
                         buscado = aux;
-                    } else {
+                    }
+                    aux = aux.getSiguiente();
+                }
+                if (buscado == null) {
+                    aux = cabeza;
+                    while (aux.getSiguiente() != null) {
+                        if (aux.getId().substring(0, 1) == ID.substring(0, 1)) {
+                            buscado = aux;
+                        }
                         aux = aux.getSiguiente();
                     }
                 }
@@ -114,6 +124,34 @@ public class ListaEnlazadaHojas {
 
     public boolean estaVacia() {
         return cabeza == null;
+    }
+
+    public int contar() {
+        int conteo = 0;
+        if (this.cabeza != null) {
+            NodoArbol aux = cabeza;
+            while (aux.getSiguiente() != null) {
+                conteo++;
+                aux = aux.getSiguiente();
+            }
+        }
+        return conteo;
+    }
+
+    public NodoArbol irAlNodo(int numNodo) {
+        NodoArbol nodo = null;
+        int conteo = 1;
+        if (this.cabeza != null) {
+            NodoArbol aux = cabeza;
+            while (aux.getSiguiente() != null) {
+                if (conteo == numNodo) {
+                    nodo = aux;
+                }
+                conteo++;
+                aux = aux.getSiguiente();
+            }
+        }
+        return nodo;
     }
 
     @Override
