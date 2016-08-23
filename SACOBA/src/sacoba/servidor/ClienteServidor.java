@@ -78,7 +78,7 @@ public class ClienteServidor extends Thread {
 
             } catch (IOException ex) {
                 //Logger.getLogger(ClienteServidor.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println("Cliente desconectado");
+                //System.out.println("Cliente desconectado");
                 servidor.agregarLog("Cliente desconectado");
                 isRunning = false;
             }
