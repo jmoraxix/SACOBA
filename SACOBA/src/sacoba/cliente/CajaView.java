@@ -59,7 +59,7 @@ public class CajaView extends Cliente {
 
     //Metodos de TCP
     /*
-        Envia una notificacion al servidor de que la caja esta vacia
+     Envia una notificacion al servidor de que la caja esta vacia
      */
     private void liberarCaja() {
         try {
@@ -70,8 +70,20 @@ public class CajaView extends Cliente {
         }
     }
 
+    protected boolean enviarUsuarioNuevo(String cedula, String nombre, String apellido, boolean isEmpleado) {
+        try {
+            out.writeUTF(Notificacion.CREAR_USUARIO.getValor() + ";" + cedula + ";" + nombre + ";" + apellido + ";" + (isEmpleado ? 1 : 0));
+            out.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(CajaView.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+        return true;
+    }
+
     /*
-        Recibe la secuenca generada para el usuario por el servidor y la muestra en pantalla
+     Recibe la secuenca generada para el usuario por el servidor y la muestra en pantalla
      */
     private void clienteACaja(String[] datos) {
         this.txtSecuencia.setText(datos[1]);
@@ -96,7 +108,7 @@ public class CajaView extends Cliente {
         txtNombreUsuario = new sacoba.vista.TransparentTextField();
         btnVolver = new sacoba.vista.PanelConFondo("flecha-volver.png");
         lblVolver = new javax.swing.JLabel();
-        lblAbrirChat = new javax.swing.JLabel();
+        lblCrearUsuario = new javax.swing.JLabel();
         txtSecuencia = new sacoba.vista.TransparentTextField();
         lblUsuario3 = new javax.swing.JLabel();
         txtTramite = new sacoba.vista.TransparentTextField();
@@ -104,6 +116,8 @@ public class CajaView extends Cliente {
         lblLiberar = new javax.swing.JLabel();
         btnAbrirChat = new sacoba.vista.PanelConFondo("chat.png");
         lblUsuario4 = new javax.swing.JLabel();
+        lblAbrirChat1 = new javax.swing.JLabel();
+        btnCrearUsuario = new sacoba.vista.PanelConFondo("flecha-volver.png");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(950, 650));
@@ -146,11 +160,12 @@ public class CajaView extends Cliente {
         panelUsuario.add(lblVolver);
         lblVolver.setBounds(100, 50, 160, 30);
 
-        lblAbrirChat.setFont(LETRA_TEXTO_2);
-        lblAbrirChat.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblAbrirChat.setText("Abrir chat corporativo");
-        panelUsuario.add(lblAbrirChat);
-        lblAbrirChat.setBounds(560, 50, 220, 30);
+        lblCrearUsuario.setFont(LETRA_TEXTO_2);
+        lblCrearUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCrearUsuario.setText("Crear Usuario");
+        panelUsuario.add(lblCrearUsuario);
+        lblCrearUsuario.setBounds(110, 310, 70, 30);
+        lblCrearUsuario.getAccessibleContext().setAccessibleName("Crear Usuario");
 
         txtSecuencia.setEditable(false);
         txtSecuencia.setToolTipText("Ingrese un usuario");
@@ -198,6 +213,20 @@ public class CajaView extends Cliente {
         panelUsuario.add(lblUsuario4);
         lblUsuario4.setBounds(100, 140, 150, 30);
 
+        lblAbrirChat1.setFont(LETRA_TEXTO_2);
+        lblAbrirChat1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblAbrirChat1.setText("Abrir chat corporativo");
+        panelUsuario.add(lblAbrirChat1);
+        lblAbrirChat1.setBounds(560, 50, 220, 30);
+
+        btnCrearUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCrearUsuarioMouseClicked(evt);
+            }
+        });
+        panelUsuario.add(btnCrearUsuario);
+        btnCrearUsuario.setBounds(50, 300, 50, 50);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -240,11 +269,17 @@ public class CajaView extends Cliente {
         }
     }//GEN-LAST:event_btnAbrirChatMouseClicked
 
+    private void btnCrearUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearUsuarioMouseClicked
+        new CrearUsuario(this).setVisible(true);
+    }//GEN-LAST:event_btnCrearUsuarioMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private sacoba.vista.PanelConFondo btnAbrirChat;
+    private sacoba.vista.PanelConFondo btnCrearUsuario;
     private sacoba.vista.PanelConFondo btnLiberar;
     private sacoba.vista.PanelConFondo btnVolver;
-    private javax.swing.JLabel lblAbrirChat;
+    private javax.swing.JLabel lblAbrirChat1;
+    private javax.swing.JLabel lblCrearUsuario;
     private javax.swing.JLabel lblLiberar;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTitulo2;

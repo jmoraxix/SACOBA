@@ -72,6 +72,10 @@ public class ClienteServidor extends Thread {
                     case LIBERAR_CAJA:
                         //liberarCaja();
                         break;
+                    case CREAR_USUARIO:
+                        crearUsuario(datos);
+                        break;
+
                     default:
                         throw new AssertionError(Notificacion.convertirValor(Integer.parseInt(datos[0])).name());
                 }
@@ -92,17 +96,17 @@ public class ClienteServidor extends Thread {
      */
     public void recibirUsuario(String[] datos) {
         /*
-            TODO Recibir usuarios desde los cliente
-        1.  Toma ambos strings. Busca la persona por la cedula en servidor.getPersonas(). Si la encuentra la guarda en una
-        variable auxiliar.  Si no crea una persona "Invitada".
-        2. Inserta la persona a la cola debida en servidor.insertarUsuarioEnCola(String idCola, Persona persona) y recibe 
-        la secuencia correspondiente
-        3. Llama servidor.notificarCambioColaACliente(Notificacion.<tipo de notificacion>, <nueva cantidad de personas en la cola>) y le notifica 
-        cuantas personas hay ahora en esa cola
-        3. Envia secuencia de vuelta al mismo cliente con el codigo comentado abajo
+         TODO Recibir usuarios desde los cliente
+         1.  Toma ambos strings. Busca la persona por la cedula en servidor.getPersonas(). Si la encuentra la guarda en una
+         variable auxiliar.  Si no crea una persona "Invitada".
+         2. Inserta la persona a la cola debida en servidor.insertarUsuarioEnCola(String idCola, Persona persona) y recibe 
+         la secuencia correspondiente
+         3. Llama servidor.notificarCambioColaACliente(Notificacion.<tipo de notificacion>, <nueva cantidad de personas en la cola>) y le notifica 
+         cuantas personas hay ahora en esa cola
+         3. Envia secuencia de vuelta al mismo cliente con el codigo comentado abajo
         
-        datos[1] -> Cedula
-        datos[2] -> ID del proceso a hacer
+         datos[1] -> Cedula
+         datos[2] -> ID del proceso a hacer
          */
 
 //        try {
@@ -142,5 +146,9 @@ public class ClienteServidor extends Thread {
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void crearUsuario(String[] datos) {
+
     }
 }
