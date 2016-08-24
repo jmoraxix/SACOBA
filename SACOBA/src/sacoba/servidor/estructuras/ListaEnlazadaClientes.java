@@ -69,6 +69,7 @@ public class ListaEnlazadaClientes {
             NodoListaClientes nodo = cabeza;
             while (nodo != null) {
                 nodo.getCliente().notificarCambioColaACliente(notificacion, cantidad);
+                System.out.println("notifica 1");
                 nodo = nodo.getNext();
             }
         }

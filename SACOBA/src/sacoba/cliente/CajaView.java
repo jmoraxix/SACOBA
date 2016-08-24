@@ -131,11 +131,10 @@ public class CajaView extends VentanaBase {
         lblVolver.setBounds(100, 50, 160, 30);
 
         lblCrearUsuario.setFont(LETRA_TEXTO_2);
-        lblCrearUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCrearUsuario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblCrearUsuario.setText("Crear Usuario");
         panelUsuario.add(lblCrearUsuario);
-        lblCrearUsuario.setBounds(110, 310, 70, 30);
-        lblCrearUsuario.getAccessibleContext().setAccessibleName("Crear Usuario");
+        lblCrearUsuario.setBounds(110, 310, 180, 30);
 
         txtSecuencia.setEditable(false);
         txtSecuencia.setToolTipText("Ingrese un usuario");
@@ -233,7 +232,7 @@ public class CajaView extends VentanaBase {
     private void btnAbrirChatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirChatMouseClicked
         try {
             System.out.println("Abriendo chat");
-            Runtime.getRuntime().exec("java -jar lib/SACOBA_Chat_Client.jar " + Cliente.getSERVER_IP());
+            Runtime.getRuntime().exec("java -jar lib/SACOBA_Chat_Client.jar");
         } catch (IOException ex) {
             Logger.getLogger(CajaView.class.getName()).log(Level.SEVERE, null, ex);
         }

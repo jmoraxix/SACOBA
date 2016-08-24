@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import sacoba.servidor.beans.Notificacion;
 import sacoba.servidor.beans.Persona;
+import sacoba.servidor.estructuras.NodoColaSecuencias;
 
 /**
  *
@@ -126,11 +127,12 @@ public class ClienteServidor extends Thread {
 
         //Enviamos la secuencia al cliente
         try {
-            servidor.agregarLog("Envia secuencia");
+            servidor.agregarLog("Envia secuencia " + secuencia);
             out.writeUTF(Notificacion.NOTIFICA_SECUENCIA.getValor() + ";" + secuencia);
             out.flush();
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+            servidor.agregarError(ex.toString());
         }
 
         //Notificamos a los clientes un cambio de cola
@@ -139,10 +141,10 @@ public class ClienteServidor extends Thread {
         if (tipo == 'P') {
             System.out.println("ACTUALIZA_PLATAFORMA");
             notificacion = Notificacion.ACTUALIZA_PLATAFORMA;
-        } else if (tipo == 't') {
+        } else if (tipo == 'T') {
             System.out.println("ACTUALIZA_TRAMITES");
             notificacion = Notificacion.ACTUALIZA_TRAMITES;
-        } else if (tipo == 'c') {
+        } else if (tipo == 'C') {
             System.out.println("ACTUALIZA_CUENTAS");
             notificacion = Notificacion.ACTUALIZA_CUENTAS;
         }
@@ -157,10 +159,10 @@ public class ClienteServidor extends Thread {
      */
     public void notificarCambioColaACliente(Notificacion notificacion, final String cantidad) {
         try {
-            System.out.println("notificarCambioColaACliente, " + notificacion.getValor());
+            //System.out.println("notificarCambioColaACliente, " + notificacion.getValor());
             out.writeUTF(notificacion.getValor() + ";" + cantidad + "\n");
             out.flush();
-            System.out.println("notificarCambioColaACliente");
+            //System.out.println("notificarCambioColaACliente");
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -183,7 +185,19 @@ public class ClienteServidor extends Thread {
     }
 
     private void liberarCaja(String[] datos) {
-        //cedula + ";" + nombre + ";" + apellido + ";" + (isEmpleado ? 1 : 0)
+        //Toma el siguiente usuario de las colas
+        NodoColaSecuencias nodo = servidor.siguienteUsuario();
+       
+        // envia la respuesta a la caja que pidio el usuario
+        try {
+            out.writeUTF(Notificacion.CLIENTE_A_CAJA.getValor() + ";" + nodo.getSecuencia() + ";" + nodo.getPersona().getNombre() 
+                    + " " + nodo.getPersona().getApellido1());
+            out.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        servidor.notificarUsuarioAMonitores(nodo.getSecuencia(), nodo.getPersona(), datos[1]);
     }
     
     private void crearUsuario(String[] datos) {

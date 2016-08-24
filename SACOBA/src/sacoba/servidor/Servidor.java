@@ -23,6 +23,7 @@ import sacoba.servidor.beans.Notificacion;
 import sacoba.servidor.beans.Persona;
 import sacoba.servidor.estructuras.Arbol;
 import sacoba.servidor.estructuras.ListaEnlazadaClientes;
+import sacoba.servidor.estructuras.NodoColaSecuencias;
 import sacoba.vista.VentanaBase;
 
 /**
@@ -62,12 +63,13 @@ public class Servidor extends VentanaBase implements Runnable {
             //System.out.println("Inicia servidor");
             service = Executors.newCachedThreadPool();
             serverSocket = new ServerSocket(SERVER_PORT);
+            service.submit(this);
         } catch (IOException ex) {
             agregarError(ex.toString());
             //Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        new Thread(this);
+//        new Thread(this);
     }
 
     @Override
@@ -110,6 +112,10 @@ public class Servidor extends VentanaBase implements Runnable {
 
     public synchronized String insertarUsuarioEnCola(String idCola, Persona persona) {
         return arbol.insertarUsuario(idCola, persona);
+    }
+    
+    public synchronized NodoColaSecuencias siguienteUsuario(){
+        return arbol.siguienteUsuario();
     }
 
     //Metodos para manejo de la interfaz
@@ -268,11 +274,11 @@ public class Servidor extends VentanaBase implements Runnable {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 //Inicia el servidor del chat
-//                try {
-//                    Runtime.getRuntime().exec("java -jar lib/SACOBA_Chat_Server.jar");
-//                } catch (IOException ex) {
-//                    Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-//                }
+                try {
+                    Runtime.getRuntime().exec("java -jar lib/SACOBA_Chat_Server.jar");
+                } catch (IOException ex) {
+                    Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 Servidor server = new Servidor();
                 server.setVisible(true);

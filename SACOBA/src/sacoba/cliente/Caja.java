@@ -55,7 +55,9 @@ public class Caja extends Cliente {
      */
     public void liberarCaja() {
         try {
-            out.writeUTF(Notificacion.LIBERAR_CAJA.getValor() + ";" + view.getNumCaja());
+            System.out.println("Liberar caja");
+            String ncaja = view.getNumCaja();
+            out.writeUTF(Notificacion.LIBERAR_CAJA.getValor() + ";" + ncaja );
             out.flush();
         } catch (IOException ex) {
             Logger.getLogger(CajaView.class.getName()).log(Level.SEVERE, null, ex);
@@ -64,6 +66,7 @@ public class Caja extends Cliente {
 
     public boolean enviarUsuarioNuevo(String cedula, String nombre, String apellido, boolean isEmpleado) {
         try {
+            System.out.println("Crear usuario nuevo");
             out.writeUTF(Notificacion.CREAR_USUARIO.getValor() + ";" + cedula + ";" + nombre + ";" + apellido + ";" + (isEmpleado ? 1 : 0));
             out.flush();
         } catch (IOException ex) {
@@ -79,7 +82,15 @@ public class Caja extends Cliente {
     private void clienteACaja(String[] datos) {
         view.setTxtSecuencia(datos[1]);
         view.setTxtNombreUsuario(datos[2]);
-        view.setTxtTramite(datos[3]);
+        
+        char tipo = datos[1].charAt(0);
+        if (tipo == 'P') {
+        view.setTxtTramite("Plataforma");
+        } else if (tipo == 'T') {
+        view.setTxtTramite("Tramites");
+        } else if (tipo == 'C') {
+        view.setTxtTramite("Cuentas");
+        }
     }
 
     

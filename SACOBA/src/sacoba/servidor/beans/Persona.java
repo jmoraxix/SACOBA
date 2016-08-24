@@ -83,7 +83,7 @@ public class Persona {
         this.nombre = nombre;
     }
 
-    public String getApellidos() {
+    public String getApellido1() {
         return apellido1;
     }
 

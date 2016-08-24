@@ -115,6 +115,7 @@ public class NodoArbol {
             if (this.id.equals(idPadre)) {// Si este nodo es el padre lo inserta
                 procesos.insertaNodo(nodo);
                 nodo.setPadre(this);
+                this.indice = 1;
             } else { //Si no es el padre, lo inserto al hijo con ese ID
                 NodoArbol aux = this.procesos.getHoja(idPadre);
                 if (aux != null) {
@@ -129,7 +130,8 @@ public class NodoArbol {
             padre.aumentarClientes();
             String secuencia =  String.valueOf(this.id.charAt(0)) + String.valueOf(padre.getTotalClientes());
             if (this.colaSecuencias == null) {
-                this.colaSecuencias = new ColaSecuencias(new NodoColaSecuencias(secuencia, usuario));
+                NodoColaSecuencias nodo = new NodoColaSecuencias(secuencia, usuario);
+                this.colaSecuencias = new ColaSecuencias(nodo);
             } else {
                 colaSecuencias.enCola(new NodoColaSecuencias(secuencia, usuario));
             }
@@ -144,6 +146,9 @@ public class NodoArbol {
         if (this.indice != 0) {
             return this.procesos.irAlNodo(this.indice).siguienteUsuario();
         } else {
+            if(this.colaSecuencias == null)
+                return padre.siguienteUsuario();
+            
             NodoColaSecuencias siguiente = this.colaSecuencias.desencola();
             padre.aumentarIndice();
             padre.disminuirClientes();
