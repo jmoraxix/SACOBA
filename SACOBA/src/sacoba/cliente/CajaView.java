@@ -46,11 +46,11 @@ public class CajaView extends VentanaBase {
     
     //Getters and setters
     public void setTxtNombreUsuario(String txtNombreUsuario) {
-        this.txtNombreUsuario.setText(numCaja);
+        this.txtNombreUsuario.setText(txtNombreUsuario);
     }
 
     public void setTxtSecuencia(String txtSecuencia) {
-        this.txtSecuencia.setText(numCaja);
+        this.txtSecuencia.setText(txtSecuencia);
     }
 
     public void setTxtTramite(String txtTramite) {

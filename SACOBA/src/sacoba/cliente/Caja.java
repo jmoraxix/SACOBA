@@ -80,6 +80,7 @@ public class Caja extends Cliente {
      Recibe la secuenca generada para el usuario por el servidor y la muestra en pantalla
      */
     private void clienteACaja(String[] datos) {
+        System.out.println(datos[1] + " " +  datos[2]);
         view.setTxtSecuencia(datos[1]);
         view.setTxtNombreUsuario(datos[2]);
         

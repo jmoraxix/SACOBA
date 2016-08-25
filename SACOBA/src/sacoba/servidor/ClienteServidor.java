@@ -177,7 +177,8 @@ public class ClienteServidor extends Thread {
      */
     public void notificarUsuarioAMonitor(String secuencia, Persona persona, final String caja) {
         try {
-            out.writeUTF(Notificacion.AVANZA_CLIENTE.getValor() + ";" + secuencia + ": " + persona + " pasar a caja #" + caja);
+            out.writeUTF(Notificacion.AVANZA_CLIENTE.getValor() + ";" + secuencia + ": " + persona.getNombre() 
+                    + " " + persona.getApellido1() + " pasar a caja #" + caja);
             out.flush();
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
@@ -193,6 +194,8 @@ public class ClienteServidor extends Thread {
             out.writeUTF(Notificacion.CLIENTE_A_CAJA.getValor() + ";" + nodo.getSecuencia() + ";" + nodo.getPersona().getNombre() 
                     + " " + nodo.getPersona().getApellido1());
             out.flush();
+            servidor.agregarLog(nodo.getSecuencia() + ": " + nodo.getPersona().getNombre() 
+                    + " " + nodo.getPersona().getApellido1() + " pasa a caja #" + datos[1]);
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -180,14 +180,14 @@ public class VentanaCliente extends JFrame implements ActionListener {
     }
 
     public static void main(String args[]) {
-        try {
-            Client.IP_SERVER = args[0];
-        } catch (IndexOutOfBoundsException ex) {
+//        try {
+//            Client.IP_SERVER = args[0];
+//        } catch (IndexOutOfBoundsException ex) {
             while (Client.IP_SERVER.equals("")) {
                 Client.IP_SERVER = JOptionPane.showInputDialog("Introducir IP_SERVER :", "localhost");
             }
 
-        }
+//        }
         try {
             VentanaCliente p = new VentanaCliente();
 
