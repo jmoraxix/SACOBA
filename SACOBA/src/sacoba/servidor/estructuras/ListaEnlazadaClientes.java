@@ -9,7 +9,9 @@
  */
 package sacoba.servidor.estructuras;
 
-import sacoba.cliente.Cliente;
+import sacoba.servidor.ClienteServidor;
+import sacoba.servidor.beans.Notificacion;
+import sacoba.servidor.beans.Persona;
 
 /**
  *
@@ -21,12 +23,11 @@ public class ListaEnlazadaClientes {
     NodoListaClientes cabeza;
 
     //Metodos
-
     /**
      *
      * @param cliente
      */
-    public void inserta(Cliente cliente) {
+    public void insertarCliente(ClienteServidor cliente) {
         if (cabeza == null) {
             cabeza = new NodoListaClientes(cliente);
         } else {
@@ -43,7 +44,7 @@ public class ListaEnlazadaClientes {
      *
      * @param cliente
      */
-    public void elimina(Cliente cliente) {
+    public void eliminarCliente(ClienteServidor cliente) {
         if (cabeza != null) {
             if (cabeza.getCliente() == cliente) {
                 cabeza = cabeza.getNext();
@@ -59,6 +60,27 @@ public class ListaEnlazadaClientes {
                         actual = actual.getNext();
                     }
                 }
+            }
+        }
+    }
+
+    public void notificarCambioCola(Notificacion notificacion, final String cantidad) {
+        if (cabeza != null) {
+            NodoListaClientes nodo = cabeza;
+            while (nodo != null) {
+                nodo.getCliente().notificarCambioColaACliente(notificacion, cantidad);
+                System.out.println("notifica 1");
+                nodo = nodo.getNext();
+            }
+        }
+    }
+
+    public void notificarUsuarioAMonitores(String secuencia, Persona persona, final String caja) {
+        if (cabeza != null) {
+            NodoListaClientes nodo = cabeza;
+            while (nodo != null) {
+                nodo.getCliente().notificarUsuarioAMonitor(secuencia, persona, caja);
+                nodo = nodo.getNext();
             }
         }
     }

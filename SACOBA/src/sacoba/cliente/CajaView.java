@@ -14,14 +14,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import sacoba.servidor.ClienteServidor;
 import sacoba.servidor.beans.Notificacion;
+import sacoba.vista.TransparentTextField;
+import sacoba.vista.VentanaBase;
 
 /**
  *
  * @author ulacit
  */
-public class CajaView extends Cliente {
+public class CajaView extends VentanaBase {
 
     private String numCaja;
+    private Caja caja;
 
     /**
      * Crea un nuevo cliente Puerta
@@ -30,55 +33,34 @@ public class CajaView extends Cliente {
      * cliente
      */
     public CajaView(String numCaja) {
-        super();
         this.numCaja = numCaja;
         initComponents();
+        
+        caja = new Caja(this);
+        caja.start();
+    }
+    
+    public boolean enviarUsuarioNuevo(String cedula, String nombre, String apellido, boolean isEmpleado) {
+        return caja.enviarUsuarioNuevo(cedula, nombre, apellido, isEmpleado);
+    }
+    
+    //Getters and setters
+    public void setTxtNombreUsuario(String txtNombreUsuario) {
+        this.txtNombreUsuario.setText(numCaja);
     }
 
-    @Override
-    public void run() {
-        while (true) {
-            try {
-                // Recibe un dato de entrada
-                String entrada = in.readUTF();
-                System.out.println(entrada);
-                String[] datos = entrada.split(";"); // Divide los datos de la entrada en cada ';'
-
-                switch (Notificacion.convertirValor(Integer.parseInt(datos[0]))) {
-                    case CLIENTE_A_CAJA:
-                        clienteACaja(datos);
-                        break;
-                    default:
-                        break;
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(ClienteServidor.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+    public void setTxtSecuencia(String txtSecuencia) {
+        this.txtSecuencia.setText(numCaja);
     }
 
-    //Metodos de TCP
-    /*
-        Envia una notificacion al servidor de que la caja esta vacia
-     */
-    private void liberarCaja() {
-        try {
-            out.writeUTF(Notificacion.LIBERAR_CAJA.getValor() + ";" + numCaja);
-            out.flush();
-        } catch (IOException ex) {
-            Logger.getLogger(CajaView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void setTxtTramite(String txtTramite) {
+        this.txtTramite.setText(txtTramite);
     }
 
-    /*
-        Recibe la secuenca generada para el usuario por el servidor y la muestra en pantalla
-     */
-    private void clienteACaja(String[] datos) {
-        this.txtSecuencia.setText(datos[1]);
-        this.txtNombreUsuario.setText(datos[2]);
-        this.txtTramite.setText(datos[3]);
+    public String getNumCaja() {
+        return numCaja;
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,7 +78,7 @@ public class CajaView extends Cliente {
         txtNombreUsuario = new sacoba.vista.TransparentTextField();
         btnVolver = new sacoba.vista.PanelConFondo("flecha-volver.png");
         lblVolver = new javax.swing.JLabel();
-        lblAbrirChat = new javax.swing.JLabel();
+        lblCrearUsuario = new javax.swing.JLabel();
         txtSecuencia = new sacoba.vista.TransparentTextField();
         lblUsuario3 = new javax.swing.JLabel();
         txtTramite = new sacoba.vista.TransparentTextField();
@@ -104,6 +86,8 @@ public class CajaView extends Cliente {
         lblLiberar = new javax.swing.JLabel();
         btnAbrirChat = new sacoba.vista.PanelConFondo("chat.png");
         lblUsuario4 = new javax.swing.JLabel();
+        lblAbrirChat1 = new javax.swing.JLabel();
+        btnCrearUsuario = new sacoba.vista.PanelConFondo("flecha-volver.png");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(950, 650));
@@ -146,11 +130,11 @@ public class CajaView extends Cliente {
         panelUsuario.add(lblVolver);
         lblVolver.setBounds(100, 50, 160, 30);
 
-        lblAbrirChat.setFont(LETRA_TEXTO_2);
-        lblAbrirChat.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblAbrirChat.setText("Abrir chat corporativo");
-        panelUsuario.add(lblAbrirChat);
-        lblAbrirChat.setBounds(560, 50, 220, 30);
+        lblCrearUsuario.setFont(LETRA_TEXTO_2);
+        lblCrearUsuario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblCrearUsuario.setText("Crear Usuario");
+        panelUsuario.add(lblCrearUsuario);
+        lblCrearUsuario.setBounds(110, 310, 180, 30);
 
         txtSecuencia.setEditable(false);
         txtSecuencia.setToolTipText("Ingrese un usuario");
@@ -198,6 +182,20 @@ public class CajaView extends Cliente {
         panelUsuario.add(lblUsuario4);
         lblUsuario4.setBounds(100, 140, 150, 30);
 
+        lblAbrirChat1.setFont(LETRA_TEXTO_2);
+        lblAbrirChat1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblAbrirChat1.setText("Abrir chat corporativo");
+        panelUsuario.add(lblAbrirChat1);
+        lblAbrirChat1.setBounds(560, 50, 220, 30);
+
+        btnCrearUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCrearUsuarioMouseClicked(evt);
+            }
+        });
+        panelUsuario.add(btnCrearUsuario);
+        btnCrearUsuario.setBounds(50, 300, 50, 50);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -223,7 +221,7 @@ public class CajaView extends Cliente {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLiberarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLiberarMouseClicked
-        liberarCaja();
+        caja.liberarCaja();
     }//GEN-LAST:event_btnLiberarMouseClicked
 
     private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
@@ -233,18 +231,24 @@ public class CajaView extends Cliente {
 
     private void btnAbrirChatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirChatMouseClicked
         try {
-            System.out.println("hola");
-            Runtime.getRuntime().exec("java -jar lib/JavaChatProject_Client.jar " + Cliente.getSERVER_IP());
+            System.out.println("Abriendo chat");
+            Runtime.getRuntime().exec("java -jar lib/SACOBA_Chat_Client.jar");
         } catch (IOException ex) {
             Logger.getLogger(CajaView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAbrirChatMouseClicked
 
+    private void btnCrearUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearUsuarioMouseClicked
+        new CrearUsuario(this).setVisible(true);
+    }//GEN-LAST:event_btnCrearUsuarioMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private sacoba.vista.PanelConFondo btnAbrirChat;
+    private sacoba.vista.PanelConFondo btnCrearUsuario;
     private sacoba.vista.PanelConFondo btnLiberar;
     private sacoba.vista.PanelConFondo btnVolver;
-    private javax.swing.JLabel lblAbrirChat;
+    private javax.swing.JLabel lblAbrirChat1;
+    private javax.swing.JLabel lblCrearUsuario;
     private javax.swing.JLabel lblLiberar;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTitulo2;

@@ -16,44 +16,49 @@ package sacoba.servidor.beans;
 public enum Notificacion {
 
     /**
-     *
+     * Evento utilizado para notificar usuario al ingresar por la puerta.
      */
     ENTRA_USUARIO(1),
 
     /**
-     *
+     *Evento utilizado para notificarle a un usuario su número de secuencia.
      */
     NOTIFICA_SECUENCIA(2),
 
     /**
-     *
+     *Evento utilizado para actualizar el total de usuarios en la cola de plataforma.
      */
     ACTUALIZA_PLATAFORMA(3),
 
     /**
-     *
+     *Evento utilizado para actualizar el total de usuarios en la cola de tramites.
      */
     ACTUALIZA_TRAMITES(4),
 
     /**
-     *
+     *Evento utilizado para actualizar el total de usuarios en la cola de cuentas.
      */
     ACTUALIZA_CUENTAS(5),
 
     /**
-     *
+     *Evento utilizado para notificar que el cliente procede a alguna caja.
      */
     AVANZA_CLIENTE(6),
 
     /**
-     *
+     *Evento utilizado para notificar al servidor que la caja esta vacía.
      */
     LIBERAR_CAJA(7),
 
     /**
-     *
+     *Evento utilizado para notificar a la caja el siguiente cliente.
      */
-    CLIENTE_A_CAJA(8);
+    CLIENTE_A_CAJA(8),
+    
+    /**
+     *Evento utilizado para crear un nuevo usuario.
+     */
+    CREAR_USUARIO(9);
 
     private final int valor;
 
@@ -102,6 +107,8 @@ public enum Notificacion {
             case 8:
                 resultado = Notificacion.CLIENTE_A_CAJA;
                 break;
+            case 9:
+                resultado = Notificacion.CREAR_USUARIO;
             default:
                 break;
         }

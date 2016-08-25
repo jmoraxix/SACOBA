@@ -26,7 +26,8 @@ public class ClienteTCP extends VentanaBase {
 
         //Pide la IP del servidor y no se cierra el dialog a menos que ingrese un valor válido
         if (Cliente.getSERVER_IP() == null) {
-            Cliente.setSERVER_IP(JOptionPane.showInputDialog(this, "Digita la IP del servidor", "IP requerida", JOptionPane.WARNING_MESSAGE));
+            String ip = JOptionPane.showInputDialog(this, "Digita la IP del servidor", "IP requerida", JOptionPane.WARNING_MESSAGE);
+            Cliente.setSERVER_IP(ip==null?"localhost":ip);
         }
     }
 
@@ -133,14 +134,13 @@ public class ClienteTCP extends VentanaBase {
     }//GEN-LAST:event_btnPuertaMouseClicked
 
     private void btnMonitorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMonitorMouseClicked
-        new MonitorView().setVisible(true);
         this.dispose();
+        new MonitorView().setVisible(true);
     }//GEN-LAST:event_btnMonitorMouseClicked
 
     private void btnCajeroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCajeroMouseClicked
-        new CajaLogin().setVisible(true);
-        //new Servidor().setVisible(true);
         this.dispose();
+        new CajaLogin().setVisible(true);
     }//GEN-LAST:event_btnCajeroMouseClicked
 
     /**

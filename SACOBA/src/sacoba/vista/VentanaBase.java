@@ -56,13 +56,13 @@ public class VentanaBase extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(ANCHO, ALTO);
         setTitle("SACOBA");
-        try {
-            InputStream imgStream = VentanaBase.class.getResourceAsStream("imagenes/logo.png");
-            BufferedImage myImg = ImageIO.read(imgStream);
-            setIconImage(myImg);
-        } catch (Exception e) {
-            Logger.getLogger(VentanaBase.class.getName()).log(Level.SEVERE, null, e);
-        }
+//        try {
+//            InputStream imgStream = VentanaBase.class.getResourceAsStream("imagenes/logo.png");
+//            BufferedImage myImg = ImageIO.read(imgStream);
+//            setIconImage(myImg);
+//        } catch (Exception e) {
+//            Logger.getLogger(VentanaBase.class.getName()).log(Level.SEVERE, null, e);
+//        }
         this.setContentPane(new PanelConFondo("fondo_principal.png"));
 
         //Creacion de la barra de menu

@@ -9,7 +9,7 @@
  */
 package sacoba.servidor.estructuras;
 
-import sacoba.cliente.Cliente;
+import sacoba.servidor.ClienteServidor;
 
 /**
  *
@@ -18,27 +18,25 @@ import sacoba.cliente.Cliente;
 public class NodoListaClientes {
 
     //Variables
-    private Cliente cliente;
+    private ClienteServidor cliente;
     private NodoListaClientes next;
 
     //Constructor
-
     /**
      *
      * @param cliente
      */
-    public NodoListaClientes(Cliente cliente) {
+    public NodoListaClientes(ClienteServidor cliente) {
         this.cliente = cliente;
         next = null;
     }
 
     //Metodos
-
     /**
      *
      * @return
      */
-    public Cliente getCliente() {
+    public ClienteServidor getCliente() {
         return cliente;
     }
 
@@ -46,7 +44,7 @@ public class NodoListaClientes {
      *
      * @param cliente
      */
-    public void setCliente(Cliente cliente) {
+    public void setCliente(ClienteServidor cliente) {
         this.cliente = cliente;
     }
 

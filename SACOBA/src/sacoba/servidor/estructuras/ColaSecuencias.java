@@ -16,8 +16,8 @@ package sacoba.servidor.estructuras;
 public class ColaSecuencias {
 
     //Variables
-    private NodoCola frente;
-    private NodoCola ultimo;
+    private NodoColaSecuencias frente;
+    private NodoColaSecuencias ultimo;
 
     //Constructor
 
@@ -31,7 +31,7 @@ public class ColaSecuencias {
      *
      * @param nodo
      */
-    public ColaSecuencias(NodoCola nodo) {
+    public ColaSecuencias(NodoColaSecuencias nodo) {
         enCola(nodo);
     }
 
@@ -41,7 +41,7 @@ public class ColaSecuencias {
      *
      * @param d
      */
-    public void enCola(NodoCola d) {
+    public void enCola(NodoColaSecuencias d) {
         if (frente == null) {
             frente = d;
             ultimo = d;
@@ -55,8 +55,8 @@ public class ColaSecuencias {
      *
      * @return
      */
-    public NodoCola desencola() {
-        NodoCola aux = frente;
+    public NodoColaSecuencias desencola() {
+        NodoColaSecuencias aux = frente;
         if (frente != null) {
             frente = frente.getAtras();
             aux.setAtras(null);
@@ -75,7 +75,7 @@ public class ColaSecuencias {
     @Override
     public String toString() {
         String s = "";
-        NodoCola aux = frente;
+        NodoColaSecuencias aux = frente;
         while (aux != null) {
             s += "-> " + aux + "\n";
             aux = aux.getAtras();

@@ -23,13 +23,14 @@ import sacoba.servidor.beans.Notificacion;
 import sacoba.servidor.beans.Persona;
 import sacoba.servidor.estructuras.Arbol;
 import sacoba.servidor.estructuras.ListaEnlazadaClientes;
+import sacoba.servidor.estructuras.NodoColaSecuencias;
 import sacoba.vista.VentanaBase;
 
 /**
  *
  * @author jmora
  */
-public class Servidor extends VentanaBase {
+public class Servidor extends VentanaBase implements Runnable {
 
     //Variables Globales
     private ArrayList<Persona> personas = new ArrayList<Persona>();
@@ -58,71 +59,87 @@ public class Servidor extends VentanaBase {
         txtCajaLog.setText(txtLog);
 
         try {
-
             agregarLog("Inicia servidor");
-            System.out.println("Inicia servidor");
+            //System.out.println("Inicia servidor");
             service = Executors.newCachedThreadPool();
             serverSocket = new ServerSocket(SERVER_PORT);
+            service.submit(this);
         } catch (IOException ex) {
             agregarError(ex.toString());
-            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+//        new Thread(this);
     }
 
-    //Metodos de TCP
-    private void aceptarClientes() {
+    @Override
+    public void run() {
+        agregarClientes();
+    }
+    
+    private void agregarClientes(){
         try {
             while (true) {
                 socket = serverSocket.accept();
                 agregarLog("Cliente entrante");
-                System.out.println("Cliente entrante");
+                //System.out.println("Cliente entrante");
                 ClienteServidor client = new ClienteServidor(this, socket);
                 service.submit(client);
+                this.clientes.insertarCliente(client);
                 agregarLog("Cliente agregado");
-                System.out.println("Cliente agregado");
+                //System.out.println("Cliente agregado");
             }
         } catch (IOException ex) {
             agregarError(ex.toString());
             //Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    //Metodos de TCP
     /**
      * Envia una notificacion de actualizacion de cola a todos los clientes
      *
      * @param notificacion Tipo de notificacion
-     * @param cantidad Nueva cantidad de personasa en la cola
+     * @param cantidad Nueva cantidad de personas en la cola
      */
-    public void notificarCambioCola(Notificacion notificacion, final int cantidad) {
-        //TODO iterar para llamar notificarCambioCola(notificacion, cantidad) en cada cliente
+    public void notificarCambioCola(Notificacion notificacion, final String cantidad) {
+        clientes.notificarCambioCola(notificacion, cantidad);
     }
 
-    private void notificarUsuarioAMonitores(final String usuario, String secuencia, Persona persona, final String caja) {
-        //TODO iterar para llamar notificarUsuarioMonitor(usuario, secuencia, persona, caja) en cada cliente
+    public void notificarUsuarioAMonitores(String secuencia, Persona persona, final String caja) {
+        clientes.notificarUsuarioAMonitores(secuencia, persona, caja);
     }
 
-    //Metodos del manejor de variables
-    public void addCliente(ClienteServidor cliente) {
-        //this.arbol = arbol;
+    public synchronized String insertarUsuarioEnCola(String idCola, Persona persona) {
+        return arbol.insertarUsuario(idCola, persona);
+    }
+    
+    public synchronized NodoColaSecuencias siguienteUsuario(){
+        return arbol.siguienteUsuario();
     }
 
     //Metodos para manejo de la interfaz
-    public void agregarLog(String msj) {
+    /**
+     * Agrega un log a la consola y/o interfaz
+     *
+     * @param msj Mensaje a mostrar
+     */
+    public synchronized void agregarLog(String msj) {
         Date fecha = new Date(System.currentTimeMillis());
         this.txtLog = fecha.toString() + " - " + msj + "\n" + txtLog;
         this.txtCajaLog.setText(txtLog);
-        System.out.println(msj);
+        //System.out.println(fecha.toString() + " - " + msj + "\n");
     }
 
     /**
      *
      * @param msj
      */
-    public void agregarError(String msj) {
+    public synchronized void agregarError(String msj) {
         Date fecha = new Date(System.currentTimeMillis());
         this.txtLog = fecha.toString() + " - " + "ERROR: " + msj + "\n" + txtLog;
         this.txtCajaLog.setText(txtLog);
+        //System.out.println(fecha.toString() + " - " + "ERROR: " + msj + "\n");
     }
 
     //Getters & setters
@@ -134,7 +151,7 @@ public class Servidor extends VentanaBase {
         this.personas = personas;
     }
 
-    public void addPersona(Persona persona) {
+    public synchronized void addPersona(Persona persona) {
         this.personas.add(persona);
     }
 
@@ -146,7 +163,7 @@ public class Servidor extends VentanaBase {
         this.empleados = empleados;
     }
 
-    public void addEmpleado(Empleado empleado) {
+    public synchronized void addEmpleado(Empleado empleado) {
         this.empleados.add(empleado);
     }
 
@@ -258,14 +275,13 @@ public class Servidor extends VentanaBase {
             public void run() {
                 //Inicia el servidor del chat
                 try {
-                    Runtime.getRuntime().exec("java -jar lib/JavaChatProject_Server.jar");
+                    Runtime.getRuntime().exec("java -jar lib/SACOBA_Chat_Server.jar");
                 } catch (IOException ex) {
                     Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
                 Servidor server = new Servidor();
                 server.setVisible(true);
-                server.aceptarClientes();
             }
         });
     }

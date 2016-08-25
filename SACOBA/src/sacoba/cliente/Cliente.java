@@ -23,7 +23,7 @@ import sacoba.vista.VentanaBase;
  *
  * @author jmora
  */
-public abstract class Cliente extends VentanaBase implements Runnable {
+public abstract class Cliente extends Thread {
 
     protected static String SERVER_IP;
     protected static int SERVER_PORT = 2356;
@@ -36,9 +36,6 @@ public abstract class Cliente extends VentanaBase implements Runnable {
      * streams
      */
     public Cliente() {
-        while (Cliente.getSERVER_IP().equals("")) {
-            Cliente.setSERVER_IP(JOptionPane.showInputDialog(this, "Digita la IP del servidor", "IP requerida", JOptionPane.WARNING_MESSAGE));
-        }
         try {
             System.out.println(SERVER_IP);
             if (SERVER_IP.equals("localhost")) {
@@ -49,7 +46,7 @@ public abstract class Cliente extends VentanaBase implements Runnable {
             createStream();
         } catch (IOException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showInputDialog(this, "No se ha podido conectarse con el servidor", "Error al conectarse con el servidor", JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showInputDialog(this, "No se ha podido conectarse con el servidor", "Error al conectarse con el servidor", JOptionPane.ERROR_MESSAGE);
         }
     }
 

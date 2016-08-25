@@ -14,24 +14,27 @@ import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 import sacoba.servidor.ClienteServidor;
 import sacoba.servidor.beans.Notificacion;
+import sacoba.vista.TransparentFormattedTextField;
+import sacoba.vista.VentanaBase;
 
 /**
  *
  * @author ulacit
  */
-public class PuertaView extends Cliente {
+public class PuertaView extends VentanaBase {
 
-    ButtonGroup options;
+    private ButtonGroup options;
+    private Puerta puerta;
 
     /**
      * Creates new form PuertaView
      */
     public PuertaView() {
-        super();
         initComponents();
 
         try {
@@ -42,96 +45,26 @@ public class PuertaView extends Cliente {
         }
 
         options = new ButtonGroup();
-        options.add(jbop1);
         options.add(jbop2);
+        options.add(jbop1);
         options.add(jbop3);
         options.add(jbop4);
         options.add(jbop5);
         options.add(jbop6);
         options.add(jbop7);
         options.add(jbop8);
+        
+        puerta = new Puerta(this);
+        puerta.start();
     }
-
-    @Override
-    public void run() {
-        while (true) {
-            try {
-                // Recibe un dato de entrada
-                String entrada = in.readUTF();
-                System.out.println(entrada);
-                String[] datos = entrada.split(";"); // Divide los datos de la entrada en cada ';'
-
-                switch (Notificacion.convertirValor(Integer.parseInt(datos[0]))) {
-                    case NOTIFICA_SECUENCIA:
-                        notificaSecuencia(datos);
-                        break;
-                    case ACTUALIZA_PLATAFORMA:
-                        actualizaPlataforma(datos);
-                        break;
-                    case ACTUALIZA_TRAMITES:
-                        actualizaTramites(datos);
-                        break;
-                    case ACTUALIZA_CUENTAS:
-                        actualizaCuentas(datos);
-                        break;
-                    default:
-                        break;
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(ClienteServidor.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-
-    //Metodos de TCP
-    private void entraUsuario() {
-        String codigo = getCodeFromButton();
-        if (codigo != null) {
-            try {
-                out.writeUTF(Notificacion.ENTRA_USUARIO.getValor() + ";" + codigo);
-                out.flush();
-            } catch (IOException ex) {
-                Logger.getLogger(CajaView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this,
-                    "Por favor seleccione una opción antes de continuar.",
-                    "No se puede continuar",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    /*
-        Recibe la secuenca del usuario y la muestra en pantalla
-     */
-    private void notificaSecuencia(String[] datos) {
-        JOptionPane.showMessageDialog(this,
-                "Su número de secuencia es: " + datos[1]);
-    }
-
-    /*
-        Recibe el nuevo numero de usuarios en la cola de Plataforma
-     */
-    private void actualizaPlataforma(String[] datos) {
-        this.lblPlataforma.setText(datos[1]);
-    }
-
-    /*
-        Recibe el nuevo numero de usuarios en la cola de Tramites
-     */
-    private void actualizaTramites(String[] datos) {
-        this.lblTramites.setText(datos[1]);
-    }
-
-    /*
-        Recibe el nuevo numero de usuarios en la cola de Cuentas
-     */
-    private void actualizaCuentas(String[] datos) {
-        this.lblCuentas.setText(datos[1]);
+    
+    //Getters and setters
+    public String getTxtCedula() {
+        return txtCedula.getText();
     }
 
     //Otros metodos
-    private String getCodeFromButton() {
+    public String getCodeFromButton() {
         String codigo = null;
 
         if (jbop1.isSelected()) {
@@ -153,6 +86,18 @@ public class PuertaView extends Cliente {
         }
 
         return codigo;
+    }
+
+    public void setTxtCuentas(String lblCuentas) {
+        this.lblCuentas.setText(lblCuentas);
+    }
+
+    public void setTxtPlataforma(String lblPlataforma) {
+        this.lblPlataforma.setText(lblPlataforma);
+    }
+
+    public void setTxtTramites(String lblTramites) {
+        this.lblTramites.setText(lblTramites);
     }
 
     /**
@@ -225,13 +170,13 @@ public class PuertaView extends Cliente {
         lblCedula.setBounds(80, 50, 150, 30);
 
         jbop1.setFont(LETRA_TEXTO_3);
-        jbop1.setText("Cambio de moneda");
+        jbop1.setText("Depositar a cuenta");
         jbop1.setToolTipText("Seleccione el proceso deseado");
         panelUsuarioIzq.add(jbop1);
         jbop1.setBounds(20, 20, 190, 30);
 
         jbop2.setFont(LETRA_TEXTO_3);
-        jbop2.setText("Depositar a cuenta");
+        jbop2.setText("Cambio de moneda");
         jbop2.setToolTipText("Seleccione el proceso deseado");
         panelUsuarioIzq.add(jbop2);
         jbop2.setBounds(20, 50, 190, 30);
@@ -376,7 +321,7 @@ public class PuertaView extends Cliente {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnContinuarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnContinuarMouseClicked
-        entraUsuario();
+        puerta.entraUsuario();
     }//GEN-LAST:event_btnContinuarMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
