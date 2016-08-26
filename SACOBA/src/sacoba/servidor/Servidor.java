@@ -136,9 +136,9 @@ public class Servidor extends VentanaBase implements Runnable {
      * @param msj
      */
     public synchronized void agregarError(String msj) {
-        Date fecha = new Date(System.currentTimeMillis());
-        this.txtLog = fecha.toString() + " - " + "ERROR: " + msj + "\n" + txtLog;
-        this.txtCajaLog.setText(txtLog);
+//        Date fecha = new Date(System.currentTimeMillis());
+//        this.txtLog = fecha.toString() + " - " + "ERROR: " + msj + "\n" + txtLog;
+//        this.txtCajaLog.setText(txtLog);
         //System.out.println(fecha.toString() + " - " + "ERROR: " + msj + "\n");
     }
 
